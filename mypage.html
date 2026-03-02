@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習記録 / 設定 | Quake Interactive Archive</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <style>
+        body, html { margin: 0; padding: 0; background-color: #111111; color: #ffffff; height: 100dvh; display: flex; flex-direction: column; }
+        
+        .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: #1a1a1a; border-bottom: 1px solid #333333; display: flex; justify-content: space-between; align-items: center; }
+        .live-header h1 { font-size: 1.25rem; margin: 0; }
+
+        .mypage-container { flex: 1; padding: 2rem; max-width: 900px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 2.5rem; overflow-y: auto; }
+        
+        .section-title { font-size: 1.1rem; color: #ffffff; margin-bottom: 1rem; border-left: 4px solid #E69F00; padding-left: 10px; font-weight: bold; }
+
+        .tech-card { background: #1a1a1a; border: 1px solid #444444; border-radius: 4px; padding: 1.5rem; }
+
+        /* IDセクション */
+        .id-display-area { display: flex; align-items: center; justify-content: space-between; background: #000000; padding: 1rem; border: 1px solid #444444; border-radius: 4px; margin-top: 1rem;}
+        .user-id-text { font-family: var(--font-mono); font-size: 1.2rem; color: #E69F00; font-weight: bold; letter-spacing: 1px; }
+
+        /* メダル（実績）グリッド：視認性を徹底改善 */
+        .medal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+        
+        /* 未獲得状態（文字ははっきり読ませ、アイコンだけグレーアウト） */
+        .medal-item { background: #1a1a1a; border: 2px dashed #555555; border-radius: 6px; padding: 1.5rem; text-align: center; transition: all 0.2s ease; }
+        .medal-icon { font-size: 3rem; margin-bottom: 0.5rem; filter: grayscale(100%); opacity: 0.3; }
+        .medal-name { font-weight: bold; font-family: var(--font-mono); font-size: 1.1rem; color: #cccccc; margin-bottom: 6px; }
+        .medal-desc { font-size: 0.85rem; color: #aaaaaa; line-height: 1.4; }
+        
+        /* 獲得済みの状態（オレンジで強くハイライト） */
+        .medal-item.unlocked { border: 2px solid #E69F00; background: rgba(230, 159, 0, 0.1); }
+        .medal-item.unlocked .medal-icon { filter: grayscale(0%); opacity: 1; transform: scale(1.1); transition: 0.3s; }
+        .medal-item.unlocked .medal-name { color: #E69F00; }
+        .medal-item.unlocked .medal-desc { color: #ffffff; }
+
+        /* 設定リスト */
+        .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid #444444; }
+        .setting-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .setting-info h4 { margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem; font-weight: bold; }
+        .setting-info p { margin: 0; font-size: 0.9rem; color: #cccccc; line-height: 1.5; }
+
+        /* トースト通知 */
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #ffffff; color: #111111; padding: 12px 24px; font-weight: bold; border-radius: 4px; opacity: 0; transition: 0.2s; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        @media (max-width: 768px) {
+            .live-header { padding: 0.8rem 1rem; }
+            .mypage-container { padding: 1.5rem 1rem; gap: 2rem; }
+            .id-display-area { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .id-display-area .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="live-header">
+        <div>
+            <span class="tag tag-light" style="background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">User Profile</span>
+            <h1>学習記録 / システム設定</h1>
+        </div>
+        <a href="index.html" class="btn secondary btn-small" style="border: 1px solid #666; color: #ccc;">✕ ダッシュボードに戻る</a>
+    </header>
+
+    <main class="mypage-container">
+        
+        <section>
+            <h2 class="section-title">ユーザー識別子 (User ID)</h2>
+            <div class="tech-card">
+                <p style="font-size: 0.9rem; color: #cccccc; margin: 0; line-height: 1.6;">
+                    このIDは研究データの分析（アンケートと学習ログの紐付け）に使用されます。<br>
+                    外部へ個人情報が送信されることはありません。
+                </p>
+                <div class="id-display-area">
+                    <div class="user-id-text" id="user-id-display">Loading...</div>
+                    <button class="btn secondary btn-small" id="btn-copy-id" style="border-color: #E69F00; color: #E69F00;">📋 コピー</button>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">獲得実績 (Achievements)</h2>
+            <div class="medal-grid">
+                <div class="medal-item" id="medal-bronze">
+                    <div class="medal-icon">🥉</div>
+                    <div class="medal-name">初級サバイバー</div>
+                    <div class="medal-desc">初級クイズ パーフェクト達成</div>
+                </div>
+                <div class="medal-item" id="medal-silver">
+                    <div class="medal-icon">🥈</div>
+                    <div class="medal-name">中級サバイバー</div>
+                    <div class="medal-desc">中級クイズ パーフェクト達成</div>
+                </div>
+                <div class="medal-item" id="medal-gold">
+                    <div class="medal-icon">🥇</div>
+                    <div class="medal-name">上級サバイバー</div>
+                    <div class="medal-desc">上級クイズ パーフェクト達成</div>
+                </div>
+                <div class="medal-item" id="medal-fakemediabuster">
+                    <div class="medal-icon" style="filter: drop-shadow(0 0 5px rgba(179,102,255,0.5));">🎖️</div>
+                    <div class="medal-name">フェイクバスター</div>
+                    <div class="medal-desc">情報見極め訓練<br>パーフェクト達成</div>
+                </div>
+                <div class="medal-item" id="medal-memory_inheritor">
+                    <div class="medal-icon" style="filter: drop-shadow(0 0 5px rgba(179,102,255,0.5));">🎖️</div>
+                    <div class="medal-name">東日本大震災サバイバー</div>
+                    <div class="medal-desc">東日本大震災追体験ノベルゲーム<br>修了</div>
+                </div>
+                <div class="medal-item" id="medal-shakeout_sleep">
+                    <div class="medal-icon">🛏️</div>
+                    <div class="medal-name">空間認知の生還者</div>
+                </div>
+                <div class="medal-item" id="medal-shakeout_arena">
+                    <div class="medal-icon">🏟️</div>
+                    <div class="medal-name">同調圧力への抵抗者</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">システム設定 (Settings)</h2>
+            <div class="tech-card" style="padding: 0 1.5rem;">
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>チュートリアルの再確認</h4>
+                        <p>ダッシュボードの基本的な使い方やデータの見方をもう一度表示します。</p>
+                    </div>
+                    <button class="btn secondary btn-small" id="btn-replay-tutorial">再生する</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4 style="color: #D55E00;">学習データの初期化</h4>
+                        <p>獲得した実績やクイズの履歴をすべて消去します。（※ユーザーIDは保持されます）</p>
+                    </div>
+                    <button class="btn secondary btn-small" style="color: #D55E00; border-color: rgba(213,94,0,0.5);" id="btn-reset-data">データを消去</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toast" class="toast">システムメッセージ</div>
+
+    <script src="./js/mypage.js"></script>
+</body>
+</html>

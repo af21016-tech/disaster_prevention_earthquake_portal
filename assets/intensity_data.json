@@ -1,0 +1,119 @@
+[
+    {
+        "id": "1995-hanshin",
+        "name": "1995年 兵庫県南部地震 (阪神・淡路大震災)",
+        "date": "1995年1月17日 05:46",
+        "magnitude": "M7.3",
+        "depth": "16 km",
+        "description": "淡路島北部から神戸市にかけての活断層が動いた直下型地震。観測史上初めて震度7が適用され、都市部に壊滅的な被害をもたらした。",
+        "points": [
+            {"region": "兵庫県南部", "lat": 34.70, "lng": 135.20, "intensity": 7},
+            {"region": "淡路島", "lat": 34.35, "lng": 134.90, "intensity": 7},
+            {"region": "京都府南部", "lat": 35.00, "lng": 135.75, "intensity": 5.0},
+            {"region": "滋賀県南部", "lat": 35.05, "lng": 135.95, "intensity": 5.0},
+            {"region": "大阪府北部", "lat": 34.80, "lng": 135.50, "intensity": 4.0}
+        ]
+    },
+    {
+        "id": "2004-chuetsu",
+        "name": "2004年 新潟県中越地震",
+        "date": "2004年10月23日 17:56",
+        "magnitude": "M6.8",
+        "depth": "13 km",
+        "description": "新潟県中越地方を震源とする直下型地震。山間部で大規模な土砂崩れが発生し集落が孤立。車中泊による関連死が広く認知される契機となった。",
+        "points": [
+            {"region": "新潟県中越", "lat": 37.30, "lng": 138.80, "intensity": 7},
+            {"region": "新潟県上越", "lat": 37.10, "lng": 138.25, "intensity": 5.5},
+            {"region": "新潟県下越", "lat": 37.85, "lng": 139.15, "intensity": 5.0},
+            {"region": "長野県北部", "lat": 36.85, "lng": 138.35, "intensity": 4.0},
+            {"region": "群馬県北部", "lat": 36.65, "lng": 138.95, "intensity": 4.0}
+        ]
+    },
+    {
+        "id": "2011-tohoku",
+        "name": "2011年 東北地方太平洋沖地震",
+        "date": "2011年3月11日 14:46",
+        "magnitude": "Mw 9.0",
+        "depth": "24 km",
+        "description": "日本周辺の観測史上最大の海溝型巨大地震。揺れの範囲が極めて広く、東日本全域に甚大な被害と巨大津波をもたらした。",
+        "points": [
+            {"region": "宮城県北部", "lat": 38.65, "lng": 141.10, "intensity": 7},
+            {"region": "宮城県中部", "lat": 38.30, "lng": 140.95, "intensity": 6.5},
+            {"region": "宮城県南部", "lat": 38.05, "lng": 140.80, "intensity": 6.5},
+            {"region": "福島県中通り", "lat": 37.50, "lng": 140.35, "intensity": 6.5},
+            {"region": "福島県浜通り", "lat": 37.35, "lng": 140.95, "intensity": 6.5},
+            {"region": "茨城県北部", "lat": 36.60, "lng": 140.50, "intensity": 6.5},
+            {"region": "栃木県北部", "lat": 36.90, "lng": 139.90, "intensity": 6.5},
+            {"region": "岩手県内陸南部", "lat": 39.15, "lng": 141.15, "intensity": 6.0},
+            {"region": "千葉県北西部", "lat": 35.80, "lng": 139.95, "intensity": 6.0},
+            {"region": "東京都23区", "lat": 35.70, "lng": 139.75, "intensity": 5.5},
+            {"region": "埼玉県南部", "lat": 35.90, "lng": 139.60, "intensity": 5.5},
+            {"region": "青森県三八上北", "lat": 40.50, "lng": 141.35, "intensity": 5.0}
+        ]
+    },
+    {
+        "id": "2016-kumamoto-pre",
+        "name": "2016年 熊本地震 (前震)",
+        "date": "2016年4月14日 21:26",
+        "magnitude": "M6.5",
+        "depth": "11 km",
+        "description": "熊本県熊本地方を震源とする地震。局所的に非常に強い揺れを観測した。多くの人がこれを「本震」だと思い込んでしまった。",
+        "points": [
+            {"region": "熊本県熊本", "lat": 32.80, "lng": 130.75, "intensity": 7},
+            {"region": "熊本県阿蘇", "lat": 32.95, "lng": 131.05, "intensity": 4.0},
+            {"region": "熊本県天草・芦北", "lat": 32.45, "lng": 130.50, "intensity": 4.0},
+            {"region": "大分県西部", "lat": 33.25, "lng": 131.10, "intensity": 3.0}
+        ]
+    },
+    {
+        "id": "2016-kumamoto-main",
+        "name": "2016年 熊本地震 (本震)",
+        "date": "2016年4月16日 01:25",
+        "magnitude": "M7.3",
+        "depth": "12 km",
+        "description": "前震の2日後に発生した、さらに巨大な本震。揺れの範囲が阿蘇や大分方面へ劇的に広がり、前震で傷んでいた家屋が次々と倒壊した。",
+        "points": [
+            {"region": "熊本県熊本", "lat": 32.80, "lng": 130.75, "intensity": 7},
+            {"region": "熊本県阿蘇", "lat": 32.95, "lng": 131.05, "intensity": 6.5},
+            {"region": "大分県西部", "lat": 33.25, "lng": 131.10, "intensity": 5.5},
+            {"region": "大分県中部", "lat": 33.20, "lng": 131.55, "intensity": 5.5},
+            {"region": "熊本県天草・芦北", "lat": 32.45, "lng": 130.50, "intensity": 5.0},
+            {"region": "長崎県島原半島", "lat": 32.75, "lng": 130.30, "intensity": 5.0},
+            {"region": "宮崎県北部平野部", "lat": 32.55, "lng": 131.65, "intensity": 5.0}
+        ]
+    },
+    {
+        "id": "2018-hokkaido",
+        "name": "2018年 北海道胆振東部地震",
+        "date": "2018年9月6日 03:07",
+        "magnitude": "M6.7",
+        "depth": "37 km",
+        "description": "北海道で初めて震度7を観測。大規模な土砂崩れが発生したほか、発電所の停止により日本初の「全域ブラックアウト（大規模停電）」を引き起こした。",
+        "points": [
+            {"region": "胆振地方中東部", "lat": 42.70, "lng": 141.85, "intensity": 7},
+            {"region": "石狩地方南部", "lat": 42.85, "lng": 141.60, "intensity": 6.0},
+            {"region": "石狩地方中部", "lat": 43.05, "lng": 141.35, "intensity": 5.5},
+            {"region": "空知地方南部", "lat": 43.00, "lng": 141.80, "intensity": 5.5},
+            {"region": "日高地方西部", "lat": 42.50, "lng": 142.05, "intensity": 5.0},
+            {"region": "渡島地方東部", "lat": 41.85, "lng": 140.95, "intensity": 4.0}
+        ]
+    },
+    {
+        "id": "2024-noto",
+        "name": "2024年 令和6年能登半島地震",
+        "date": "2024年1月1日 16:10",
+        "magnitude": "M7.6",
+        "depth": "16 km",
+        "description": "能登半島北部を震源とする逆断層型地震。半島特有の地形で道路が寸断されて孤立集落が多数発生したほか、大津波と大規模火災が同時発生した。",
+        "points": [
+            {"region": "石川県能登", "lat": 37.25, "lng": 136.95, "intensity": 7},
+            {"region": "石川県加賀", "lat": 36.45, "lng": 136.50, "intensity": 5.5},
+            {"region": "富山県西部", "lat": 36.75, "lng": 137.00, "intensity": 5.5},
+            {"region": "富山県東部", "lat": 36.70, "lng": 137.40, "intensity": 5.0},
+            {"region": "新潟県中越", "lat": 37.35, "lng": 138.80, "intensity": 5.0},
+            {"region": "新潟県上越", "lat": 37.10, "lng": 138.25, "intensity": 5.0},
+            {"region": "福井県嶺北", "lat": 36.05, "lng": 136.25, "intensity": 5.0},
+            {"region": "岐阜県飛騨", "lat": 36.15, "lng": 137.25, "intensity": 4.0}
+        ]
+    }
+]
