@@ -2,7 +2,7 @@ const mainContainer = document.getElementById('main-container');
 const contentBox = document.getElementById('content-box');
 
 let currentSceneId = null;
-let currentPhase = 0;
+let currentPhase = 0; // 配列インデックス（0: Drop, 1: Cover）
 let timerAnimation;
 let startTime;
 let timeLimit;
@@ -11,11 +11,18 @@ let isAnswered = false;
 // プレイヤーの事前回答保存用
 let playerConfig = {};
 
+// リズムゲーム・BGM用変数
+let isRhythmGameActive = false;
+let rhythmStartTime = 0;
+let combo = 0;
+let rhythmAnimFrame = null;
+let bgmAudio = null; 
+let targetEarthquakeTime = 3500; // ★追加：ランダムな地震発生タイミングを保持する変数
+
 // --- シナリオデータ ---
 const scenarios = {
     sleep: {
         title: "SCENE 1：就寝中の寝室",
-        // 事前設定を2段階に拡張
         setupSteps: [
             {
                 id: "direction",
@@ -46,7 +53,7 @@ const scenarios = {
                     { icon: "🛌", text: "起き上がらない", isCorrect: true, feedback: "就寝中の最大の脅威は「転倒」です。絶対に起き上がらず、布団に留まるのが鉄則です。" }
                 ]
             },
-            {   // Phase 2: COVER (回答によってテキストが変化！)
+            {   // Phase 2: COVER
                 time: 3500,
                 getText: () => {
                     if (playerConfig.directionId === 'none') {
@@ -66,7 +73,7 @@ const scenarios = {
         ],
         hold: { // Phase 3: HOLD ON
             time: 4000,
-            text: `<span class="alert-text">【Phase 3: HOLD ON】</span><br>本震が襲ってきました！<br>下のボタンを「長押し」して、ゲージがMAXになるまで布団の中で耐え抜いてください！`,
+            text: `<span class="alert-text">【Phase 3: HOLD ON】</span><br>本震が襲ってきました！<br>下のボタンを「長押し」して、揺れが収まるまで布団の中で耐え抜いてください！`,
             failText: "指が離れてしまいました。恐怖に耐えきれず暗闇へ逃げ出し、飛散したガラスを踏んで負傷しました。「揺れが収まるまでその場から動かない」という強い意志が必要です。",
             getClearText: () => {
                 if (playerConfig.directionId === 'none') return "布団の中で頭を守り抜きました。<br><br>家具のない寝室は、地震において非常に安全な空間です。今後もその環境を維持してください。";
@@ -81,7 +88,7 @@ const scenarios = {
         phases: [
             {
                 time: 3500,
-                getText: () => `<span class="alert-text">警報音が鳴り、照明が落ちました！</span><br>【Phase 1: DROP】<br>強い揺れが来ます！`,
+                getText: () => `<span class="alert-text">けたたましい警報音が鳴り、照明が落ちました！</span><br>【Phase 1: DROP】<br>強い揺れが来ます！`,
                 options: [
                     { icon: "🏃", text: "出口へ走る", isCorrect: false, feedback: "出口付近で将棋倒し（群集事故）が発生し、圧死する危険性が極めて高くなります。" },
                     { icon: "🚶", text: "広い通路に出る", isCorrect: false, feedback: "暗闇の中で通路に出ると、逃げ惑う他の観客に踏みつぶされる危険があります。" },
@@ -130,10 +137,11 @@ function startScenario(sceneId) {
     if (scenario.setupSteps && scenario.setupSteps.length > 0) {
         showSetupStep(0);
     } else {
-        startCountdown();
+        startArenaRhythmGame();
     }
 }
 
+// --- 就寝中：事前設定 ---
 function showSetupStep(stepIndex) {
     const setupData = scenarios[currentSceneId].setupSteps[stepIndex];
     let html = `<h2 class="scene-title">${scenarios[currentSceneId].title}</h2><p class="situation-text">${setupData.text}</p><div class="choices-grid">`;
@@ -161,6 +169,96 @@ function startCountdown() {
         if (count > 0) { contentBox.innerHTML = `<h2 style="font-size: 4rem; color: #FF2800; margin:0;">${count}</h2>`; count--; } 
         else { clearInterval(interval); playPhase(); }
     }, 1000);
+}
+
+// --- アリーナ：リズムゲームの罠（急転直下ギミック） ---
+function startArenaRhythmGame() {
+    mainContainer.className = 'main-container';
+    mainContainer.style.background = 'radial-gradient(circle at center, #1a0033 0%, #000 100%)';
+    combo = 0;
+    
+    // ★追加：プレイするたびに「5000ms（5秒）〜 20000ms（20秒）」の間でランダムなタイミングを設定
+    targetEarthquakeTime = Math.floor(Math.random() * (20000 - 5000 + 1)) + 3000;
+    
+    bgmAudio = new Audio('./audio/arena_bgm.mp3'); 
+    bgmAudio.volume = 0.6; 
+    bgmAudio.play().catch(e => console.log("BGMの再生がブロックされました: ", e));
+    
+    contentBox.innerHTML = `
+        <h2 class="scene-title" style="color: #FF69B4; font-size: 2rem; text-shadow: 0 0 10px #FF69B4;">💖 ARENA LIVE START! 💖</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #fff;">音楽に合わせてペンライト（キー）を振れ！<br><span style="color:#aaa; font-size:0.9rem;">PC: [F] と [J] キー / スマホ: 画面の左右をタップ</span></p>
+        
+        <div style="display: flex; justify-content: space-around; width: 100%; max-width: 400px; margin: 0 auto; height: 150px; position: relative;">
+            <div id="lane-left" style="width: 80px; height: 80px; border: 4px solid #56B4E9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; position: absolute; bottom: 0; left: 10%; touch-action: none; cursor: pointer; color: #56B4E9; background: rgba(86,180,233,0.1); box-shadow: 0 0 15px rgba(86,180,233,0.5);">F</div>
+            <div id="lane-right" style="width: 80px; height: 80px; border: 4px solid #FFBE00; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; position: absolute; bottom: 0; right: 10%; touch-action: none; cursor: pointer; color: #FFBE00; background: rgba(255,190,0,0.1); box-shadow: 0 0 15px rgba(255,190,0,0.5);">J</div>
+        </div>
+        <div id="combo-text" style="font-size: 2.5rem; font-weight: bold; color: #fff; margin-top: 2rem; opacity: 0; text-shadow: 0 0 10px #fff;">1 COMBO!</div>
+    `;
+
+    isRhythmGameActive = true;
+    rhythmStartTime = performance.now();
+    
+    window.addEventListener('keydown', handleRhythmKey);
+    document.getElementById('lane-left').addEventListener('pointerdown', () => triggerRhythmAction('lane-left'));
+    document.getElementById('lane-right').addEventListener('pointerdown', () => triggerRhythmAction('lane-right'));
+    
+    rhythmAnimFrame = requestAnimationFrame(rhythmGameLoop);
+}
+
+function handleRhythmKey(e) {
+    if (!isRhythmGameActive) return;
+    if (e.key.toLowerCase() === 'f') triggerRhythmAction('lane-left');
+    if (e.key.toLowerCase() === 'j') triggerRhythmAction('lane-right');
+}
+
+function triggerRhythmAction(laneId) {
+    if (!isRhythmGameActive) return;
+    combo++;
+    const comboEl = document.getElementById('combo-text');
+    comboEl.innerText = `${combo} COMBO!`;
+    comboEl.style.opacity = 1;
+    
+    const lane = document.getElementById(laneId);
+    const originalColor = laneId === 'lane-left' ? 'rgba(86,180,233,0.1)' : 'rgba(255,190,0,0.1)';
+    const flashColor = laneId === 'lane-left' ? 'rgba(86,180,233,0.8)' : 'rgba(255,190,0,0.8)';
+    
+    lane.style.background = flashColor;
+    setTimeout(() => { if (lane) lane.style.background = originalColor; }, 100);
+}
+
+function rhythmGameLoop(currentTime) {
+    if (!isRhythmGameActive) return;
+
+    const elapsedTime = currentTime - rhythmStartTime;
+
+    // ★変更：ランダムに設定された時間（targetEarthquakeTime）を超えたらドッキリ発動
+    if (elapsedTime > targetEarthquakeTime) {
+        triggerEarthquake();
+        return;
+    }
+
+    rhythmAnimFrame = requestAnimationFrame(rhythmGameLoop);
+}
+
+function triggerEarthquake() {
+    isRhythmGameActive = false;
+    window.removeEventListener('keydown', handleRhythmKey);
+    cancelAnimationFrame(rhythmAnimFrame);
+    
+    if (bgmAudio) {
+        bgmAudio.pause();
+        bgmAudio.currentTime = 0;
+    }
+    
+    mainContainer.style.background = '#000';
+    contentBox.innerHTML = ''; 
+
+    setTimeout(() => {
+        mainContainer.style.background = ''; 
+        mainContainer.className = 'main-container bg-alert';
+        currentPhase = 0; 
+        playPhase(); 
+    }, 800);
 }
 
 // --- フェーズ進行 (Drop / Cover) ---
@@ -217,7 +315,7 @@ function nextPhase() {
     else playHoldPhase();
 }
 
-// --- フェーズ 3: HOLD ON (長押し) の確実な判定 ---
+// --- フェーズ 3: HOLD ON (長押し) ---
 let holdStartTime = 0;
 let holdTimerAnim = null;
 let isHolding = false;
@@ -248,20 +346,18 @@ function playHoldPhase() {
 
     const endHold = (e) => { 
         e.preventDefault(); 
-        if (!isHolding || isAnswered) return; // 既に終わっているか、押されていなければ無視
+        if (!isHolding || isAnswered) return; 
         isHolding = false; btnHold.classList.remove('holding'); btnHold.querySelector('span:nth-child(2)').innerText = "HOLD ON"; 
         cancelAnimationFrame(holdTimerAnim);
         
-        // 離してしまったら即ゲームオーバー！
         isAnswered = true;
         showFeedback(false, scenarios[currentSceneId].hold.failText);
     };
 
-    // Pointer Events（PC/スマホ両対応の最強イベント）を使用
     btnHold.addEventListener('pointerdown', startHold);
     btnHold.addEventListener('pointerup', endHold);
     btnHold.addEventListener('pointerleave', endHold);
-    btnHold.addEventListener('pointercancel', endHold); // スクロール等によるシステムキャンセルも拾う
+    btnHold.addEventListener('pointercancel', endHold);
 }
 
 function updateHoldProgress(currentTime) {
@@ -274,7 +370,6 @@ function updateHoldProgress(currentTime) {
     if (holdRatio < 1) {
         holdTimerAnim = requestAnimationFrame(updateHoldProgress);
     } else {
-        // 100%溜まったらクリア
         isAnswered = true; isHolding = false;
         document.getElementById('btn-hold').classList.remove('holding');
         showClear(scenarios[currentSceneId].hold.getClearText());
