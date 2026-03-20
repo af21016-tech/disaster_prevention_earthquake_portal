@@ -6,202 +6,133 @@
     <meta name="description" content="データサイエンスとゲーミフィケーションに基づく防災学習ポータル">
     <title>Quake Interactive Archive | 防災ポータル</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;500&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
+    
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <div class="header-titles">
-                <h1>Quake Interactive Archive</h1>
-                <p class="subtitle">データサイエンスとゲーミフィケーションに基づく防災学習ポータル</p>
-            </div>
-            <div class="research-meta">
-                <div>Phase: Pre-Analysis</div>
-                <div id="user-display">Loading ID...</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 15px;">
-            <div id="user-display" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-sub);"></div>
-            
-            <a href="mypage.html" class="btn secondary btn-small" style="border-color: var(--primary-color); color: var(--primary-color); text-decoration: none; display: flex; align-items: center; gap: 4px;">
-                👤 マイページ
-            </a>
+    <header>
+        <div class="logo-area">
+            <h1>Quake Archive</h1>
+            <p>Interactive Disaster Simulator</p>
         </div>
-        </header>
+        <div class="header-actions">
+            <span id="user-display" class="user-id-badge">ID: Loading...</span>
+            <a href="mypage.html" class="btn-mypage">MY PAGE</a>
+        </div>
+    </header>
 
-        <main class="bento-grid">
-            
-            <section class="card area-recent-map">
-                <div class="recent-map-header" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; padding-right: 1.5rem;">
-                    <div>
-                        <span class="tag">Live Data (USGS)</span>
-                        <h2 class="card-title-compact">過去24時間の地震活動</h2>
-                    </div>
-                    <a href="live-map.html" target="_blank" class="btn secondary btn-small" style="margin-top: 0; background: rgba(255,255,255,0.8); pointer-events: auto;">
-                        ↗ 拡大表示
-                    </a>
-                </div>
-                <div id="leaflet-map"></div>
-            </section>
-
-            <section class="card area-map-3d" id="map-3d-container" style="position: relative;">
-                <div class="map-placeholder">
-                    <span class="mono-text">[ Three.js 3D Context Loading... ]</span>
-                </div>
-                <div class="map-overlay" style="position: absolute; top: 0; left: 0; right: 0; z-index: 2; pointer-events: none; padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div>
-                        <span class="tag tag-light">Archive Data</span>
-                        <h2 class="text-light" style="margin: 0.5rem 0;">震源分布 3Dマップ (Three.js)</h2>
-                        <p class="text-muted-light" style="margin: 0;">自由に回転・地下へ潜行可能</p>
-                    </div>
-                    <a href="archive-3d.html" target="_blank" class="btn secondary btn-small" style="pointer-events: auto; background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">
-                        ↗ タイムスライサーを開く
-                    </a>
-                </div>
-                <div class="map-credits" style="position: absolute; bottom: 10px; right: 10px; font-size: 0.65rem; color: #888; font-family: var(--font-sans); text-align: right; z-index: 10; pointer-events: auto;">
-                    震源データ：USGS<br>
-                    地図データ：Data of Japan (MIT)<br>
-                    <span style="font-size: 0.55rem; opacity: 0.8;">※規模(M)はモーメントマグニチュード(Mw)を使用</span>
-                </div>
-            </section>
-
-            <section class="card" style="border: 1px solid var(--primary-color); background: rgba(230, 159, 0, 0.05); padding: 1.5rem; border-radius: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                    <div>
-                        <span class="tag" style="background: var(--primary-color); color: #fff; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">Training Module</span>
-                        <h2 style="color: var(--text-main); margin: 0.5rem 0 0.2rem 0; font-size: 1.3rem;">サバイバル・クイズ</h2>
-                        <p style="color: var(--text-sub); margin: 0; font-size: 0.85rem; line-height: 1.5;">
-                        災害時の「間違った常識（認知バイアス）」を打ち砕く、全3ステージのタイムアタック訓練。全問正解してメダルを獲得せよ。
-                        </p>
-                    </div>
-                    <div style="font-size: 2.5rem; opacity: 0.8; margin-left: 1rem;">⏱️</div>
-                </div>
-                <a href="quiz.html" class="btn primary" style="display: block; width: 100%; text-align: center; font-size: 1.1rem; padding: 1rem; text-decoration: none; font-weight: bold; box-sizing: border-box;">
-                訓練を開始する ➡
-                </a>
-            </section>
-
-            <section class="card" style="border: 1px solid #b366ff; background: rgba(179, 102, 255, 0.05); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                <div>
-                    <span class="tag" style="background: #b366ff; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">Media Literacy</span>
-                    <h2 style="color: var(--text-main); margin: 0.5rem 0 0.2rem 0; font-size: 1.3rem;">デマ・誤情報 見極め訓練</h2>
-                    <p style="color: var(--text-sub); margin: 0; font-size: 0.85rem; line-height: 1.5;">
-                        災害時に飛び交うフェイクニュースや悪質なデマ。SNSの情報から真実を見抜き、インフォデミックを防げ。
-                    </p>
-                </div>
-                <div style="font-size: 2.5rem; opacity: 0.8; margin-left: 1rem;">📱</div>
-            </div>
-            <a href="fake_news_quiz.html" class="btn primary" style="display: block; width: 100%; text-align: center; font-size: 1.1rem; padding: 1rem; text-decoration: none; font-weight: bold; background: #b366ff; border: none; box-sizing: border-box;">
-                情報戦に挑む ➡
-            </a>
-        </section>
-
-        <section class="card" style="border: 1px solid #56B4E9; background: rgba(86, 180, 233, 0.05); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                <div>
-                    <span class="tag" style="background: #56B4E9; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">Archive Map</span>
-                    <h2 style="color: var(--text-main); margin: 0.5rem 0 0.2rem 0; font-size: 1.3rem;">過去の巨大地震 震度分布マップ</h2>
-                    <p style="color: var(--text-sub); margin: 0; font-size: 0.85rem; line-height: 1.5;">
-                        阪神・淡路大震災から能登半島地震まで。日本を襲った歴史的地震の「揺れの広がり」を、気象庁の予報区データから可視化して比較します。
-                    </p>
-                </div>
-                <div style="font-size: 2.5rem; opacity: 0.8; margin-left: 1rem;">🗺️</div>
-            </div>
-            <a href="intensity-map.html" class="btn primary" style="display: block; width: 100%; text-align: center; font-size: 1.1rem; padding: 1rem; text-decoration: none; font-weight: bold; background: #56B4E9; border: none; box-sizing: border-box; color: #fff;">
-                震度マップを見る ➡
-            </a>
-        </section>
-
-        <section class="card" style="border: 1px solid #009E73; background: rgba(0, 158, 115, 0.05); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                <div>
-                    <span class="tag" style="background: #009E73; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">Interactive Novel</span>
-                    <h2 style="color: var(--text-main); margin: 0.5rem 0 0.2rem 0; font-size: 1.3rem;">3.11 記憶の追体験</h2>
-                    <p style="color: var(--text-sub); margin: 0; font-size: 0.85rem; line-height: 1.5;">
-                        生存本能と他者への思いやり（愛他性）が激突する極限状態。<br>あの日、もしあなたが見知らぬ海沿いの街にいたら、どのような決断を下すのか。
-                    </p>
-                </div>
-                <div style="font-size: 2.5rem; opacity: 0.8; margin-left: 1rem;">📖</div>
-            </div>
-            <a href="novel-game.html" class="btn primary" style="display: block; width: 100%; text-align: center; font-size: 1.1rem; padding: 1rem; text-decoration: none; font-weight: bold; background: #009E73; border: none; box-sizing: border-box; color: #fff;">
-                追体験を開始する ➡
-            </a>
-        </section>
-
-        <section class="card" style="border: 1px solid #FFBE00; background: rgba(255, 190, 0, 0.05); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                <div>
-                    <span class="tag" style="background: #FFBE00; color: #111; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">Spatial Survival Simulation</span>
-                    <h2 style="color: var(--text-main); margin: 0.5rem 0 0.2rem 0; font-size: 1.3rem;">Spatial ShakeOut（空間シェイクアウト）</h2>
-                    <p style="color: var(--text-sub); margin: 0; font-size: 0.85rem; line-height: 1.5;">
-                        テキスト選択肢を一切排除した直感型サバイバル。<br>自室の家具倒壊リスクの可視化と、アリーナでの群衆パニック（同調圧力）への抵抗を、マウスクリックとドラッグ操作のみで疑似体験します。
-                    </p>
-                </div>
-                <div style="font-size: 2.5rem; opacity: 0.8; margin-left: 1rem;">🎯</div>
-            </div>
-            <a href="shakeout.html" class="btn primary" style="display: block; width: 100%; text-align: center; font-size: 1.1rem; padding: 1rem; text-decoration: none; font-weight: bold; background: #FFBE00; border: none; box-sizing: border-box; color: #111;">
-                空間シミュレーターを起動 ➡
-            </a>
-        </section>
-        
-        <section class="card" style="border-top: 4px solid #56B4E9; margin-top: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                <div>
-                    <span class="tag" style="background: #56B4E9; color: #111; font-weight: bold;">Multi-Hazard Visualization</span>
-                    <h2 style="color: var(--text-main); margin: 0.5rem 0 0.2rem 0; font-size: 1.2rem;">複合災害ハザードマップ</h2>
-                    <p style="color: var(--text-sub); margin: 0; font-size: 0.85rem;">津波、洪水、土砂災害の危険エリアを重ね合わせ、複合災害のリスクを視覚的に確認します。（国土地理院データ）</p>
-                </div>
-                <div style="font-size: 2rem; opacity: 0.8; margin-left: 1rem;">🗺️</div>
-            </div>
-            <a href="hazard-map.html" class="btn primary" style="display: block; width: 100%; text-align: center; box-sizing: border-box; background: #222; border: 1px solid #56B4E9; color: #56B4E9;">
-        ハザードマップを開く ➡
-            </a>
-        </section>
-
-        <section class="card area-links">
-            <span class="tag">Database</span>
-            <h2>研究アーカイブ & リンク集</h2>
-            <p>シェイクアウト訓練マニュアル、過去の震度データ、参考文献。</p>
-            <div class="button-group">
-                <button class="btn secondary btn-small">マニュアル</button>
-                <button class="btn secondary btn-small">データセット</button>
-            </div>
-        </section>
-
-        </main>
+    <div class="hero-map-section">
+        <div id="leaflet-map"></div>
+        <div class="hero-overlay">
+            <h2>LIVE SEISMIC DATA</h2>
+            <p>● 過去24時間の地震活動 (USGS)</p>
+        </div>
     </div>
 
-    <nav class="bottom-nav">
-        <div class="nav-item active">
-            <div class="nav-icon active-icon"></div>
-            <span>Home</span>
-        </div>
-        <div class="nav-item">
-            <div class="nav-icon"></div>
-            <span>Map</span>
-        </div>
-        <div class="nav-item">
-            <div class="nav-icon"></div>
-            <span>Learn</span>
-        </div>
-        <div class="nav-item">
-            <div class="nav-icon"></div>
-            <span>Menu</span>
-        </div>
-    </nav>
+    <main>
+        <section class="content-section">
+            <div class="section-header">
+                <h2>地震に備える</h2>
+                <span class="sub-en">PREPARE FOR DISASTER</span>
+            </div>
+            
+            <div class="card-grid">
+                <a href="quiz.html" class="sfj-card color-orange">
+                    <div class="card-icon">⏱️</div>
+                    <h3>サバイバル・クイズ</h3>
+                    <p>災害時の「間違った常識」を打ち砕くタイムアタック訓練。全問正解してメダルを獲得せよ。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Training</span>
+                        <span>START ➡</span>
+                    </div>
+                </a>
+
+                <a href="shakeout.html" class="sfj-card color-yellow">
+                    <div class="card-icon">🎯</div>
+                    <h3>空間シェイクアウト</h3>
+                    <p>直感型サバイバル。自室の家具倒壊リスクや、アリーナでの群衆パニックへの抵抗を疑似体験。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Simulation</span>
+                        <span>START ➡</span>
+                    </div>
+                </a>
+
+                <a href="fake_news_quiz.html" class="sfj-card color-purple">
+                    <div class="card-icon">📱</div>
+                    <h3>デマ・誤情報 見極め訓練</h3>
+                    <p>災害時に飛び交うフェイクニュース。SNSのタイムラインから真実を見抜き、インフォデミックを防ぐ。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Literacy</span>
+                        <span>START ➡</span>
+                    </div>
+                </a>
+
+                <a href="hazard-map.html" class="sfj-card color-blue">
+                    <div class="card-icon">🌊</div>
+                    <h3>複合災害ハザードマップ</h3>
+                    <p>津波、洪水、土砂災害の危険エリアを重ね合わせ、国土地理院データから複合リスクを視覚化。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Database</span>
+                        <span>VIEW ➡</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2>過去の地震を知る</h2>
+                <span class="sub-en">LEARN FROM THE PAST</span>
+            </div>
+            
+            <div class="card-grid">
+                <a href="intensity-map.html" class="sfj-card color-blue">
+                    <div class="card-icon">🗺️</div>
+                    <h3>過去の巨大地震 震度分布</h3>
+                    <p>阪神・淡路大震災から能登半島地震まで、歴史的地震の「揺れの広がり」を予報区データから比較。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Archive</span>
+                        <span>VIEW ➡</span>
+                    </div>
+                </a>
+
+                <a href="archive-3d.html" class="sfj-card color-green">
+                    <div class="card-icon">🌐</div>
+                    <h3>震源分布 3Dマップ</h3>
+                    <p>1995年以降の日本の地震活動をThree.jsで立体可視化。地下への潜行やタイムスライスが可能。</p>
+                    <div class="card-action">
+                        <span class="card-tag">3D Visualizer</span>
+                        <span>VIEW ➡</span>
+                    </div>
+                </a>
+
+                <a href="novel-game.html" class="sfj-card color-green">
+                    <div class="card-icon">📖</div>
+                    <h3>3.11 記憶の追体験</h3>
+                    <p>生存本能と愛他性が激突する極限状態。見知らぬ海沿いの街で、あなたはどのような決断を下すのか。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Interactive</span>
+                        <span>START ➡</span>
+                    </div>
+                </a>
+
+                <a href="#" class="sfj-card color-yellow">
+                    <div class="card-icon">📁</div>
+                    <h3>研究アーカイブ & リンク集</h3>
+                    <p>シェイクアウト訓練の公式マニュアル、過去の震度オープンデータ、参考文献などへのアクセス。</p>
+                    <div class="card-action">
+                        <span class="card-tag">Resources</span>
+                        <span>VIEW ➡</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
     <script src="./js/main.js" defer></script>
 </body>
 </html>

@@ -52,7 +52,7 @@ function initMap() {
         btn.style.fontSize = '18px';
         btn.style.cursor = 'pointer';
         btn.style.backgroundColor = 'white';
-        btn.style.color = '#333'; // ダークテーマでもアイコンが見えるように黒文字指定
+        btn.style.color = '#333'; 
         btn.style.border = 'none';
         btn.style.display = 'flex';
         btn.style.alignItems = 'center';
@@ -66,7 +66,7 @@ function initMap() {
             if (!document.fullscreenElement) {
                 if (mapEl.requestFullscreen) {
                     mapEl.requestFullscreen();
-                } else if (mapEl.webkitRequestFullscreen) { // Safari対応
+                } else if (mapEl.webkitRequestFullscreen) { 
                     mapEl.webkitRequestFullscreen();
                 }
             } else {
@@ -81,9 +81,9 @@ function initMap() {
     };
     fullscreenControl.addTo(map);
 
-    // ダークテーマのベースマップ
+    // ★ 変更点：著作権表記を「OpenStreetMap contributors」と正式表記に修正
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OSM',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         subdomains: 'abcd',
         maxZoom: 10
     }).addTo(map);
@@ -170,8 +170,6 @@ function selectEarthquake(eqId) {
         map.removeLayer(geojsonLayer);
     }
 
-    // 選択された地震の震度データを、予報区名をキーにした辞書(Map)に変換
-    // 例: { "石川県能登": 7, "石川県加賀": 5.5, ... }
     const intensityMap = {};
     eq.points.forEach(pt => {
         intensityMap[pt.region] = pt.intensity;
@@ -180,25 +178,19 @@ function selectEarthquake(eqId) {
     // GeoJSONからポリゴンを描画
     geojsonLayer = L.geoJSON(jmaRegionData, {
         style: function (feature) {
-            // GeoJSON内のプロパティ名（name, NAME, name_jaなど）を取得
-            // ※ダウンロードしたshpデータの仕様に合わせて調整が必要な場合があります
             const regionName = feature.properties.name || feature.properties.NAME || feature.properties.Name;
-            
-            // この予報区の震度を取得（データがなければ0）
             const intensity = intensityMap[regionName] || 0;
             const color = getIntensityColor(intensity);
 
             if (color) {
-                // 震度4以上は色を塗る
                 return {
                     fillColor: color,
-                    weight: 1,       // 境界線の太さ
-                    color: '#ffffff', // 境界線の色
+                    weight: 1,       
+                    color: '#ffffff', 
                     opacity: 0.5,
-                    fillOpacity: 0.8 // 面の透明度
+                    fillOpacity: 0.8 
                 };
             } else {
-                // 震度3以下は枠線だけ薄く描くか、あるいは透明にする
                 return {
                     fillColor: 'transparent',
                     weight: 0.5,
@@ -216,7 +208,6 @@ function selectEarthquake(eqId) {
                 const color = getIntensityColor(intensity);
                 const intensityStr = getIntensityString(intensity);
                 
-                // マウスホバーで少し明るくするなどのエフェクト
                 layer.on({
                     mouseover: (e) => {
                         const l = e.target;
@@ -235,7 +226,6 @@ function selectEarthquake(eqId) {
         }
     }).addTo(map);
 
-    // 塗られたポリゴン群全体が画面に収まるようにズーム（少し引き気味に設定）
     if (geojsonLayer.getBounds().isValid()) {
         map.flyToBounds(geojsonLayer.getBounds(), { padding: [20, 20], maxZoom: 8, duration: 1.5 });
     }
