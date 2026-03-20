@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>複合災害ハザードマップ | Quake Interactive Archive</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <style>
+        body, html { margin: 0; padding: 0; height: 100dvh; display: flex; flex-direction: column; background-color: var(--bg-color); color: var(--text-main); font-family: 'Biz UDPGOthic', sans-serif; }
+        
+        .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: var(--surface-color); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; z-index: 1000; position: relative; }
+        .live-header h1 { font-size: 1.25rem; margin: 0; }
+
+        .dashboard-main { flex: 1; display: flex; position: relative; overflow: hidden; }
+        
+        /* マップエリア */
+        #hazard-map { width: 100%; height: 100%; background: #e5e3df; /* 地理院地図に合わせた背景色 */ }
+
+        /* 左側の情報パネル（凡例・説明） */
+        .info-panel { position: absolute; top: 20px; left: 20px; width: 320px; background: rgba(26,26,26,0.9); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; z-index: 1000; backdrop-filter: blur(4px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); overflow-y: auto; max-height: calc(100% - 40px); }
+        .info-panel h3 { margin: 0 0 15px 0; color: #56B4E9; font-size: 1.1rem; border-bottom: 1px solid #444; padding-bottom: 8px; }
+        .info-panel p { margin: 0 0 15px 0; font-size: 0.85rem; color: #ccc; line-height: 1.6; }
+
+        /* 凡例スタイル */
+        .legend-section { margin-bottom: 15px; }
+        .legend-title { font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; color: #fff; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; margin-bottom: 4px; color: #ddd; }
+        .color-box { width: 16px; height: 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; }
+
+        /* Leafletのレイヤーコントロールをダークテーマに合わせる */
+        .leaflet-control-layers { background: rgba(26,26,26,0.9) !important; color: #fff !important; border: 1px solid var(--border-color) !important; border-radius: 8px !important; }
+        .leaflet-control-layers-expanded { padding: 10px !important; }
+        .leaflet-control-layers-separator { border-top: 1px solid #444 !important; }
+
+        @media (max-width: 768px) {
+            .info-panel { display: none; /* スマホでは地図を広く見せるため非表示 */ }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="live-header">
+        <div>
+            <span class="tag" style="background: #56B4E9; color: #111; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; border: none; font-weight: bold;">Multi-Hazard Map</span>
+            <h1>複合災害ハザードマップ</h1>
+        </div>
+        <a href="index.html" class="btn secondary btn-small">✕ ダッシュボードに戻る</a>
+    </header>
+
+    <main class="dashboard-main">
+        <div id="hazard-map"></div>
+        
+        <div class="info-panel">
+            <h3>複合災害リスクの確認</h3>
+            <p>画面右上のレイヤーアイコンから、表示したい災害リスクをチェックして重ね合わせることができます。<br>複数の色が重なる場所は、複合災害の危険性が高いエリアです。</p>
+            
+            <div class="legend-section">
+                <div class="legend-title">🌊 津波浸水想定</div>
+                <div class="legend-item"><div class="color-box" style="background:#e6550d;"></div>10m ～ 20m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#fd8d3c;"></div>5m ～ 10m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#fdae6b;"></div>3m ～ 5m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#fdd0a2;"></div>1m ～ 3m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#feedde;"></div>0.3m ～ 1m未満</div>
+            </div>
+
+            <div class="legend-section">
+                <div class="legend-title">💧 洪水浸水想定（想定最大規模）</div>
+                <div class="legend-item"><div class="color-box" style="background:#dc7add;"></div>10m ～ 20m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#f285c9;"></div>5m ～ 10m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#ff9191;"></div>3m ～ 5m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#ffb7b7;"></div>0.5m ～ 3m未満</div>
+                <div class="legend-item"><div class="color-box" style="background:#f7f5a9;"></div>0.5m未満</div>
+            </div>
+
+            <div class="legend-section">
+                <div class="legend-title">⛰️ 土砂災害警戒区域</div>
+                <div class="legend-item"><div class="color-box" style="background:#ffe600;"></div>土石流 / 急傾斜地の崩壊</div>
+            </div>
+            
+            <p style="font-size: 0.75rem; color: #888; margin-top: 15px; border-top: 1px solid #444; padding-top: 10px;">
+                出典：国土地理院 ハザードマップポータルサイト<br>※この地図は防災参考用です。最新の詳細は各自治体のハザードマップをご確認ください。
+            </p>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./js/hazard_map.js"></script>
+</body>
+</html>
