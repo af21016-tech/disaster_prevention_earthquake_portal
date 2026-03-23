@@ -18,26 +18,89 @@
         .dashboard-main { flex: 1; display: flex; position: relative; overflow: hidden; }
         
         /* マップエリア */
-        #hazard-map { width: 100%; height: 100%; background: #e5e3df; /* 地理院地図に合わせた背景色 */ }
+        #hazard-map { width: 100%; height: 100%; background: #050505; /* 漆黒背景は維持 */ }
 
         /* 左側の情報パネル（凡例・説明） */
-        .info-panel { position: absolute; top: 20px; left: 20px; width: 320px; background: rgba(26,26,26,0.9); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; z-index: 1000; backdrop-filter: blur(4px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); overflow-y: auto; max-height: calc(100% - 40px); }
-        .info-panel h3 { margin: 0 0 15px 0; color: #56B4E9; font-size: 1.1rem; border-bottom: 1px solid #444; padding-bottom: 8px; }
-        .info-panel p { margin: 0 0 15px 0; font-size: 0.85rem; color: #ccc; line-height: 1.6; }
+        .info-panel { position: absolute; top: 20px; left: 20px; width: 320px; background: rgba(15, 15, 15, 0.9); border: 1px solid #333; border-radius: 8px; padding: 1.5rem; z-index: 1000; backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.8); overflow-y: auto; max-height: calc(100% - 40px); }
+        .info-panel h3 { margin: 0 0 15px 0; color: #fff; font-size: 1.1rem; border-bottom: 1px solid #333; padding-bottom: 8px; letter-spacing: 0.1em; }
+        .info-panel p { margin: 0 0 15px 0; font-size: 0.85rem; color: #E0E0E0; line-height: 1.6; } /* 文字色を明るく */
 
         /* 凡例スタイル */
         .legend-section { margin-bottom: 15px; }
-        .legend-title { font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; color: #fff; }
-        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; margin-bottom: 4px; color: #ddd; }
+        .legend-title { font-weight: bold; font-size: 0.85rem; margin-bottom: 8px; color: #fff; letter-spacing: 0.05em; } /* タイトルを白に */
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; margin-bottom: 4px; color: #E0E0E0; } /* 文字色を明るく */
         .color-box { width: 16px; height: 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; }
 
         /* Leafletのレイヤーコントロールをダークテーマに合わせる */
-        .leaflet-control-layers { background: rgba(26,26,26,0.9) !important; color: #fff !important; border: 1px solid var(--border-color) !important; border-radius: 8px !important; }
+        .leaflet-control-layers { background: rgba(15, 15, 15, 0.9) !important; color: #fff !important; border: 1px solid #333 !important; border-radius: 8px !important; backdrop-filter: blur(5px); }
         .leaflet-control-layers-expanded { padding: 10px !important; }
-        .leaflet-control-layers-separator { border-top: 1px solid #444 !important; }
+        .leaflet-control-layers-separator { border-top: 1px solid #333 !important; }
 
+        /* ★削除：過剰な発光フィルター（.hazard-overlay）は完全に消し去ります */
+ 
         @media (max-width: 768px) {
             .info-panel { display: none; /* スマホでは地図を広く見せるため非表示 */ }
+        }
+
+        /* ★追加：SFJ風 避難所カスタムマーカー */
+        .sfj-shelter-marker {
+            background-color: rgba(15, 15, 15, 0.9);
+            border: 2px solid #00E676; /* CUD推奨のセーフティグリーン */
+            border-radius: 50%;
+            color: #00E676;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); /* ネオン発光エフェクト */
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        .sfj-shelter-marker:hover {
+            background-color: #00E676;
+            color: #050505;
+            transform: scale(1.1);
+        }
+
+        /* ★追加：Leafletのデフォルトポップアップを漆黒のSFJ仕様に上書き */
+        .leaflet-popup-content-wrapper {
+            background: rgba(15, 15, 15, 0.95) !important;
+            color: #EAEAEA !important;
+            border: 1px solid #333;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            font-family: 'BIZ UDPGothic', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        .leaflet-popup-tip {
+            background: rgba(15, 15, 15, 0.95) !important;
+            border-bottom: 1px solid #333;
+            border-right: 1px solid #333;
+        }
+        .leaflet-popup-close-button {
+            color: #aaa !important;
+            font-size: 16px !important;
+        }
+        .leaflet-popup-close-button:hover {
+            color: #fff !important;
+        }
+        .popup-title {
+            color: #00E676;
+            font-size: 1.05rem;
+            margin: 0 0 8px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 4px;
+        }
+        .popup-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            background: #222;
+            border: 1px solid #444;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-right: 4px;
+            margin-bottom: 4px;
         }
     </style>
 </head>
