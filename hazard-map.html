@@ -5,102 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>複合災害ハザードマップ | Quake Interactive Archive</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
     
     <style>
-        body, html { margin: 0; padding: 0; height: 100dvh; display: flex; flex-direction: column; background-color: var(--bg-color); color: var(--text-main); font-family: 'Biz UDPGOthic', sans-serif; }
-        
-        .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: var(--surface-color); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; z-index: 1000; position: relative; }
-        .live-header h1 { font-size: 1.25rem; margin: 0; }
+        /* =========================================
+           SFJ Premium Dark Theme - Hazard Dashboard
+           ========================================= */
+        :root {
+            --bg-color: #050505;
+            --surface-color: #151515;
+            --text-main: #EAEAEA;
+            --text-sub: #999999;
+            --border-color: #333333;
+            --cud-green: #00E676;
+            --cud-orange: #ff7b00;
+            --cud-blue: #56B4E9;
+        }
 
-        .dashboard-main { flex: 1; display: flex; position: relative; overflow: hidden; }
+        body, html { 
+            margin: 0; padding: 0; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            font-family: 'Biz UDPGothic', sans-serif; 
+            letter-spacing: 0.05em;
+            -webkit-font-smoothing: antialiased;
+        }
         
-        /* マップエリア */
-        #hazard-map { width: 100%; height: 100%; background: #050505; /* 漆黒背景は維持 */ }
+        a { text-decoration: none; }
 
-        /* 左側の情報パネル（凡例・説明） */
-        .info-panel { position: absolute; top: 20px; left: 20px; width: 320px; background: rgba(15, 15, 15, 0.9); border: 1px solid #333; border-radius: 8px; padding: 1.5rem; z-index: 1000; backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.8); overflow-y: auto; max-height: calc(100% - 40px); }
-        .info-panel h3 { margin: 0 0 15px 0; color: #fff; font-size: 1.1rem; border-bottom: 1px solid #333; padding-bottom: 8px; letter-spacing: 0.1em; }
-        .info-panel p { margin: 0 0 15px 0; font-size: 0.85rem; color: #E0E0E0; line-height: 1.6; } /* 文字色を明るく */
+        /* ヘッダー */
+        .live-header { 
+            padding: 1rem 2rem; 
+            background: rgba(5,5,5,0.9); 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+        .live-header h1 { font-size: 1.25rem; margin: 0; color: #fff; letter-spacing: 0.1em; }
+        .btn-back { border: 1px solid var(--text-main); color: var(--text-main); padding: 6px 12px; font-size: 0.8rem; border-radius: 4px; transition: 0.2s; }
+        .btn-back:hover { background: var(--text-main); color: var(--bg-color); }
+
+        /* メインレイアウト（上下分割） */
+        .dashboard-main { 
+            max-width: 1400px; /* 地図を広く見せるために少し広め */
+            margin: 0 auto; 
+            padding: 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.5rem;
+        }
+        
+        /* 地図エリア（完全に独立したモニター） */
+        .map-container {
+            width: 100%; 
+            height: 60vh; 
+            min-height: 450px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+        #hazard-map { width: 100%; height: 100%; border-radius: 8px; background: #000; }
+
+        /* 計器盤エリア（地図の下の3カラムグリッド） */
+        .dashboard-console {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .console-panel {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .console-panel h3 { margin: 0 0 15px 0; color: #fff; font-size: 1.05rem; border-bottom: 1px solid #333; padding-bottom: 8px; letter-spacing: 0.1em; }
+        .console-panel p { margin: 0; font-size: 0.85rem; color: #ccc; line-height: 1.6; }
 
         /* 凡例スタイル */
-        .legend-section { margin-bottom: 15px; }
-        .legend-title { font-weight: bold; font-size: 0.85rem; margin-bottom: 8px; color: #fff; letter-spacing: 0.05em; } /* タイトルを白に */
-        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; margin-bottom: 4px; color: #E0E0E0; } /* 文字色を明るく */
-        .color-box { width: 16px; height: 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; }
+        .legend-grid { display: flex; gap: 2rem; }
+        .legend-col { flex: 1; }
+        .legend-title { font-weight: bold; font-size: 0.8rem; margin: 10px 0 6px; color: #fff; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; margin-bottom: 4px; color: #ccc; font-family: 'Roboto Mono', sans-serif; }
+        .color-box { width: 14px; height: 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; }
 
-        /* Leafletのレイヤーコントロールをダークテーマに合わせる */
+        /* 警告と出典スタイル */
+        .warning-text { font-size: 0.75rem; color: var(--cud-orange); line-height: 1.6; background: rgba(255, 123, 0, 0.05); padding: 10px; border-radius: 4px; border-left: 3px solid var(--cud-orange); margin-bottom: 15px; }
+        .source-text { font-size: 0.7rem; color: #666; line-height: 1.6; margin-top: auto; }
+        .source-text a { color: var(--cud-blue); }
+        .source-text a:hover { text-decoration: underline; }
+
+        /* --- Leaflet オーバーライド & カスタムマーカー --- */
         .leaflet-control-layers { background: rgba(15, 15, 15, 0.9) !important; color: #fff !important; border: 1px solid #333 !important; border-radius: 8px !important; backdrop-filter: blur(5px); }
         .leaflet-control-layers-expanded { padding: 10px !important; }
         .leaflet-control-layers-separator { border-top: 1px solid #333 !important; }
 
-        /* ★削除：過剰な発光フィルター（.hazard-overlay）は完全に消し去ります */
- 
+        /* 避難所マーカー */
+        .sfj-shelter-marker { background-color: rgba(15, 15, 15, 0.9); border: 2px solid var(--cud-green); border-radius: 50%; color: var(--cud-green); display: flex; align-items: center; justify-content: center; font-size: 12px; box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); font-weight: bold; transition: 0.2s; }
+        .sfj-shelter-marker:hover { background-color: var(--cud-green); color: #050505; transform: scale(1.1); }
+        
+        /* クラスター（まとめ数字） */
+        .sfj-cluster-marker { background-color: rgba(15, 15, 15, 0.95); border: 2px solid var(--cud-green); color: var(--cud-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; box-shadow: 0 0 15px rgba(0, 230, 118, 0.5); font-family: 'Roboto Mono', monospace; transition: 0.2s; }
+        .sfj-cluster-marker:hover { background-color: var(--cud-green); color: #050505; transform: scale(1.1); }
+
+        /* ダークポップアップ */
+        .leaflet-popup-content-wrapper { background: rgba(15, 15, 15, 0.95) !important; color: #EAEAEA !important; border: 1px solid #333; border-radius: 6px; box-shadow: 0 10px 25px rgba(0,0,0,0.8); backdrop-filter: blur(5px); font-family: 'BIZ UDPGothic', sans-serif; letter-spacing: 0.05em; }
+        .leaflet-popup-tip { background: rgba(15, 15, 15, 0.95) !important; border-bottom: 1px solid #333; border-right: 1px solid #333; }
+        .leaflet-popup-close-button { color: #aaa !important; font-size: 16px !important; }
+        .leaflet-popup-close-button:hover { color: #fff !important; }
+        .popup-title { color: var(--cud-green); font-size: 1.05rem; margin: 0 0 8px 0; border-bottom: 1px solid #333; padding-bottom: 4px; }
+        .popup-tag { display: inline-block; font-size: 0.65rem; background: #222; border: 1px solid #444; padding: 2px 6px; border-radius: 3px; margin-right: 4px; margin-bottom: 4px; }
+
         @media (max-width: 768px) {
-            .info-panel { display: none; /* スマホでは地図を広く見せるため非表示 */ }
-        }
-
-        /* ★追加：SFJ風 避難所カスタムマーカー */
-        .sfj-shelter-marker {
-            background-color: rgba(15, 15, 15, 0.9);
-            border: 2px solid #00E676; /* CUD推奨のセーフティグリーン */
-            border-radius: 50%;
-            color: #00E676;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            box-shadow: 0 0 10px rgba(0, 230, 118, 0.4); /* ネオン発光エフェクト */
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-        .sfj-shelter-marker:hover {
-            background-color: #00E676;
-            color: #050505;
-            transform: scale(1.1);
-        }
-
-        /* ★追加：Leafletのデフォルトポップアップを漆黒のSFJ仕様に上書き */
-        .leaflet-popup-content-wrapper {
-            background: rgba(15, 15, 15, 0.95) !important;
-            color: #EAEAEA !important;
-            border: 1px solid #333;
-            border-radius: 6px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            font-family: 'BIZ UDPGothic', sans-serif;
-            letter-spacing: 0.05em;
-        }
-        .leaflet-popup-tip {
-            background: rgba(15, 15, 15, 0.95) !important;
-            border-bottom: 1px solid #333;
-            border-right: 1px solid #333;
-        }
-        .leaflet-popup-close-button {
-            color: #aaa !important;
-            font-size: 16px !important;
-        }
-        .leaflet-popup-close-button:hover {
-            color: #fff !important;
-        }
-        .popup-title {
-            color: #00E676;
-            font-size: 1.05rem;
-            margin: 0 0 8px 0;
-            border-bottom: 1px solid #333;
-            padding-bottom: 4px;
-        }
-        .popup-tag {
-            display: inline-block;
-            font-size: 0.65rem;
-            background: #222;
-            border: 1px solid #444;
-            padding: 2px 6px;
-            border-radius: 3px;
-            margin-right: 4px;
-            margin-bottom: 4px;
+            .dashboard-main { padding: 1rem; }
+            .map-container { height: 50vh; }
+            .legend-grid { flex-direction: column; gap: 0; }
         }
     </style>
 </head>
@@ -108,49 +135,76 @@
 
     <header class="live-header">
         <div>
-            <span class="tag" style="background: #56B4E9; color: #111; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; border: none; font-weight: bold;">Multi-Hazard Map</span>
+            <span style="background: #56B4E9; color: #111; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-bottom: 4px; display: inline-block;">Multi-Hazard Map</span>
             <h1>複合災害ハザードマップ</h1>
         </div>
-        <a href="index.html" class="btn secondary btn-small">✕ ダッシュボードに戻る</a>
+        <a href="index.html" class="btn-back">✕ CLOSE</a>
     </header>
 
     <main class="dashboard-main">
-        <div id="hazard-map"></div>
+        <div class="map-container">
+            <div id="hazard-map"></div>
+        </div>
         
-        <div class="info-panel">
-            <h3>複合災害リスクの確認</h3>
-            <p>画面右上のレイヤーアイコンから、表示したい災害リスクをチェックして重ね合わせることができます。<br>複数の色が重なる場所は、複合災害の危険性が高いエリアです。</p>
+        <div class="dashboard-console">
             
-            <div class="legend-section">
-                <div class="legend-title">🌊 津波浸水想定</div>
-                <div class="legend-item"><div class="color-box" style="background:#e6550d;"></div>10m ～ 20m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#fd8d3c;"></div>5m ～ 10m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#fdae6b;"></div>3m ～ 5m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#fdd0a2;"></div>1m ～ 3m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#feedde;"></div>0.3m ～ 1m未満</div>
+            <div class="console-panel">
+                <h3>🛡️ 複合災害リスクの確認</h3>
+                <p>マップ右上の「レイヤーアイコン」から、表示したい災害リスクをチェックして重ね合わせることができます。<br><br>複数の色が重なる場所は、複合災害の危険性が高いエリアです。</p>
+                
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed #333; display:flex; align-items:center; gap:12px;">
+                    <div class="sfj-shelter-marker" style="position:static; width:32px; height:32px; font-size: 16px;">🏃</div>
+                    <div>
+                        <span style="font-size:0.85rem; color:#00E676; font-weight:bold; display:block;">指定緊急避難場所</span>
+                        <span style="font-size:0.7rem; color:#888;">アイコンをクリックで対応災害を確認</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="legend-section">
-                <div class="legend-title">💧 洪水浸水想定（想定最大規模）</div>
-                <div class="legend-item"><div class="color-box" style="background:#dc7add;"></div>10m ～ 20m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#f285c9;"></div>5m ～ 10m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#ff9191;"></div>3m ～ 5m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#ffb7b7;"></div>0.5m ～ 3m未満</div>
-                <div class="legend-item"><div class="color-box" style="background:#f7f5a9;"></div>0.5m未満</div>
+            <div class="console-panel">
+                <h3>📊 ハザード凡例 (Area)</h3>
+                <div class="legend-grid">
+                    <div class="legend-col">
+                        <div class="legend-title">🌊 津波浸水想定</div>
+                        <div class="legend-item"><div class="color-box" style="background:#e6550d;"></div>10.0m ～</div>
+                        <div class="legend-item"><div class="color-box" style="background:#fd8d3c;"></div>5.0m ～ 10.0m</div>
+                        <div class="legend-item"><div class="color-box" style="background:#fdae6b;"></div>3.0m ～ 5.0m</div>
+                        <div class="legend-item"><div class="color-box" style="background:#fdd0a2;"></div>1.0m ～ 3.0m</div>
+                        <div class="legend-item"><div class="color-box" style="background:#feedde;"></div>0.3m ～ 1.0m</div>
+
+                        <div class="legend-title" style="margin-top: 15px;">⛰️ 土砂災害警戒区域</div>
+                        <div class="legend-item"><div class="color-box" style="background:#ffe600;"></div>土石流 / 急傾斜地</div>
+                    </div>
+                    <div class="legend-col">
+                        <div class="legend-title">💧 洪水浸水想定 (最大規模)</div>
+                        <div class="legend-item"><div class="color-box" style="background:#dc7add;"></div>10.0m ～</div>
+                        <div class="legend-item"><div class="color-box" style="background:#f285c9;"></div>5.0m ～ 10.0m</div>
+                        <div class="legend-item"><div class="color-box" style="background:#ff9191;"></div>3.0m ～ 5.0m</div>
+                        <div class="legend-item"><div class="color-box" style="background:#ffb7b7;"></div>0.5m ～ 3.0m</div>
+                        <div class="legend-item"><div class="color-box" style="background:#f7f5a9;"></div>～ 0.5m</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="legend-section">
-                <div class="legend-title">⛰️ 土砂災害警戒区域</div>
-                <div class="legend-item"><div class="color-box" style="background:#ffe600;"></div>土石流 / 急傾斜地の崩壊</div>
+            <div class="console-panel">
+                <h3>⚠️ ご利用上の注意</h3>
+                <div class="warning-text">
+                    <strong>【免責事項】</strong><br>
+                    本システムで表示される避難場所およびハザードエリアは、学習・参考用です。実際の災害発生時には、必ず各市町村の公式な発信情報および現地での指示に従って避難行動をとってください。
+                </div>
+                <div class="source-text">
+                    <strong>[出典・データクレジット]</strong><br>
+                    ・ベースマップ：&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors<br>
+                    ・ハザード情報：<a href="https://disaportal.gsi.go.jp/" target="_blank">国土地理院 ハザードマップポータル</a><br>
+                    ・避難所情報：国土地理院「<a href="https://hinanmap.gsi.go.jp/hinanjocp/hinanbasho/koukaidate.html" target="_blank">指定緊急避難場所データ</a>」を当サイトで加工して作成
+                </div>
             </div>
-            
-            <p style="font-size: 0.75rem; color: #888; margin-top: 15px; border-top: 1px solid #444; padding-top: 10px;">
-                出典：国土地理院 ハザードマップポータルサイト<br>※この地図は防災参考用です。最新の詳細は各自治体のハザードマップをご確認ください。
-            </p>
+
         </div>
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script src="./js/hazard_map.js"></script>
 </body>
 </html>
