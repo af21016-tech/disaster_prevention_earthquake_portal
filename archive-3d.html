@@ -3,141 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Archive & Time Slicer | Quake Interactive Archive</title>
+    <title>3D震源分布アーカイブ | Quake Interactive Archive</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
     <style>
-        /* 画面全体の高さをスマホのブラウザUI（アドレスバー等）の増減に対応させる（dvhを使用） */
-        body, html { margin: 0; padding: 0; height: 100%; height: 100dvh; display: flex; flex-direction: column; background-color: #111; color: #fff;}
+        body, html { margin: 0; padding: 0; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background-color: #050505; }
         
-        .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: #1a1a1a; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-        .live-header h1 { font-size: 1.25rem; margin: 0; }
-        
-        /* マップエリア */
-        .map-wrapper { flex: 1 1 auto; position: relative; overflow: hidden; }
+        /* 3Dマップ表示エリア */
+        .dashboard-main { 
+            flex: 1; 
+            display: flex; 
+            position: relative; 
+            margin-top: 60px; /* ヘッダー分下げる */
+        }
         #map-3d-full { width: 100%; height: 100%; }
 
-        /* タイムスライサーのUIパネル */
-        .time-slicer-panel {
+        /* タイムスライサーUI（SFJ風に調整） */
+        #time-slicer-ui {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80%;
+            width: 90%;
             max-width: 800px;
-            background: rgba(20, 20, 20, 0.85);
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            z-index: 1000;
             backdrop-filter: blur(8px);
-            padding: 1.5rem 2rem;
-            border-radius: 12px;
-            border: 1px solid #444;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 10;
-            box-sizing: border-box; /* パディングを含めて幅を計算させる */
+            display: none;
         }
 
-        .slicer-info { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; font-family: var(--font-mono); }
-        .slicer-date-display { font-size: 1.5rem; color: #E69F00; font-weight: bold; }
-        
-        /* スライダー（input range）のデザイン */
-        input[type=range] {
-            -webkit-appearance: none; 
-            appearance: none; /* ★VSCode警告の解消：標準プロパティの追加 */
-            width: 100%; 
+        .slider-container { display: flex; align-items: center; gap: 15px; margin-bottom: 1rem; }
+        input[type=range] { flex: 1; accent-color: #56B4E9; }
+
+        .slicer-controls { display: flex; justify-content: center; gap: 10px; }
+        .btn-slicer {
             background: transparent;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.8rem;
         }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; 
-            appearance: none; /* ★VSCode警告の解消：標準プロパティの追加 */
-            height: 20px; width: 20px; border-radius: 50%;
-            background: #E69F00; cursor: pointer; margin-top: -8px; box-shadow: 0 0 10px rgba(230, 159, 0, 0.8);
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 4px; cursor: pointer; background: #444; border-radius: 2px;
-        }
-
-        /* ★ここから追加：スマホ用レスポンシブデザイン（画面幅768px以下の場合に適用） */
-        @media (max-width: 768px) {
-            .live-header { padding: 0.8rem 1rem; }
-            .live-header h1 { font-size: 1rem; }
-            .live-header .btn { padding: 0.4rem 0.6rem; font-size: 0.75rem; }
-            
-            /* UIパネルを画面幅いっぱいにし、一番下に固定する */
-            .time-slicer-panel {
-                width: 95%;
-                bottom: 15px; /* 下部ギリギリに配置 */
-                padding: 1rem;
-            }
-            .slicer-info { margin-bottom: 10px; font-size: 0.85rem; }
-            .slicer-date-display { font-size: 1.2rem; }
-            
-            /* ボタン群がスマホ画面からはみ出さないように均等に並べる */
-            .slicer-controls {
-                gap: 8px !important;
-            }
-            .slicer-controls button {
-                flex: 1; /* 3つのボタンの幅を均等に分ける */
-                min-width: 0 !important;
-                padding: 0.5rem 0;
-                font-size: 0.8rem;
-            }
-
-            /* 著作権表示がUIと被るため、スマホでは非表示にする（親ページに記載があるため問題なし） */
-            .map-credits { display: none; }
-        }
+        .btn-slicer:hover { border-color: #fff; }
     </style>
 </head>
 <body>
 
-    <div class="live-header">
-        <div>
-            <span class="tag tag-light">Archive Data</span>
-            <h1>1995年以降の震源分布タイムスライサー</h1>
+    <header>
+        <div class="logo-area">
+            <span class="tag" style="background: #00E676; color: #000; font-weight: bold; margin-bottom: 4px; display: inline-block;">3D Archive</span>
+            <h1 style="font-size: 1rem; margin: 0; letter-spacing: 0.1em;">震源分布 3Dマップ</h1>
         </div>
-        <a href="#" onclick="window.close(); return false;" class="btn secondary btn-small" style="background: rgba(255,255,255,0.1); color:white;">✕ ポータルに戻る</a>
-    </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn-back">✕ 戻る</a>
+        </div>
+    </header>
 
-    <div class="map-wrapper">
-        <div id="map-3d-full">
-            <div class="map-placeholder"><span>[ Loading 3D Data... ]</span></div>
-        </div>
+    <main class="dashboard-main">
+        <div id="map-3d-full"></div>
         
-        <div class="time-slicer-panel" id="time-slicer-ui" style="display: none;">
-            <div class="slicer-info">
-                <span id="label-start">1995</span>
-                <div style="text-align: center;">
-                    <span style="font-size: 0.8rem; color: #888;">表示中の時期</span><br>
-                    <span class="slicer-date-display" id="label-current">全期間</span>
-                </div>
-                <span id="label-end">現在</span>
+        <div id="time-slicer-ui">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span id="label-start" style="font-family: 'Roboto Mono'; color: #888;">1995年</span>
+                <span id="label-current" style="font-family: 'Roboto Mono'; color: #56B4E9; font-weight: bold; font-size: 1.2rem;">全期間</span>
             </div>
-            
-            <input type="range" id="time-slider" min="0" max="100" value="100">
-            
-            <div class="slicer-controls" style="display: flex; justify-content: center; gap: 12px; margin-top: 15px;">
-                <button id="btn-play" class="btn secondary btn-small" style="background: rgba(230, 159, 0, 0.2); color: #E69F00; border: 1px solid #E69F00; min-width: 100px;">
-                    ▶ 再生
-                </button>
-                <button id="btn-pause" class="btn secondary btn-small" style="background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid #666; display: none; min-width: 100px;">
-                    ⏸ 一時停止
-                </button>
-                <button id="btn-show-all" class="btn secondary btn-small" style="background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid #666;">
-                    全表示
-                </button>
+            <div class="slider-container">
+                <input type="range" id="time-slider" min="0" max="100" value="100">
+            </div>
+            <div class="slicer-controls">
+                <button id="btn-play" class="btn-slicer">▶ 再生</button>
+                <button id="btn-pause" class="btn-slicer" style="display:none;">⏸ 停止</button>
+                <button id="btn-show-all" class="btn-slicer">全期間表示</button>
             </div>
         </div>
+    </main>
 
-        <div class="map-credits" style="position: absolute; bottom: 10px; right: 10px; font-size: 0.65rem; color: #666; font-family: var(--font-sans); text-align: right; pointer-events: auto;">
-            震源データ：USGS<br>
-            地図データ：Data of Japan (MIT)<br>
-            <span style="font-size: 0.55rem; opacity: 0.8;">※規模(M)はモーメントマグニチュード(Mw)を使用</span>
-        </div>
-    </div>
-
-    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

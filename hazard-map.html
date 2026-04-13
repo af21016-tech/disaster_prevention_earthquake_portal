@@ -6,53 +6,22 @@
     <title>複合災害ハザードマップ | Quake Interactive Archive</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
     
+    <link rel="stylesheet" href="./css/style.css">
+    
     <style>
         /* =========================================
-           SFJ Premium Dark Theme - Hazard Dashboard
+           ハザードマップ専用レイアウト（SFJベース）
            ========================================= */
-        :root {
-            --bg-color: #050505;
-            --surface-color: #151515;
-            --text-main: #EAEAEA;
-            --text-sub: #999999;
-            --border-color: #333333;
-            --cud-green: #00E676;
-            --cud-orange: #ff7b00;
-            --cud-blue: #56B4E9;
-        }
-
-        body, html { 
-            margin: 0; padding: 0; 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            font-family: 'Biz UDPGothic', sans-serif; 
-            letter-spacing: 0.05em;
-            -webkit-font-smoothing: antialiased;
-        }
         
-        a { text-decoration: none; }
-
-        /* ヘッダー */
-        .live-header { 
-            padding: 1rem 2rem; 
-            background: rgba(5,5,5,0.9); 
-            border-bottom: 1px solid var(--border-color); 
-            display: flex; justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-        .live-header h1 { font-size: 1.25rem; margin: 0; color: #fff; letter-spacing: 0.1em; }
-        .btn-back { border: 1px solid var(--text-main); color: var(--text-main); padding: 6px 12px; font-size: 0.8rem; border-radius: 4px; transition: 0.2s; }
-        .btn-back:hover { background: var(--text-main); color: var(--bg-color); }
-
         /* メインレイアウト（上下分割） */
         .dashboard-main { 
-            max-width: 1400px; /* 地図を広く見せるために少し広め */
-            margin: 0 auto; 
+            max-width: 1400px; 
+            margin: 60px auto 0; /* ★修正：固定ヘッダー（60px）分を下げる */
             padding: 2rem; 
             display: flex; 
             flex-direction: column; 
@@ -68,7 +37,7 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
-            z-index: 1;
+            z-index: 1; /* ★修正：ヘッダーより下に配置する */
         }
         #hazard-map { width: 100%; height: 100%; border-radius: 8px; background: #000; }
 
@@ -125,7 +94,7 @@
         .popup-tag { display: inline-block; font-size: 0.65rem; background: #222; border: 1px solid #444; padding: 2px 6px; border-radius: 3px; margin-right: 4px; margin-bottom: 4px; }
 
         @media (max-width: 768px) {
-            .dashboard-main { padding: 1rem; }
+            .dashboard-main { padding: 1rem; margin-top: 60px; }
             .map-container { height: 50vh; }
             .legend-grid { flex-direction: column; gap: 0; }
         }
@@ -133,12 +102,14 @@
 </head>
 <body>
 
-    <header class="live-header">
-        <div>
-            <span style="background: #56B4E9; color: #111; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-bottom: 4px; display: inline-block;">Multi-Hazard Map</span>
-            <h1>複合災害ハザードマップ</h1>
+    <header>
+        <div class="logo-area">
+            <span class="tag" style="background: #56B4E9; color: #000; font-weight: bold; margin-bottom: 4px; display: inline-block;">Multi-Hazard Map</span>
+            <h1 style="font-size: 1rem; margin: 0; letter-spacing: 0.1em;">複合災害ハザードマップ</h1>
         </div>
-        <a href="index.html" class="btn-back">✕ CLOSE</a>
+        <div class="header-actions">
+            <a href="index.html" class="btn-back">✕ 戻る</a>
+        </div>
     </header>
 
     <main class="dashboard-main">

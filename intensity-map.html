@@ -3,81 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>過去の巨大地震 震度分布マップ | Quake Interactive Archive</title>
+    <title>過去の巨大地震 震度分布 | Quake Interactive Archive</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="./css/style.css">
     
     <style>
-        body, html { margin: 0; padding: 0; height: 100dvh; display: flex; flex-direction: column; background-color: var(--bg-color); color: var(--text-main); }
+        body, html { margin: 0; padding: 0; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background-color: #050505; }
         
-        .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: var(--surface-color); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-        .live-header h1 { font-size: 1.25rem; margin: 0; }
-
-        .dashboard-main { flex: 1; display: flex; overflow: hidden; }
-        
-        /* 左側の地震リストパネル */
-        .sidebar { width: 350px; background: var(--surface-color); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: 10; }
-        .sidebar-header { padding: 1rem; border-bottom: 1px solid var(--border-color); }
-        .eq-list { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
-        
-        .eq-card { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 6px; padding: 1rem; cursor: pointer; transition: 0.2s; }
-        .eq-card:hover { border-color: var(--primary-color); background: rgba(255,255,255,0.1); }
-        .eq-card.active { border-color: var(--primary-color); background: rgba(230, 159, 0, 0.15); border-left: 4px solid var(--primary-color); }
-        
-        .eq-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-sub); margin-bottom: 4px; }
-        .eq-name { font-weight: bold; font-size: 1.05rem; margin-bottom: 8px; line-height: 1.3; }
-        .eq-meta { display: flex; gap: 10px; font-size: 0.85rem; }
-        
-        /* 地震の詳細解説エリア（地図の上にかぶせる） */
-        .eq-info-overlay { position: absolute; top: 20px; left: 20px; width: 320px; background: rgba(26,26,26,0.9); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; z-index: 1000; display: none; backdrop-filter: blur(4px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .eq-info-overlay h3 { margin: 0 0 10px 0; color: var(--primary-color); font-size: 1.1rem; }
-        .eq-info-overlay p { margin: 0; font-size: 0.9rem; color: #ddd; line-height: 1.5; }
-
-        /* 右側のマップエリア */
-        .map-area { flex: 1; position: relative; }
-        #intensity-map { width: 100%; height: 100%; background: #000; }
-        
-        /* CUD震度凡例 */
-        .intensity-legend { background: rgba(26,26,26,0.9); padding: 15px; border-radius: 6px; border: 1px solid var(--border-color); color: #fff; font-size: 0.85rem; line-height: 1.8; }
-        .intensity-legend h4 { margin: 0 0 10px 0; font-size: 0.95rem; border-bottom: 1px solid #444; padding-bottom: 5px; }
-        .legend-row { display: flex; align-items: center; gap: 8px; }
-        .legend-color { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); }
-
-        @media (max-width: 768px) {
-            .dashboard-main { flex-direction: column; }
-            .sidebar { width: 100%; height: 40%; border-right: none; border-bottom: 1px solid var(--border-color); }
-            .eq-info-overlay { display: none !important; /* スマホでは邪魔なので消す */ }
+        .dashboard-main { 
+            flex: 1; 
+            display: flex; 
+            margin-top: 60px; /* ヘッダー分 */
         }
+
+        /* 左側リストパネル */
+        .eq-list-panel {
+            width: 350px;
+            background: #111;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        /* マップエリア */
+        .map-area { flex: 1; position: relative; }
+        #intensity-map { width: 100%; height: 100%; }
+
+        /* リストアイテムのスタイル */
+        .eq-card {
+            padding: 1.2rem;
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .eq-card:hover { background: #1a1a1a; }
+        .eq-card.active { border-left: 4px solid #56B4E9; background: #1a1a1a; }
+        .eq-date { font-family: 'Roboto Mono'; font-size: 0.8rem; color: #888; }
+        .eq-name { font-weight: bold; margin: 4px 0; color: #eee; }
+
+        /* 凡例 */
+        .intensity-legend {
+            background: rgba(15, 15, 15, 0.9);
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .legend-row { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; margin-bottom: 3px; }
+        .legend-color { width: 14px; height: 14px; border-radius: 2px; }
     </style>
 </head>
 <body>
 
-    <header class="live-header">
-        <div>
-            <span class="tag" style="background: var(--primary-color); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; border: none;">Seismic Intensity</span>
-            <h1>過去の巨大地震 震度分布マップ</h1>
+    <header>
+        <div class="logo-area">
+            <span class="tag" style="background: #56B4E9; color: #000; font-weight: bold; margin-bottom: 4px; display: inline-block;">Intensity Archive</span>
+            <h1 style="font-size: 1rem; margin: 0; letter-spacing: 0.1em;">過去の巨大地震 震度分布</h1>
         </div>
-        <a href="index.html" class="btn secondary btn-small">✕ ダッシュボードに戻る</a>
+        <div class="header-actions">
+            <a href="index.html" class="btn-back">✕ 戻る</a>
+        </div>
     </header>
 
     <main class="dashboard-main">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">リストから地震を選択すると、震度4以上を観測した代表的な市区町村がマップに表示されます。</p>
+        <div class="eq-list-panel" id="eq-list-container">
             </div>
-            <div class="eq-list" id="eq-list-container">
-                <div style="text-align:center; padding: 2rem; color: var(--text-sub);">データを読み込み中...</div>
-            </div>
-        </aside>
-
         <div class="map-area">
             <div id="intensity-map"></div>
-            
-            <div class="eq-info-overlay" id="eq-info-overlay">
-                <h3 id="info-title">地震名</h3>
-                <p id="info-desc">解説テキスト</p>
+            <div id="eq-info-overlay" style="position: absolute; top: 20px; left: 20px; z-index: 1000; background: rgba(15, 15, 15, 0.85); border: 1px solid #333; padding: 1rem; border-radius: 8px; backdrop-filter: blur(5px); max-width: 300px; display: none;">
+                <h2 id="info-title" style="margin: 0 0 10px 0; font-size: 1.2rem; color: #fff;"></h2>
+                <p id="info-desc" style="margin: 0; font-size: 0.85rem; color: #ccc; line-height: 1.6;"></p>
             </div>
         </div>
     </main>

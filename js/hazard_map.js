@@ -33,7 +33,7 @@ function initHazardMap() {
     // 初期状態では津波のみオン
     tsunamiLayer.addTo(map);
 
-    // --- 点情報：避難所の本物データ（クラスタリング対応） ---
+ // --- 点情報：避難所の本物データ（クラスタリング対応） ---
     
     // SFJ風カスタムアイコン
     const shelterIcon = L.divIcon({
@@ -44,13 +44,13 @@ function initHazardMap() {
         popupAnchor: [0, -14]
     });
 
-    // ★追加：クラスターグループの作成（SFJ風のデザインを適用）
+    // ★軽量化1：chunkedLoading を true にして、分割処理でフリーズを防ぐ
     const markersCluster = L.markerClusterGroup({
-        maxClusterRadius: 50, // どのくらい近づいたらまとめるか
+        maxClusterRadius: 50, 
+        chunkedLoading: true, // ←【超重要】これを追加！
         iconCreateFunction: function(cluster) {
-            // まとまっているピンの数を表示するカスタムアイコン
             const count = cluster.getChildCount();
-            let size = count < 100 ? 35 : 45; // 数が多いと少し大きくする
+            let size = count < 100 ? 35 : 45; 
             
             return L.divIcon({ 
                 html: `<div>${count}</div>`, 
@@ -60,30 +60,27 @@ function initHazardMap() {
         }
     });
 
-    // ★追加：本物のデータを fetch() で読み込む
-    // ※ 実際のデータのプロパティ名（nameやtypesなど）に合わせて適宜書き換えてください。
     fetch('./assets/shelters.geojson')
         .then(response => {
             if (!response.ok) throw new Error("避難所データが見つかりません");
             return response.json();
         })
         .then(data => {
-            const geoJsonLayer = L.geoJSON(data, {
+            // ★軽量化のための工夫：マーカーを一時的に溜める「箱（配列）」を用意
+            const markersArray = [];
+
+            L.geoJSON(data, {
                 pointToLayer: function (feature, latlng) {
                     return L.marker(latlng, { icon: shelterIcon });
                 },
                 onEachFeature: function (feature, layer) {
                     const props = feature.properties;
 
-                    // 1. 避難所の「名前」を取得（国土地理院フォーマット「施設・場所名」を最優先）
                     const name = props['施設・場所名'] || props.name || props.名称 || props.施設名 || props.指定緊急避難場所名 || "名称不明の避難所";
 
-                    // 2. 「対応災害」を取得（国土地理院フォーマットの「1」フラグを判定）
                     let typesArray = [];
-
-                    // == 1 とすることで、数値の 1 でも、文字列の "1" でも反応するようにしています
                     if (props['洪水'] == 1) typesArray.push("洪水");
-                    if (props['崖崩れ、土石流及び地滑り'] == 1) typesArray.push("土砂災害"); // 長いので見やすく丸める
+                    if (props['崖崩れ、土石流及び地滑り'] == 1) typesArray.push("土砂災害"); 
                     if (props['高潮'] == 1) typesArray.push("高潮");
                     if (props['地震'] == 1) typesArray.push("地震");
                     if (props['津波'] == 1) typesArray.push("津波");
@@ -91,7 +88,6 @@ function initHazardMap() {
                     if (props['内水氾濫'] == 1) typesArray.push("内水氾濫");
                     if (props['火山現象'] == 1) typesArray.push("火山現象");
 
-                    // 万が一、国土地理院のフォーマットではなかった場合のフォールバック（予備）
                     if (typesArray.length === 0) {
                         const typesString = props.types || props.対応災害 || props.対象とする災害;
                         if (typesString && typeof typesString === 'string') {
@@ -101,20 +97,24 @@ function initHazardMap() {
                         }
                     }
 
-                    // タグのHTMLを生成
-                    const tagsHtml = typesArray.map(t => `<span class="popup-tag">${t}</span>`).join('');
+                    // ★軽量化2：bindPopupの中に「関数」を渡し、クリックされるまでHTMLを作らない（Lazy Load）
+                    layer.bindPopup(function() {
+                        const tagsHtml = typesArray.map(t => `<span class="popup-tag">${t}</span>`).join('');
+                        return `
+                            <h4 class="popup-title">🛡️ 指定緊急避難場所</h4>
+                            <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 8px;">${name}</div>
+                            <div style="font-size: 0.75rem; color: #aaa; margin-bottom: 4px;">対応災害：</div>
+                            <div>${tagsHtml}</div>
+                        `;
+                    });
 
-                    // ポップアップをバインド
-                    layer.bindPopup(`
-                        <h4 class="popup-title">🛡️ 指定緊急避難場所</h4>
-                        <div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 8px;">${name}</div>
-                        <div style="font-size: 0.75rem; color: #aaa; margin-bottom: 4px;">対応災害：</div>
-                        <div>${tagsHtml}</div>
-                    `);
+                    // 処理したレイヤーを一旦配列に突っ込む
+                    markersArray.push(layer);
                 }
             });
 
-            markersCluster.addLayer(geoJsonLayer);
+            // ★軽量化3：addLayer ではなく addLayers (複数形) を使い、配列に入れた数万件を「一気に」追加する
+            markersCluster.addLayers(markersArray);
             map.addLayer(markersCluster);
         })
         .catch(error => {

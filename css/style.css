@@ -85,7 +85,8 @@ header {
     border: 1px solid var(--border-color);
 }
 
-.btn-mypage {
+/* ★修正：マイページボタンと戻るボタンのスタイルを共通化し確実にクリック可能に */
+.btn-mypage, .btn-back {
     background: transparent;
     color: var(--text-main);
     border: 1px solid var(--text-main);
@@ -95,9 +96,11 @@ header {
     cursor: pointer;
     transition: all 0.2s;
     letter-spacing: 0.1em;
+    display: inline-block; /* ★重要：クリック領域を確実に確保 */
+    text-decoration: none;
 }
 
-.btn-mypage:hover {
+.btn-mypage:hover, .btn-back:hover {
     background: var(--text-main);
     color: var(--bg-color);
 }
