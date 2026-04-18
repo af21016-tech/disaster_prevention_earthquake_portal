@@ -36,10 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. 各種設定のアクション ---
     const btnTutorial = document.getElementById('btn-replay-tutorial');
-    btnTutorial.addEventListener('click', () => {
-        localStorage.removeItem('quake_tutorial_done');
-        window.location.href = 'index.html'; 
-    });
+    if (btnTutorial) {
+        btnTutorial.addEventListener('click', () => {
+            // チュートリアル完了フラグを消し、かつ「今すぐ開始」フラグを立てる
+            localStorage.removeItem('quake_tutorial_done');
+            localStorage.setItem('start_tutorial_now', 'true'); // ★これを目印にする
+        
+            // index.htmlへ移動
+            window.location.href = 'index.html'; 
+            }
+        );
+    }
 
     const btnReset = document.getElementById('btn-reset-data');
     btnReset.addEventListener('click', () => {

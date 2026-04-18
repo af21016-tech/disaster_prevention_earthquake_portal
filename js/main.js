@@ -363,3 +363,115 @@ function initializeArchive3DMap(containerId) {
         renderer.setSize(container.clientWidth, container.clientHeight);
     });
 }
+
+// ==========================================
+// SFJ Tutorial Spotlight Logic (修正版)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const btnTutorial = document.getElementById('btn-tutorial'); // indexには存在しない
+    const overlay = document.getElementById('tut-overlay');
+    const tooltip = document.getElementById('tut-tooltip');
+    const btnClose = document.getElementById('tut-close');
+    const btnNext = document.getElementById('tut-next');
+    const btnPrev = document.getElementById('tut-prev');
+    
+    // チュートリアル用のUI（overlay等）自体がないページでは終了
+    if (!overlay || !tooltip) return;
+
+    const targets = Array.from(document.querySelectorAll('.tut-target'))
+                         .sort((a, b) => parseInt(a.dataset.step) - parseInt(b.dataset.step));
+
+    let currentStep = 0;
+
+    // チュートリアルを開始する関数
+    function startTutorial() {
+        currentStep = 0;
+        overlay.style.display = 'block';
+        tooltip.style.display = 'block';
+        setTimeout(() => {
+            overlay.style.opacity = '1';
+            tooltip.style.opacity = '1';
+        }, 10);
+        showStep(currentStep);
+    }
+
+    // インデックスにボタンがある場合（もし復活させた際）のイベント
+    if (btnTutorial) {
+        btnTutorial.addEventListener('click', startTutorial);
+    }
+
+    // ---------------------------------------------------------
+    // ★マイページからの「強制スタート」チェック
+    // ---------------------------------------------------------
+    if (localStorage.getItem('start_tutorial_now') === 'true') {
+        localStorage.removeItem('start_tutorial_now');
+        startTutorial(); // ボタンがなくてもここから開始される
+    }
+
+    // --- 以下、showStep関数やクローズ処理などは前回と同じ ---
+    function closeTutorial() {
+        overlay.style.opacity = '0';
+        tooltip.style.opacity = '0';
+        clearHighlight();
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            tooltip.style.display = 'none';
+        }, 300);
+    }
+
+    btnClose.addEventListener('click', closeTutorial);
+    overlay.addEventListener('click', closeTutorial);
+
+    btnNext.addEventListener('click', () => {
+        if (currentStep < targets.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        } else {
+            closeTutorial();
+        }
+    });
+
+    btnPrev.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+
+    function showStep(index) {
+        clearHighlight();
+        const target = targets[index];
+        if (!target) return;
+
+        target.classList.add('tut-highlight');
+
+        const rect = target.getBoundingClientRect();
+        window.scrollTo({
+            top: window.scrollY + rect.top - 100,
+            behavior: 'smooth'
+        });
+
+        document.querySelector('.tut-step-counter').innerText = `STEP ${index + 1} / ${targets.length}`;
+        document.getElementById('tut-title').innerText = target.dataset.title;
+        document.getElementById('tut-desc').innerText = target.dataset.desc;
+
+        btnPrev.style.visibility = index === 0 ? 'hidden' : 'visible';
+        btnNext.innerText = index === targets.length - 1 ? 'FINISH ✔' : 'NEXT ▶';
+
+        setTimeout(() => {
+            const updatedRect = target.getBoundingClientRect();
+            let topPos = updatedRect.bottom + window.scrollY + 15;
+            let leftPos = updatedRect.left + window.scrollX;
+            if (topPos + tooltip.offsetHeight > window.scrollY + window.innerHeight) {
+                topPos = updatedRect.top + window.scrollY - tooltip.offsetHeight - 15;
+            }
+            if (leftPos < 10) leftPos = 10;
+            tooltip.style.top = `${topPos}px`;
+            tooltip.style.left = `${leftPos}px`;
+        }, 350);
+    }
+
+    function clearHighlight() {
+        targets.forEach(el => el.classList.remove('tut-highlight'));
+    }
+});

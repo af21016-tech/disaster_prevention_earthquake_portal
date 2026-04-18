@@ -293,3 +293,87 @@ header {
     .section-header h2 { font-size: 1.2rem; }
     .section-header .sub-en { display: none; }
 }
+
+/* =========================================
+   SFJ Tutorial Spotlight System
+   ========================================= */
+/* 背景を暗くするオーバーレイ */
+.tut-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* 漆黒半透明 */
+    z-index: 3000;
+    display: none; /* 初期は非表示 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* スポットライトが当たる要素を最前面に出し、光らせる */
+.tut-highlight {
+    position: relative;
+    z-index: 3001 !important;
+    box-shadow: 0 0 0 4px #00E676, 0 0 30px rgba(0, 230, 118, 0.6) !important; /* セーフティグリーンで発光 */
+    background: var(--surface-color);
+    border-radius: 8px;
+    pointer-events: none; /* チュートリアル中の誤クリック防止 */
+}
+
+/* ツールチップ（説明ボックス） */
+.tut-tooltip {
+    position: absolute;
+    z-index: 3002;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid #00E676;
+    border-radius: 8px;
+    width: 320px;
+    padding: 1.5rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, top 0.4s ease, left 0.4s ease;
+}
+
+.tut-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.tut-step-counter {
+    font-family: var(--font-mono);
+    color: #56B4E9;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.tut-close {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.tut-close:hover { color: #fff; }
+
+.tut-title {
+    color: #00E676;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.05em;
+}
+
+.tut-desc {
+    color: #EAEAEA;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.tut-actions {
+    display: flex;
+    justify-content: space-between;
+}
