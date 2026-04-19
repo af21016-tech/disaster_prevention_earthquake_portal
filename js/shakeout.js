@@ -7,6 +7,7 @@ let timerAnimation;
 let startTime;
 let timeLimit;
 let isAnswered = false;
+let questionStartTime = 0; // ★追加：タイム計測用変数
 
 // プレイヤーの事前回答保存用
 let playerConfig = {};
@@ -141,7 +142,7 @@ function startScenario(sceneId) {
     currentSceneId = sceneId;
     currentPhase = 0;
     playerConfig = {};
-    const scenario = scenarios[sceneId];
+    const scenario = scenarios[currentSceneId];
 
     if (scenario.setupSteps && scenario.setupSteps.length > 0) {
         showSetupStep(0);
@@ -282,6 +283,8 @@ function playPhase() {
     html += `</div>`;
     contentBox.innerHTML = html;
     
+    questionStartTime = Date.now(); // ★追加：問題が表示された時間を記録
+
     startTime = performance.now();
     requestAnimationFrame(updateTimer);
 }
@@ -293,11 +296,22 @@ function updateTimer(currentTime) {
     document.getElementById('timer-bar').style.transform = `scaleX(${remainingRatio})`;
 
     if (remainingRatio > 0) timerAnimation = requestAnimationFrame(updateTimer);
-    else { isAnswered = true; showFeedback(false, "【時間切れ】現実の地震は待ってくれません。迷っている数秒の間に、落下物の直撃を受ける可能性が極めて高いです。"); }
+    else { 
+        // ★追加：時間切れの時の時間を計算してログ送信
+        const timeTaken = (Date.now() - questionStartTime) / 1000;
+        logUserAction('shakeout_phase_answer', `時間切れ (タイム: ${timeTaken.toFixed(2)}秒)`);
+
+        isAnswered = true; showFeedback(false, "【時間切れ】現実の地震は待ってくれません。迷っている数秒の間に、落下物の直撃を受ける可能性が極めて高いです。"); 
+    }
 }
 
 function selectAnswer(isCorrect, feedbackText) {
     if (isAnswered) return;
+
+    // ★追加：かかった時間を計算してログ送信
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    logUserAction('shakeout_phase_answer', `正解判定: ${isCorrect} (タイム: ${timeTaken.toFixed(2)}秒)`);
+
     isAnswered = true; cancelAnimationFrame(timerAnimation);
     showFeedback(isCorrect, feedbackText);
 }
@@ -404,6 +418,8 @@ function playAfterHoldPhase() {
     html += `</div>`;
     contentBox.innerHTML = html;
     
+    questionStartTime = Date.now(); // ★追加：問題が表示された時間を記録
+
     startTime = performance.now();
     requestAnimationFrame(updateAfterHoldTimer);
 }
@@ -417,6 +433,10 @@ function updateAfterHoldTimer(currentTime) {
     if (remainingRatio > 0) {
         timerAnimation = requestAnimationFrame(updateAfterHoldTimer);
     } else { 
+        // ★追加：時間切れの時の時間を計算してログ送信
+        const timeTaken = (Date.now() - questionStartTime) / 1000;
+        logUserAction('shakeout_afterhold_answer', `時間切れ (タイム: ${timeTaken.toFixed(2)}秒)`);
+
         isAnswered = true; 
         showAfterHoldFeedback(false, "【時間切れ】パニックになった群衆に巻き込まれてしまいました。災害時は周囲に流されず、瞬時に「その場に留まる」という冷静な決断が必要です。"); 
     }
@@ -424,6 +444,11 @@ function updateAfterHoldTimer(currentTime) {
 
 function selectAfterHoldAnswer(isCorrect, feedbackText) {
     if (isAnswered) return;
+
+    // ★追加：かかった時間を計算してログ送信
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    logUserAction('shakeout_afterhold_answer', `正解判定: ${isCorrect} (タイム: ${timeTaken.toFixed(2)}秒)`);
+
     isAnswered = true; cancelAnimationFrame(timerAnimation);
     showAfterHoldFeedback(isCorrect, feedbackText);
 }

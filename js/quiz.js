@@ -5,6 +5,7 @@ let currentStageQuestions = []; // 選ばれた10問の配列
 let currentQuestionIndex = 0;
 let correctCount = 0; // 正解数
 let userReviewData = []; // 振り返り用のデータ保存配列
+let questionStartTime = 0; // ★追加：タイム計測用変数
 
 const QUESTIONS_PER_PLAY = 10; // 1プレイあたりの出題数
 const TIME_LIMIT = 10.0;
@@ -85,6 +86,8 @@ function loadQuestion() {
     answerButtons.style.display = 'flex';
     explanationArea.style.display = 'none';
 
+    questionStartTime = Date.now(); // ★追加：問題が表示された時間を記録
+
     startTimer();
 }
 
@@ -123,6 +126,11 @@ function checkAnswer(userAnswer) {
 
 // --- 正誤判定と履歴の保存 ---
 function processAnswer(userAnswer) {
+    // ★追加：かかった時間を計算してログ送信
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    let answerLabel = userAnswer === null ? "時間切れ" : userAnswer;
+    logUserAction('quiz_answer', `選択した回答: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
+
     const qData = currentStageQuestions[currentQuestionIndex];
     
     // 正解判定（時間切れ(null)の場合は強制的にfalse）

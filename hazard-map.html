@@ -108,7 +108,7 @@
             <h1 style="font-size: 1rem; margin: 0; letter-spacing: 0.1em;">複合災害ハザードマップ</h1>
         </div>
         <div class="header-actions">
-            <a href="index.html" class="btn-back">✕ 戻る</a>
+            <a href="index.html" class="btn-back" data-log="ハザードマップ：戻るボタンをクリック">✕ 戻る</a>
         </div>
     </header>
 
@@ -165,9 +165,9 @@
                 </div>
                 <div class="source-text">
                     <strong>[出典・データクレジット]</strong><br>
-                    ・ベースマップ：&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors<br>
-                    ・ハザード情報：<a href="https://disaportal.gsi.go.jp/" target="_blank">国土地理院 ハザードマップポータル</a><br>
-                    ・避難所情報：国土地理院「<a href="https://hinanmap.gsi.go.jp/hinanjocp/hinanbasho/koukaidate.html" target="_blank">指定緊急避難場所データ</a>」を当サイトで加工して作成
+                    ・ベースマップ：&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" data-log="ハザードマップ：OpenStreetMap出典リンクをクリック">OpenStreetMap</a> contributors<br>
+                    ・ハザード情報：<a href="https://disaportal.gsi.go.jp/" target="_blank" data-log="ハザードマップ：ハザードマップポータル出典リンクをクリック">国土地理院 ハザードマップポータル</a><br>
+                    ・避難所情報：国土地理院「<a href="https://hinanmap.gsi.go.jp/hinanjocp/hinanbasho/koukaidate.html" target="_blank" data-log="ハザードマップ：指定緊急避難場所データ出典リンクをクリック">指定緊急避難場所データ</a>」を当サイトで加工して作成
                 </div>
             </div>
 
@@ -176,6 +176,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="./js/logger.js"></script>
     <script src="./js/hazard_map.js"></script>
 </body>
 </html>

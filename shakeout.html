@@ -3,57 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>瞬時の意思決定：DCHサバイバル | Quake Interactive Archive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&display=swap" rel="stylesheet">
+    <title>空間シェイクアウト | Quake Interactive Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    
     <style>
-        body, html { margin: 0; padding: 0; height: 100dvh; background-color: #0a0a0a; color: #fff; font-family: 'Biz UDPGOthic', sans-serif; overflow: hidden; }
-        .header { padding: 1rem 2rem; background: #111; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; z-index: 100; position: relative; }
+        .shakeout-container { max-width: 800px; margin: 100px auto 2rem; text-align: center; }
         
-        .main-container { display: flex; flex-direction: column; justify-content: center; align-items: center; height: calc(100vh - 60px); position: relative; transition: background 0.3s; }
-        .bg-alert { background: radial-gradient(circle at center, #310000 0%, #0a0000 100%); animation: pulseRed 1s infinite alternate; }
-        @keyframes pulseRed { 0% { background-color: #0a0a0a; } 100% { background-color: #220000; } }
-
-        .content-box { text-align: center; max-width: 800px; width: 90%; z-index: 10; padding: 2rem; background: rgba(20, 20, 20, 0.9); border: 1px solid #444; border-radius: 8px; backdrop-filter: blur(5px); }
+        .simulation-window { background: #111; border: 2px solid #333; border-radius: 8px; height: 400px; position: relative; overflow: hidden; margin-bottom: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        .timer-container { width: 100%; height: 12px; background: #333; border-radius: 6px; overflow: hidden; margin-bottom: 1.5rem; display: none; }
-        .timer-bar { height: 100%; width: 100%; background: #FF2800; transform-origin: left; transition: transform 0.1s linear; }
-
-        .scene-title { font-size: 1.5rem; color: #56B4E9; margin-bottom: 0.5rem; }
-        .situation-text { font-size: 1.4rem; font-weight: bold; line-height: 1.6; margin-bottom: 2rem; color: #fff; }
-        .alert-text { color: #FFBE00; font-size: 1.6rem; animation: flashText 0.5s infinite alternate; }
-        @keyframes flashText { from { opacity: 0.7; } to { opacity: 1; } }
-
-        .choices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-        .btn-choice { background: #1a1a1a; border: 2px solid #555; color: #fff; padding: 1.5rem 1rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; transition: all 0.1s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-family: inherit; }
-        .btn-choice:hover { border-color: #56B4E9; background: #222; transform: translateY(-3px); }
-        .choice-icon { font-size: 2.5rem; }
-
-        /* 長押しバグを解消する最強のCSS設定 */
-        .btn-hold { 
-            background: #8B0000; border: 4px solid #FF2800; color: #fff; width: 200px; height: 200px; border-radius: 50%; 
-            font-size: 1.5rem; font-weight: bold; cursor: pointer; display: flex; flex-direction: column; align-items: center; 
-            justify-content: center; margin: 0 auto; transition: transform 0.1s;
-            touch-action: none; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; /* ←これが必須 */
+        /* 揺れのエフェクト */
+        @keyframes earthquake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-5px, -5px) rotate(-1deg); }
+            20% { transform: translate(5px, 5px) rotate(1deg); }
+            30% { transform: translate(-5px, 5px) rotate(0deg); }
+            40% { transform: translate(5px, -5px) rotate(1deg); }
+            50% { transform: translate(-5px, 0) rotate(-1deg); }
+            60% { transform: translate(5px, 0) rotate(0deg); }
+            70% { transform: translate(0, 5px) rotate(-1deg); }
+            80% { transform: translate(0, -5px) rotate(1deg); }
+            90% { transform: translate(-5px, 5px) rotate(0deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
-        .btn-hold:active { transform: scale(0.95); background: #FF2800; }
-        .btn-hold.holding { border-color: #00FF00; background: #008B00; }
-
-        .feedback-box { text-align: left; padding: 1.5rem; border-radius: 8px; border-left: 5px solid; background: #111; margin-bottom: 1.5rem; }
-        .feedback-correct { border-color: #00B400; }
-        .feedback-incorrect { border-color: #FF2800; }
+        .shaking { animation: earthquake 0.3s infinite; border-color: var(--cud-orange); }
+        
+        /* タイマー表示 */
+        .timer-display { font-family: var(--font-mono); font-size: 3rem; color: #fff; z-index: 10; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        
+        /* アクションボタン */
+        .action-area { padding: 2rem; background: var(--surface-color); border-radius: 8px; border: 1px solid var(--border-color); }
+        #btn-action { background: #00E676; color: #000; border: none; font-size: 1.5rem; font-weight: bold; padding: 20px 40px; border-radius: 50px; cursor: pointer; transition: 0.1s; box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+        #btn-action:active { transform: scale(0.95); background: #00c853; }
+        #btn-action:disabled { background: #333; color: #666; box-shadow: none; cursor: not-allowed; }
+        
+        .instruction { color: #aaa; margin-top: 15px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1 style="font-size: 1.1rem; margin: 0; color: #aaa;">瞬時の意思決定：DCHサバイバル</h1>
-        <a href="index.html" class="btn secondary btn-small" style="border-color: #555; color: #ccc;">✕ 中断して戻る</a>
+
+    <header>
+        <div class="logo-area">
+            <span class="tag" style="background: #F0E442; color: #000; font-weight: bold; margin-bottom: 4px; display: inline-block;">Physical Training</span>
+            <h1 style="font-size: 1rem; margin: 0; letter-spacing: 0.1em;">空間シェイクアウト</h1>
+        </div>
+        <div class="header-actions">
+            <a href="index.html" class="btn-back" data-log="シェイクアウト：戻るボタンをクリック">✕ 戻る</a>
+        </div>
     </header>
 
-    <main class="main-container" id="main-container">
-        <div class="content-box" id="content-box"></div>
+    <main class="shakeout-container">
+        
+        <div id="start-screen">
+            <h2 style="color: #fff; margin-bottom: 1rem;">緊急地震速報、受信。</h2>
+            <p style="color: #aaa; margin-bottom: 2rem;">揺れが来るまでに安全な姿勢（DROP, COVER, HOLD ON）をとってください。<br>揺れが収まるまで、下のボタンを「長押し」して身を守り続けてください。</p>
+            <button class="btn primary" id="btn-start" style="font-size: 1.2rem; padding: 15px 30px;" data-log="シェイクアウト：訓練を開始するボタンをクリック">訓練を開始する</button>
+        </div>
+
+        <div id="training-screen" style="display: none;">
+            <div class="simulation-window" id="sim-window">
+                <div id="status-text" style="color: var(--cud-orange); font-weight: bold; font-size: 1.5rem; margin-bottom: 10px;">地震発生！身を守れ！</div>
+                <div class="timer-display" id="timer">10.0</div>
+            </div>
+            
+            <div class="action-area">
+                <button id="btn-action" data-log="シェイクアウト：アクションボタンをクリック">長押しして身を守る</button>
+                <div class="instruction">※ マウスの左ボタンを押し続けてください</div>
+            </div>
+        </div>
+
+        <div id="result-screen" style="display: none; padding: 3rem; background: var(--surface-color); border-radius: 8px; border: 1px solid var(--border-color);">
+            <h2 id="result-title" style="font-size: 2rem; margin-bottom: 10px;"></h2>
+            <p id="result-desc" style="color: #aaa; margin-bottom: 2rem; line-height: 1.6;"></p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="index.html" class="btn secondary" data-log="シェイクアウト：ダッシュボードへ戻るリンクをクリック">ダッシュボードへ戻る</a>
+                <button class="btn primary" id="btn-retry" data-log="シェイクアウト：もう一度挑戦するボタンをクリック">もう一度挑戦する</button>
+            </div>
+        </div>
+
     </main>
 
+    <script src="./js/logger.js"></script>
     <script src="./js/shakeout.js"></script>
 </body>
 </html>

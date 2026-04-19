@@ -4,6 +4,7 @@ let currentQuestions = [];
 let currentQuestionIndex = 0;
 let correctCount = 0;
 let userReviewData = [];
+let questionStartTime = 0; // ★追加：タイム計測用変数
 
 const QUESTIONS_PER_PLAY = 10; 
 const TIME_LIMIT = 10.0;
@@ -78,6 +79,8 @@ function loadQuestion() {
     answerButtons.style.display = 'flex';
     explanationArea.style.display = 'none';
 
+    questionStartTime = Date.now(); // ★追加：問題が表示された時間を記録
+
     startTimer();
 }
 
@@ -114,6 +117,11 @@ function checkAnswer(userAnswer) {
 }
 
 function processAnswer(userAnswer) {
+    // ★追加：かかった時間を計算してログ送信
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    let answerLabel = userAnswer === null ? "時間切れ" : (userAnswer ? "拡散する" : "拡散しない");
+    logUserAction('fake_news_answer', `選択した回答: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
+
     const qData = currentQuestions[currentQuestionIndex];
     const isCorrect = (userAnswer !== null && userAnswer === qData.a);
     if (isCorrect) correctCount++;

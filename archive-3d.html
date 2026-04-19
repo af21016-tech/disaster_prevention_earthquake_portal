@@ -61,7 +61,7 @@
             <h1 style="font-size: 1rem; margin: 0; letter-spacing: 0.1em;">震源分布 3Dマップ</h1>
         </div>
         <div class="header-actions">
-            <a href="index.html" class="btn-back">✕ 戻る</a>
+            <a href="index.html" class="btn-back" data-log="3Dマップ：戻るボタンをクリック">✕ 戻る</a>
         </div>
     </header>
 
@@ -77,15 +77,16 @@
                 <input type="range" id="time-slider" min="0" max="100" value="100">
             </div>
             <div class="slicer-controls">
-                <button id="btn-play" class="btn-slicer">▶ 再生</button>
-                <button id="btn-pause" class="btn-slicer" style="display:none;">⏸ 停止</button>
-                <button id="btn-show-all" class="btn-slicer">全期間表示</button>
+                <button id="btn-play" class="btn-slicer" data-log="3Dマップ：再生ボタンをクリック">▶ 再生</button>
+                <button id="btn-pause" class="btn-slicer" style="display:none;" data-log="3Dマップ：停止ボタンをクリック">⏸ 停止</button>
+                <button id="btn-show-all" class="btn-slicer" data-log="3Dマップ：全期間表示ボタンをクリック">全期間表示</button>
             </div>
         </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="./js/logger.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>
