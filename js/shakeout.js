@@ -142,7 +142,7 @@ function startScenario(sceneId) {
     currentSceneId = sceneId;
     currentPhase = 0;
     playerConfig = {};
-    const scenario = scenarios[currentSceneId];
+    const scenario = scenarios[sceneId];
 
     if (scenario.setupSteps && scenario.setupSteps.length > 0) {
         showSetupStep(0);
@@ -308,9 +308,12 @@ function updateTimer(currentTime) {
 function selectAnswer(isCorrect, feedbackText) {
     if (isAnswered) return;
 
-    // ★追加：かかった時間を計算してログ送信
+    // ★追加：フェーズ名とかかった時間を計算してログ送信
     const timeTaken = (Date.now() - questionStartTime) / 1000;
-    logUserAction('shakeout_phase_answer', `正解判定: ${isCorrect} (タイム: ${timeTaken.toFixed(2)}秒)`);
+    let resultLabel = isCorrect ? "⭕生存行動" : "❌致命的ミス";
+    let phaseName = currentPhase === 0 ? "DROP" : "COVER";
+    
+    logUserAction('shakeout_phase_answer', `【${resultLabel}】 フェーズ: ${phaseName} (タイム: ${timeTaken.toFixed(2)}秒)`);
 
     isAnswered = true; cancelAnimationFrame(timerAnimation);
     showFeedback(isCorrect, feedbackText);
@@ -445,9 +448,11 @@ function updateAfterHoldTimer(currentTime) {
 function selectAfterHoldAnswer(isCorrect, feedbackText) {
     if (isAnswered) return;
 
-    // ★追加：かかった時間を計算してログ送信
+    // ★追加：正誤判定とかかった時間を計算してログ送信
     const timeTaken = (Date.now() - questionStartTime) / 1000;
-    logUserAction('shakeout_afterhold_answer', `正解判定: ${isCorrect} (タイム: ${timeTaken.toFixed(2)}秒)`);
+    let resultLabel = isCorrect ? "⭕冷静な判断" : "❌パニック行動";
+
+    logUserAction('shakeout_afterhold_answer', `【${resultLabel}】 事後判断 (タイム: ${timeTaken.toFixed(2)}秒)`);
 
     isAnswered = true; cancelAnimationFrame(timerAnimation);
     showAfterHoldFeedback(isCorrect, feedbackText);

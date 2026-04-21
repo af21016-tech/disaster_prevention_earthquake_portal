@@ -126,16 +126,18 @@ function checkAnswer(userAnswer) {
 
 // --- 正誤判定と履歴の保存 ---
 function processAnswer(userAnswer) {
-    // ★追加：かかった時間を計算してログ送信
-    const timeTaken = (Date.now() - questionStartTime) / 1000;
-    let answerLabel = userAnswer === null ? "時間切れ" : userAnswer;
-    logUserAction('quiz_answer', `選択した回答: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
-
     const qData = currentStageQuestions[currentQuestionIndex];
     
-    // 正解判定（時間切れ(null)の場合は強制的にfalse）
+    // 正解判定
     const isCorrect = (userAnswer !== null && userAnswer === qData.a);
     if (isCorrect) correctCount++;
+
+    // ★追加：正誤結果、問題文、かかった時間をログ送信
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    let answerLabel = userAnswer === null ? "時間切れ" : userAnswer;
+    let resultLabel = isCorrect ? "⭕正解" : "❌不正解";
+    
+    logUserAction('quiz_answer', `【${resultLabel}】 Q: ${qData.q.substring(0, 15)}... / 選択: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
 
     // 振り返り用のデータを保存
     userReviewData.push({

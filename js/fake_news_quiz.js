@@ -117,14 +117,18 @@ function checkAnswer(userAnswer) {
 }
 
 function processAnswer(userAnswer) {
-    // ★追加：かかった時間を計算してログ送信
-    const timeTaken = (Date.now() - questionStartTime) / 1000;
-    let answerLabel = userAnswer === null ? "時間切れ" : (userAnswer ? "拡散する" : "拡散しない");
-    logUserAction('fake_news_answer', `選択した回答: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
-
     const qData = currentQuestions[currentQuestionIndex];
+    
+    // 正解判定
     const isCorrect = (userAnswer !== null && userAnswer === qData.a);
     if (isCorrect) correctCount++;
+
+    // ★追加：正誤結果、問題文、かかった時間をログ送信
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    let answerLabel = userAnswer === null ? "時間切れ" : (userAnswer ? "拡散する" : "拡散しない");
+    let resultLabel = isCorrect ? "⭕正解" : "❌不正解";
+    
+    logUserAction('fake_news_answer', `【${resultLabel}】 Q: ${qData.q.substring(0, 15)}... / 選択: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
 
     userReviewData.push({
         q: qData.q,
