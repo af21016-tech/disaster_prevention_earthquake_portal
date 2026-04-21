@@ -1,0 +1,37 @@
+name: Auto Update Earthquake Data
+
+# いつ自動実行するか（トリガー）の設定
+on:
+  schedule:
+    # 毎日 UTC0時（日本時間の午前9時）に実行
+    - cron: "0 0 * * *"
+  # GitHubの画面から「手動」でボタンを押して実行できるようにする設定
+  workflow_dispatch:
+
+# botがコードを書き換えて保存するための権限設定
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリのデータを読み込む
+        uses: actions/checkout@v4
+
+      - name: Node.jsの準備
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: データ取得スクリプト（fetch_data.js）の実行
+        run: node fetch_data.js
+
+      - name: 変更があれば保存してGitHubに上書き（プッシュ）する
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/japan_eq_archive.geojson
+          # データに差分（変更）があった時だけコミットしてプッシュする
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update earthquake data [skip ci]" && git push)
