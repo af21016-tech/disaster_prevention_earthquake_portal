@@ -51,6 +51,27 @@
             font-size: 0.8rem;
         }
         .btn-slicer:hover { border-color: #fff; }
+
+        /* ★追加：国土数値情報の著作権（出典）表記 */
+        .map-attribution {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+            font-size: 0.7rem;
+            color: #aaa;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 8px;
+            border-radius: 4px;
+            pointer-events: auto; /* リンクをクリックできるようにする */
+        }
+        .map-attribution a {
+            color: #56B4E9;
+            text-decoration: none;
+        }
+        .map-attribution a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -67,6 +88,10 @@
 
     <main class="dashboard-main">
         <div id="map-3d-full"></div>
+        
+        <div class="map-attribution">
+            都道府県境情報出典：<a href="https://nlftp.mlit.go.jp/ksj/" target="_blank" data-log="3Dマップ：国土数値情報リンクをクリック">国土数値情報（国土交通省）</a>を加工して作成
+        </div>
         
         <div id="time-slicer-ui">
             <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">

@@ -14,7 +14,7 @@
         .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: #1a1a1a; border-bottom: 1px solid #333333; display: flex; justify-content: space-between; align-items: center; }
         .live-header h1 { font-size: 1.25rem; margin: 0; }
 
-        .mypage-container { flex: 1; padding: 2rem; max-width: 900px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 2.5rem; overflow-y: auto; }
+        .mypage-container { flex: 1; padding: 2rem; max-width: 900px; margin: 100px auto 0; width: 100%; display: flex; flex-direction: column; gap: 2.5rem; overflow-y: auto; }
         
         .section-title { font-size: 1.1rem; color: #888; border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-bottom: 1.5rem; letter-spacing: 0.1em; }
 
@@ -61,7 +61,7 @@
                 <div class="user-avatar">👤</div>
                 <div class="user-info">
                     <h2 id="user-id-display">Loading...</h2>
-                    <p>研究用プロファイル ID（このIDでデータが収集されます）</p>
+                    <p>ユーザーID</p>
                     <button class="btn secondary btn-small" id="btn-copy-id" style="margin-top: 10px;" data-log="マイページ：IDコピーボタンをクリック">IDをコピー</button>
                 </div>
             </div>
@@ -72,15 +72,31 @@
             <div class="tech-card">
                 <div class="setting-item" style="border-left: 4px solid var(--cud-blue);">
                     <div class="setting-info">
-                        <h4 style="color: var(--cud-blue);">パイロットスタディ・フィードバック</h4>
-                        <p>システムの不具合（バグ）や、操作感・デザインへの改善案を募集しています。<br>下記ボタンより、専用のGoogleフォームにてご回答をお願いいたします。</p>
+                        <h4 style="color: var(--cud-blue);">パイロットスタディ・事前アンケート</h4>
+                        <p>パイロットスタディにご協力いただき、ありがとうございます。<br>右のボタンより、事前アンケートにご回答をお願いします。</p>
                     </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe0U4SnyODIRePgifg9krNLBQNUzII0qF7YkjZBF52iGIF9lA/viewform?usp=publish-editor" 
+                    <a href="https://docs.google.com/forms/ここに書く！" 
                        target="_blank" 
                        class="btn primary" 
                        style="background: var(--cud-blue); color: #000; border: none; min-width: 140px; text-align: center;" 
-                       data-log="マイページ：Googleフォーム（フィードバック）へのリンクをクリック">
-                       フォームを開く
+                       data-log="マイページ：事前アンケートへのリンクをクリック">
+                       事前アンケートに回答する
+                    </a>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="setting-item" style="border-left: 4px solid var(--cud-blue);">
+                    <div class="setting-info">
+                        <h4 style="color: var(--cud-blue);">パイロットスタディ・事後アンケート</h4>
+                        <p>パイロットスタディにご協力いただき、ありがとうございました。<br>実験期間終了後、右のボタンより、事後アンケートにご回答をお願いします。</p>
+                    </div>
+                    <a href="https://docs.google.com/forms/ここに書く！" 
+                       target="_blank" 
+                       class="btn primary" 
+                       style="background: var(--cud-blue); color: #000; border: none; min-width: 140px; text-align: center;" 
+                       data-log="マイページ：事後アンケートへのリンクをクリック">
+                       事後アンケートに回答する
                     </a>
                 </div>
             </div>
@@ -88,24 +104,7 @@
 
         <section>
             <h2 class="section-title">獲得した実績 (Achievements)</h2>
-            <div class="medal-grid">
-                <div class="medal-item" id="medal-fakemediabuster">
-                    <div class="medal-icon">🎖️</div>
-                    <div class="medal-name">フェイクバスター</div>
-                </div>
-                <div class="medal-item" id="medal-survival_basic">
-                    <div class="medal-icon">🥇</div>
-                    <div class="medal-name">サバイバル基礎</div>
-                </div>
-                <div class="medal-item" id="medal-shakeout_sleep">
-                    <div class="medal-icon">🛏️</div>
-                    <div class="medal-name">空間認知の生還者</div>
-                </div>
-                <div class="medal-item" id="medal-shakeout_arena">
-                    <div class="medal-icon">🏟️</div>
-                    <div class="medal-name">同調圧力への抵抗者</div>
-                </div>
-            </div>
+            <div id="my-badge-list"></div>
         </section>
 
         <section>

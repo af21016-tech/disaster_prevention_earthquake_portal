@@ -1,132 +1,248 @@
-let fakeQuestions = [];
-let fIndex = 0;
-let fCorrect = 0;
-let fStartTime = 0;
-let fAnswered = false;
+let fakeNewsData = []; 
+let currentQuestions = []; 
+let currentQuestionIndex = 0;
+let correctCount = 0;
+let userReviewData = [];
+let questionStartTime = 0; 
+
+const QUESTIONS_PER_PLAY = 10; 
+const TIME_LIMIT = 10.0;
+let timeLeft = TIME_LIMIT;
+let timerInterval = null;
+
+const playScreen = document.getElementById('play-screen');
+const resultScreen = document.getElementById('result-screen');
+const stageText = document.getElementById('stage-text');
+const questionText = document.getElementById('question-text');
+const answerButtons = document.getElementById('answer-buttons');
+const explanationArea = document.getElementById('explanation-area');
+const resultMark = document.getElementById('result-mark');
+const explanationText = document.getElementById('explanation-text');
+const timerBar = document.getElementById('timer-bar');
+const timerText = document.getElementById('timer-text');
+const scoreText = document.getElementById('score-text');
+const medalNotification = document.getElementById('medal-notification');
+const reviewList = document.getElementById('review-list');
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('btn-start').addEventListener('click', () => {
-        document.getElementById('start-screen').style.display = 'none';
-        document.getElementById('quiz-screen').style.display = 'block';
-        startFakeNews();
-    });
-    
-    document.getElementById('btn-share').addEventListener('click', () => checkFakeAnswer(true));
-    document.getElementById('btn-ignore').addEventListener('click', () => checkFakeAnswer(false));
-    document.getElementById('btn-next').addEventListener('click', nextFakeNews);
-    document.getElementById('btn-finish').addEventListener('click', showFakeNewsResult);
-    
-    document.getElementById('btn-retry').addEventListener('click', () => {
-        document.getElementById('result-screen').style.display = 'none';
-        document.getElementById('start-screen').style.display = 'block';
-    });
-});
-
-function startFakeNews() {
-    const defaultData = [
-        { name: "一般人A", id: "@user_a", q: "動物園からライオンが逃げ出したらしい！気を付けて！", a: false, exp: "災害時の典型的なデマです。真偽不明な情報は絶対に拡散してはいけません。" },
-        { name: "市役所公式", id: "@city_official", q: "【避難情報】〇〇川が氾濫危険水位に達しました。速やかに避難してください。", a: true, exp: "公式機関からの情報は信頼性が高いです。速やかに拡散し、周囲に知らせましょう。" },
-        { name: "匿名", id: "@unknown99", q: "〇〇病院で物資が不足しています！今すぐ毛布を送ってください！", a: false, exp: "善意の拡散が、現場の混乱を招く「善意のデマ」です。公式の要請があるまで個別の支援は控えましょう。" }
-    ];
+    if (questionText) questionText.innerText = "データを読み込み中...";
+    if (answerButtons) answerButtons.style.display = 'none';
 
     fetch('./assets/fake_news_data.json')
-        .then(res => res.json())
-        .then(data => {
-            fakeQuestions = data.sort(() => Math.random() - 0.5).slice(0, 5);
-            if(fakeQuestions.length === 0) fakeQuestions = defaultData;
-            resetFakeLoad();
+        .then(response => {
+            if (!response.ok) throw new Error('Network error');
+            return response.json();
         })
-        .catch(() => {
-            fakeQuestions = defaultData.sort(() => Math.random() - 0.5).slice(0, 5);
-            resetFakeLoad();
+        .then(data => {
+            fakeNewsData = data;
+            startQuiz(); 
+        })
+        .catch(error => {
+            console.error('Data load error:', error);
+            if (questionText) questionText.innerText = "データの読み込みに失敗しました。ページをリロードしてください。";
         });
-}
-
-function resetFakeLoad() {
-    fIndex = 0;
-    fCorrect = 0;
-    loadFakeNews();
-}
-
-function loadFakeNews() {
-    fAnswered = false;
-    document.getElementById('feedback').style.display = 'none';
-    document.getElementById('action-btns').style.display = 'flex';
-    
-    const qData = fakeQuestions[fIndex];
-    document.getElementById('q-counter').innerText = `Q. ${fIndex + 1} / ${fakeQuestions.length}`;
-    document.getElementById('p-name').innerText = qData.name || "匿名ユーザー";
-    document.getElementById('p-id').innerText = qData.id || "@user";
-    document.getElementById('p-text').innerText = qData.q;
-    
-    const progress = document.getElementById('progress');
-    if (progress) progress.style.width = `${((fIndex) / fakeQuestions.length) * 100}%`;
-    
-    fStartTime = Date.now();
-}
-
-function checkFakeAnswer(userShare) {
-    if (fAnswered) return;
-    fAnswered = true;
-    
-    const qData = fakeQuestions[fIndex];
-    const isCorrect = (userShare === qData.a);
-    if (isCorrect) fCorrect++;
-    
-    // ★ログ送信
-    const timeTaken = (Date.now() - fStartTime) / 1000;
-    const ansText = userShare ? "拡散する" : "拡散しない";
-    const resultLabel = isCorrect ? "⭕正解" : "❌不正解";
-    if (typeof logUserAction === 'function') {
-        logUserAction('fake_news_answer', `【${resultLabel}】 Q: ${qData.q.substring(0,15)}... / 選択: ${ansText} (タイム: ${timeTaken.toFixed(2)}秒)`);
+        
+    // 各ボタンのホバー時の色変化（CUD対応）
+    const btnShare = document.getElementById('btn-share');
+    if (btnShare) {
+        btnShare.addEventListener('click', () => checkAnswer(true));
+        btnShare.onmouseover = () => { btnShare.style.background = 'rgba(255, 40, 0, 0.1)'; };
+        btnShare.onmouseout = () => { btnShare.style.background = '#111'; };
     }
 
-    document.getElementById('action-btns').style.display = 'none';
+    const btnIgnore = document.getElementById('btn-ignore');
+    if (btnIgnore) {
+        btnIgnore.addEventListener('click', () => checkAnswer(false));
+        btnIgnore.onmouseover = () => { btnIgnore.style.background = 'rgba(86, 180, 233, 0.1)'; };
+        btnIgnore.onmouseout = () => { btnIgnore.style.background = '#111'; };
+    }
+});
+
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function startQuiz() {
+    currentQuestions = shuffleArray(fakeNewsData).slice(0, QUESTIONS_PER_PLAY);
+    currentQuestionIndex = 0;
+    correctCount = 0;
+    userReviewData = []; 
+
+    const quizScreen = document.getElementById('quiz-screen');
+    const startScreen = document.getElementById('start-screen');
+    if (startScreen) startScreen.style.display = 'none';
+    if (quizScreen) quizScreen.style.display = 'block';
+    
+    if(resultScreen) resultScreen.style.display = 'none';
+    loadQuestion();
+}
+
+function loadQuestion() {
+    const qData = currentQuestions[currentQuestionIndex];
+    const qCounter = document.getElementById('q-counter');
+    if(qCounter) qCounter.innerText = `Q. ${currentQuestionIndex + 1} / ${currentQuestions.length}`;
+    
+    const pName = document.getElementById('p-name');
+    const pId = document.getElementById('p-id');
+    const pText = document.getElementById('p-text');
+    
+    if(pName) pName.innerText = qData.name || "匿名ユーザー";
+    if(pId) pId.innerText = qData.id || "@user";
+    if(pText) pText.innerText = qData.q;
+    
+    const actionBtns = document.getElementById('action-btns');
+    if(actionBtns) actionBtns.style.display = 'flex';
+    
+    const feedback = document.getElementById('feedback');
+    if(feedback) feedback.style.display = 'none';
+
+    const progress = document.getElementById('progress');
+    if(progress) progress.style.width = `${((currentQuestionIndex + 1) / currentQuestions.length) * 100}%`;
+
+    questionStartTime = Date.now(); 
+    startTimer();
+}
+
+function startTimer() {
+    clearInterval(timerInterval);
+    timeLeft = TIME_LIMIT;
+    updateTimerUI();
+
+    timerInterval = setInterval(() => {
+        timeLeft -= 0.1;
+        if (timeLeft <= 0) {
+            timeLeft = 0;
+            clearInterval(timerInterval);
+            processAnswer(null); 
+        }
+        updateTimerUI();
+    }, 100);
+}
+
+function updateTimerUI() {
+    const progressFill = document.getElementById('progress');
+    if(progressFill) {
+        // 時間経過でバーが減る表現（元のプログレスバーを流用）
+        const percentage = (timeLeft / TIME_LIMIT) * 100;
+        progressFill.style.width = `${percentage}%`;
+        if (timeLeft > 5) progressFill.style.backgroundColor = '#b366ff';
+        else if (timeLeft > 2) progressFill.style.backgroundColor = '#F0E442';
+        else progressFill.style.backgroundColor = '#D55E00';
+    }
+}
+
+function checkAnswer(userAnswer) {
+    clearInterval(timerInterval);
+    processAnswer(userAnswer);
+}
+
+function processAnswer(userAnswer) {
+    const qData = currentQuestions[currentQuestionIndex];
+    const isCorrect = (userAnswer !== null && userAnswer === qData.a);
+    if (isCorrect) correctCount++;
+
+    // ★修正：ログの文字をマル・バツ形式に
+    const timeTaken = (Date.now() - questionStartTime) / 1000;
+    let answerLabel = userAnswer === null ? "時間切れ" : (userAnswer ? "〇 (正しい)" : "✖ (デマ・誤り)");
+    let resultLabel = isCorrect ? "⭕正解" : "❌不正解";
+    
+    if (typeof logUserAction === 'function') {
+        logUserAction('fake_news_answer', `【${resultLabel}】 Q: ${qData.q.substring(0, 15)}... / 選択: ${answerLabel} (タイム: ${timeTaken.toFixed(2)}秒)`);
+    }
+
+    userReviewData.push({
+        q: qData.q,
+        correctAnswer: qData.a,
+        userAnswer: userAnswer,
+        isCorrect: isCorrect,
+        exp: qData.exp
+    });
+
+    const actionBtns = document.getElementById('action-btns');
+    if(actionBtns) actionBtns.style.display = 'none';
     
     const fb = document.getElementById('feedback');
-    fb.style.display = 'block';
-    fb.className = isCorrect ? 'feedback-area correct' : 'feedback-area incorrect';
-    document.getElementById('fb-title').innerText = isCorrect ? '⭕ 正しい判断です！' : '❌ デマに加担しました...';
-    document.getElementById('fb-desc').innerText = qData.exp;
+    if(fb) fb.style.display = 'block';
+    
+    const fbTitle = document.getElementById('fb-title');
+    const fbDesc = document.getElementById('fb-desc');
+
+    if (userAnswer === null) {
+        if(fb) fb.className = "feedback-area incorrect";
+        if(fbTitle) fbTitle.innerText = "⏳ 思考停止（時間切れ）";
+        if(fbDesc) fbDesc.innerHTML = `<strong style="color:#D55E00;">【迷いが命取りになります】</strong><br>${qData.exp}`;
+    } else if (isCorrect) {
+        if(fb) fb.className = "feedback-area correct";
+        if(fbTitle) fbTitle.innerText = `⭕ 見破りました！`;
+        if(fbDesc) fbDesc.innerHTML = qData.exp;
+    } else {
+        if(fb) fb.className = "feedback-area incorrect";
+        if(fbTitle) fbTitle.innerText = "❌ 誤情報に騙されています...";
+        if(fbDesc) fbDesc.innerHTML = qData.exp;
+    }
     
     const btnNext = document.getElementById('btn-next');
     const btnFinish = document.getElementById('btn-finish');
     
-    if (fIndex < fakeQuestions.length - 1) {
-        btnNext.style.display = 'inline-block';
-        btnFinish.style.display = 'none';
+    if (currentQuestionIndex < currentQuestions.length - 1) {
+        if(btnNext) btnNext.style.display = 'inline-block';
+        if(btnFinish) btnFinish.style.display = 'none';
+        if(btnNext) btnNext.onclick = nextQuestion;
     } else {
-        btnNext.style.display = 'none';
-        btnFinish.style.display = 'inline-block';
+        if(btnNext) btnNext.style.display = 'none';
+        if(btnFinish) btnFinish.style.display = 'inline-block';
+        if(btnFinish) btnFinish.onclick = showResultScreen;
     }
 }
 
-function nextFakeNews() {
-    fIndex++;
-    loadFakeNews();
+function nextQuestion() {
+    currentQuestionIndex++;
+    loadQuestion();
 }
 
-function showFakeNewsResult() {
-    document.getElementById('quiz-screen').style.display = 'none';
-    document.getElementById('result-screen').style.display = 'block';
-    document.getElementById('final-score').innerText = `${fCorrect} / ${fakeQuestions.length}`;
-    
-    // ★ここから追加：正答率を計算してGASに送信！
-    const accuracy = Math.round((fCorrect / fakeQuestions.length) * 100);
+function showResultScreen() {
+    const quizScreen = document.getElementById('quiz-screen');
+    const resultScreen = document.getElementById('result-screen');
+    if(quizScreen) quizScreen.style.display = 'none';
+    if(resultScreen) resultScreen.style.display = 'block';
+
+    const isPerfect = (correctCount === currentQuestions.length);
+    const finalScore = document.getElementById('final-score');
+    if(finalScore) finalScore.innerText = `${correctCount} / ${currentQuestions.length}`;
+
+    // ★GASへの正答率ログ送信
+    const accuracy = Math.round((correctCount / currentQuestions.length) * 100);
     if (typeof logUserAction === 'function') {
-        logUserAction('fake_news_result', `【最終結果】正答率: ${accuracy}% (${fCorrect}問正解 / 全${fakeQuestions.length}問)`);
+        logUserAction('fake_news_result', `【最終結果】正答率: ${accuracy}% (${correctCount}問正解 / 全${currentQuestions.length}問)`);
     }
-    // ★ここまで追加
-    
+
     const resultMsg = document.getElementById('result-message');
-    if (fCorrect === fakeQuestions.length) {
-        resultMsg.innerText = "素晴らしい！あなたは情報を見極め、インフォデミックを防ぐことができました。";
+
+    if (isPerfect) {
+        const medalId = "fakemediabuster";
+        if(resultMsg) resultMsg.innerHTML = `<span style="font-size:3rem; margin-bottom:10px; display:inline-block;">📱</span><br>見事な情報リテラシーです。<br>「フェイクバスター」メダルを獲得しました。`;
+        
         let earnedMedals = JSON.parse(localStorage.getItem('quake_medals')) || [];
-        if (!earnedMedals.includes("fakemediabuster")) {
-            earnedMedals.push("fakemediabuster");
+        if (!earnedMedals.includes(medalId)) {
+            earnedMedals.push(medalId);
             localStorage.setItem('quake_medals', JSON.stringify(earnedMedals));
         }
     } else {
-        resultMsg.innerText = "間違った情報の拡散は、人命に関わる混乱を招きます。もう一度訓練しましょう。";
+        if(resultMsg) resultMsg.innerHTML = `全問正解でのみメダルが授与されます。<br>間違った情報の拡散は混乱を招きます。もう一度訓練しましょう。`;
+    }
+
+    // 再挑戦ボタン
+    const btnRetry = document.getElementById('btn-retry');
+    if (btnRetry) {
+        btnRetry.onclick = () => {
+            if(resultScreen) resultScreen.style.display = 'none';
+            if(quizScreen) quizScreen.style.display = 'block';
+            startQuiz();
+        };
     }
 }

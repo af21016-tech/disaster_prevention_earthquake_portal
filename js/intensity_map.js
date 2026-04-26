@@ -1,8 +1,9 @@
 // --- グローバル変数 ---
 let intensityData = [];
 let map = null;
-let geojsonLayer = null; // ポリゴンレイヤーを保持
-let jmaRegionData = null; // 予報区のGeoJSONデータ
+let geojsonLayer = null; 
+let jmaRegionData = null; 
+let intensityLegend = null; // ★凡例オブジェクトをグローバルで保持
 
 // --- 気象庁震度階級のCUDカラー判定関数 ---
 function getIntensityColor(intensity) {
@@ -12,10 +13,19 @@ function getIntensityColor(intensity) {
     if (intensity >= 5.5) return '#FF2800'; // 朱色 (震度5強)
     if (intensity >= 5.0) return '#FFBE00'; // 黄土色 (震度5弱)
     if (intensity >= 4.0) return '#FAE600'; // 黄 (震度4)
-    return null;                            // 震度3以下は塗らない（透明）
+    return null;                            
 }
 
-function getIntensityString(val) {
+// ★修正：旧震度階級（弱強なし）に対応
+function getIntensityString(val, isOldScale = false) {
+    if (isOldScale) {
+        if (val >= 7) return '7';
+        if (val >= 6.0) return '6';
+        if (val >= 5.0) return '5';
+        if (val >= 4.0) return '4';
+        return '3以下';
+    }
+    // 現行の震度階級
     if (val === 7) return '7';
     if (val === 6.5) return '6強';
     if (val === 6.0) return '6弱';
@@ -25,90 +35,60 @@ function getIntensityString(val) {
     return '3以下';
 }
 
-// --- 初期化処理 ---
 document.addEventListener('DOMContentLoaded', () => {
     initMap();
     loadAllData();
 });
 
-// --- マップの初期化 ---
 function initMap() {
     map = L.map('intensity-map', {
         zoomControl: false,
         minZoom: 4
     }).setView([38.0, 137.0], 5);
 
-    // ズームコントロール
     L.control.zoom({ position: 'topright' }).addTo(map);
 
-    // ★新規追加: 全画面（フルスクリーン）表示ボタン
-    const fullscreenControl = L.control({ position: 'topright' });
-    fullscreenControl.onAdd = function () {
-        const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control');
-        btn.innerHTML = '⛶'; // 全画面アイコン
-        btn.title = "全画面表示の切り替え";
-        btn.style.width = '34px';
-        btn.style.height = '34px';
-        btn.style.fontSize = '18px';
-        btn.style.cursor = 'pointer';
-        btn.style.backgroundColor = 'white';
-        btn.style.color = '#333'; 
-        btn.style.border = 'none';
-        btn.style.display = 'flex';
-        btn.style.alignItems = 'center';
-        btn.style.justifyContent = 'center';
-
-        // クリックでフルスクリーンAPIを呼び出す
-        btn.onclick = function (e) {
-            e.preventDefault();
-            const mapEl = document.getElementById('intensity-map');
-            
-            if (!document.fullscreenElement) {
-                if (mapEl.requestFullscreen) {
-                    mapEl.requestFullscreen();
-                } else if (mapEl.webkitRequestFullscreen) { 
-                    mapEl.webkitRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                }
-            }
-        };
-        return btn;
-    };
-    fullscreenControl.addTo(map);
-
-    // ★ 変更点：著作権表記を「OpenStreetMap contributors」と正式表記に修正
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         subdomains: 'abcd',
         maxZoom: 10
     }).addTo(map);
 
-    // 凡例の追加
-    const legend = L.control({ position: 'bottomright' });
-    legend.onAdd = function () {
-        const div = L.DomUtil.create('div', 'intensity-legend');
-        div.innerHTML = `
-            <h4>気象庁 震度階級 (面表示)</h4>
-            <div class="legend-row"><span class="legend-color" style="background:#960096;"></span> 震度 7</div>
-            <div class="legend-row"><span class="legend-color" style="background:#640000;"></span> 震度 6強</div>
-            <div class="legend-row"><span class="legend-color" style="background:#A50021;"></span> 震度 6弱</div>
-            <div class="legend-row"><span class="legend-color" style="background:#FF2800;"></span> 震度 5強</div>
-            <div class="legend-row"><span class="legend-color" style="background:#FFBE00;"></span> 震度 5弱</div>
-            <div class="legend-row"><span class="legend-color" style="background:#FAE600;"></span> 震度 4</div>
-        `;
-        return div;
+    // ★修正：凡例を動的に更新できるように定義
+    intensityLegend = L.control({ position: 'bottomright' });
+    intensityLegend.onAdd = function () {
+        this._div = L.DomUtil.create('div', 'intensity-legend');
+        this.update(); // 初期表示（現行スケール）
+        return this._div;
     };
-    legend.addTo(map);
+    
+    // 凡例の書き換え関数
+    intensityLegend.update = function (isOldScale = false) {
+        if (isOldScale) {
+            this._div.innerHTML = `
+                <h4 style="margin-top:0; margin-bottom:8px;">気象庁 震度階級 (1995年当時)</h4>
+                <div class="legend-row"><span class="legend-color" style="background:#960096;"></span> 震度 7</div>
+                <div class="legend-row"><span class="legend-color" style="background:#A50021;"></span> 震度 6</div>
+                <div class="legend-row"><span class="legend-color" style="background:#FF2800;"></span> 震度 5</div>
+                <div class="legend-row"><span class="legend-color" style="background:#FAE600;"></span> 震度 4</div>
+                <p style="font-size:0.6rem; color:#888; margin:5px 0 0 0;">※当時は強弱の区分がありませんでした</p>
+            `;
+        } else {
+            this._div.innerHTML = `
+                <h4 style="margin-top:0; margin-bottom:8px;">気象庁 震度階級 (面表示)</h4>
+                <div class="legend-row"><span class="legend-color" style="background:#960096;"></span> 震度 7</div>
+                <div class="legend-row"><span class="legend-color" style="background:#640000;"></span> 震度 6強</div>
+                <div class="legend-row"><span class="legend-color" style="background:#A50021;"></span> 震度 6弱</div>
+                <div class="legend-row"><span class="legend-color" style="background:#FF2800;"></span> 震度 5強</div>
+                <div class="legend-row"><span class="legend-color" style="background:#FFBE00;"></span> 震度 5弱</div>
+                <div class="legend-row"><span class="legend-color" style="background:#FAE600;"></span> 震度 4</div>
+            `;
+        }
+    };
+    intensityLegend.addTo(map);
 }
 
-// --- データの一括読み込み ---
 function loadAllData() {
-    // 震度データ(JSON)と予報区ポリゴン(GeoJSON)を同時に読み込む
     Promise.all([
         fetch('./assets/intensity_data.json').then(r => r.json()),
         fetch('./assets/jma_region.geojson').then(r => r.json())
@@ -116,24 +96,19 @@ function loadAllData() {
     .then(([eqData, geoData]) => {
         intensityData = eqData;
         jmaRegionData = geoData;
-        
         renderList();
-        
         if (intensityData.length > 0) {
             selectEarthquake(intensityData[intensityData.length - 1].id);
         }
     })
     .catch(err => {
         console.error('Data load error:', err);
-        document.getElementById('eq-list-container').innerHTML = 
-            '<p style="color:#D55E00; padding:1rem;">データの読み込みに失敗しました。<br>assetsフォルダ内に「intensity_data.json」と「jma_region.geojson」が正しく配置されているか確認してください。</p>';
     });
 }
 
 function renderList() {
     const container = document.getElementById('eq-list-container');
     container.innerHTML = '';
-
     intensityData.forEach(eq => {
         const card = document.createElement('div');
         card.className = 'eq-card';
@@ -151,7 +126,6 @@ function renderList() {
     });
 }
 
-// --- 地震の選択と【ポリゴン（面）】の描画 ---
 function selectEarthquake(eqId) {
     document.querySelectorAll('.eq-card').forEach(c => c.classList.remove('active'));
     document.getElementById(`card-${eqId}`).classList.add('active');
@@ -159,13 +133,15 @@ function selectEarthquake(eqId) {
     const eq = intensityData.find(d => d.id === eqId);
     if (!eq) return;
 
-    // オーバーレイ更新
+    // ★修正：阪神・淡路大震災かどうかを判定して凡例を更新
+    const isHanshin = eq.name.includes("阪神") || eq.id.includes("hanshin");
+    intensityLegend.update(isHanshin);
+
     const overlay = document.getElementById('eq-info-overlay');
     document.getElementById('info-title').innerText = eq.name;
     document.getElementById('info-desc').innerText = eq.description;
     overlay.style.display = 'block';
 
-    // 古いポリゴンレイヤーを削除
     if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
     }
@@ -175,7 +151,6 @@ function selectEarthquake(eqId) {
         intensityMap[pt.region] = pt.intensity;
     });
 
-    // GeoJSONからポリゴンを描画
     geojsonLayer = L.geoJSON(jmaRegionData, {
         style: function (feature) {
             const regionName = feature.properties.name || feature.properties.NAME || feature.properties.Name;
@@ -206,7 +181,8 @@ function selectEarthquake(eqId) {
             
             if (intensity >= 4.0) {
                 const color = getIntensityColor(intensity);
-                const intensityStr = getIntensityString(intensity);
+                // ★修正：ポップアップの震度表示も切り替え
+                const intensityStr = getIntensityString(intensity, isHanshin);
                 
                 layer.on({
                     mouseover: (e) => {

@@ -454,8 +454,12 @@ function showClear(clearText) {
         <a href="index.html" class="btn primary" style="font-size:1.2rem; padding:15px 30px;">ダッシュボードへ帰還</a>
     `;
     let earnedMedals = JSON.parse(localStorage.getItem('quake_medals')) || [];
-    if (!earnedMedals.includes("shakeout_sleep")) {
-        earnedMedals.push("shakeout_sleep");
+    
+    // ★修正：寝室とアリーナで、保存するバッジのIDを分ける
+    let medalId = currentSceneId === 'sleep' ? "shakeout_sleep" : "shakeout_arena";
+    
+    if (!earnedMedals.includes(medalId)) {
+        earnedMedals.push(medalId);
         localStorage.setItem('quake_medals', JSON.stringify(earnedMedals));
     }
 }

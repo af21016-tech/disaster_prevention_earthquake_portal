@@ -13,14 +13,27 @@ let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const btnStart = document.getElementById('btn-start');
-    if (btnStart) {
-        btnStart.addEventListener('click', () => {
-            document.getElementById('start-screen').style.display = 'none';
-            document.getElementById('quiz-screen').style.display = 'block';
-            initQuiz();
-        });
-    }
+    // ★修正：3つのボタンそれぞれのイベントリスナー
+    const btnStage0 = document.getElementById('btn-start-stage0');
+    if (btnStage0) btnStage0.addEventListener('click', () => {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        initQuiz(0); // 初級
+    });
+
+    const btnStage1 = document.getElementById('btn-start-stage1');
+    if (btnStage1) btnStage1.addEventListener('click', () => {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        initQuiz(1); // 中級
+    });
+
+    const btnStage2 = document.getElementById('btn-start-stage2');
+    if (btnStage2) btnStage2.addEventListener('click', () => {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        initQuiz(2); // 上級
+    });
     
     const btnNext = document.getElementById('btn-next');
     if (btnNext) btnNext.addEventListener('click', nextQuestion);
@@ -30,18 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const btnRetry = document.getElementById('btn-retry');
     if (btnRetry) btnRetry.addEventListener('click', () => {
+        // もう一度挑戦する場合は、スタート画面（レベル選択）に戻す
         document.getElementById('result-screen').style.display = 'none';
-        document.getElementById('quiz-screen').style.display = 'block';
-        initQuiz();
+        document.getElementById('start-screen').style.display = 'block';
     });
 });
 
-function initQuiz() {
+// 引数で選ばれたステージ番号を受け取る
+function initQuiz(stageIndex) {
     fetch('./assets/quiz_data.json')
         .then(res => res.json())
         .then(data => {
             quizData = data;
-            startStage(0);
+            startStage(stageIndex);
         })
         .catch(err => {
             console.error(err);
@@ -66,7 +80,6 @@ function startStage(stageIndex) {
     
     if (!pool || pool.length === 0) return;
     
-    // 問題のシャッフル
     let arr = [...pool];
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -84,8 +97,11 @@ function loadQuestion() {
     const qData = currentStageQuestions[currentQuestionIndex];
     if(!qData) return;
     
+    const stageInfo = quizData[currentStageIndex];
+    const stageNameDisplay = stageInfo ? `【${stageInfo.stageName}】 ` : '';
+
     const qCounter = document.getElementById('q-counter');
-    if(qCounter) qCounter.innerText = `Q. ${currentQuestionIndex + 1} / ${currentStageQuestions.length}`;
+    if(qCounter) qCounter.innerText = `${stageNameDisplay}Q. ${currentQuestionIndex + 1} / ${currentStageQuestions.length}`;
     
     const qText = document.getElementById('q-text');
     if(qText) qText.innerText = qData.q || qData.question || "問題文がありません";
@@ -115,15 +131,14 @@ function loadQuestion() {
         const btn = document.createElement('button');
         btn.className = 'choice-btn';
         
-        // ★CUD（カラーユニバーサルデザイン）に配慮した文字色の設定
-        let textColor = "#eaeaea"; // デフォルトの白系
-        let hoverColor = "#ff7b00"; // デフォルトのホバー枠線
+        let textColor = "#eaeaea"; 
+        let hoverColor = "#ff7b00"; 
         
         if (text === "〇") {
-            textColor = "#FF2800"; // CUDレッド
+            textColor = "#FF2800"; 
             hoverColor = "#FF2800";
         } else if (text === "✖") {
-            textColor = "#56B4E9"; // CUDスカイブルー（黒背景で最も見やすい青系）
+            textColor = "#56B4E9"; 
             hoverColor = "#56B4E9";
         }
         
@@ -196,13 +211,12 @@ function processAnswer(userIndex, choiceText, btnElement) {
     
     if (isCorrect) correctCount++;
     
-    // ★選択したボタンの色をCUDカラーで固定・ハイライトする
     if (btnElement) {
         if (choiceText === "〇") {
-            btnElement.style.background = 'rgba(255, 40, 0, 0.1)'; // CUDレッドの透過
+            btnElement.style.background = 'rgba(255, 40, 0, 0.1)'; 
             btnElement.style.borderColor = '#FF2800';
         } else if (choiceText === "✖") {
-            btnElement.style.background = 'rgba(86, 180, 233, 0.1)'; // CUDスカイブルーの透過
+            btnElement.style.background = 'rgba(86, 180, 233, 0.1)'; 
             btnElement.style.borderColor = '#56B4E9';
         } else {
             btnElement.style.background = 'rgba(255, 123, 0, 0.1)';
@@ -266,15 +280,16 @@ function showResultScreen() {
     const stage = quizData[currentStageIndex];
     document.getElementById('final-score').innerText = `${correctCount} / ${currentStageQuestions.length}`;
 
-    // ★ここから追加：正答率を計算してGASに送信！
+    // ★GASへの正答率ログ送信
     const accuracy = Math.round((correctCount / currentStageQuestions.length) * 100);
     if (typeof logUserAction === 'function') {
-        logUserAction('quiz_result', `【最終結果】正答率: ${accuracy}% (${correctCount}問正解 / 全${currentStageQuestions.length}問)`);
+        const stageName = stage ? stage.stageName : "サバイバルクイズ";
+        logUserAction('quiz_result', `【最終結果:${stageName}】正答率: ${accuracy}% (${correctCount}問正解 / 全${currentStageQuestions.length}問)`);
     }
-    // ★ここまで追加
-    
+
     const medalNotification = document.getElementById('medal-container');
     const resultMsg = document.getElementById('result-message');
+    const resultMedalIcon = document.getElementById('result-medal-icon');
 
     if (correctCount === currentStageQuestions.length) {
         if(medalNotification) medalNotification.style.display = 'block';
@@ -282,6 +297,10 @@ function showResultScreen() {
         
         let earnedMedals = JSON.parse(localStorage.getItem('quake_medals')) || [];
         const medalId = stage ? stage.medalId : "survival_basic";
+        const medalEmoji = stage ? stage.medal : "🥇";
+        
+        if(resultMedalIcon) resultMedalIcon.innerText = medalEmoji;
+
         if (!earnedMedals.includes(medalId)) {
             earnedMedals.push(medalId);
             localStorage.setItem('quake_medals', JSON.stringify(earnedMedals));

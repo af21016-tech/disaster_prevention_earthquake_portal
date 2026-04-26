@@ -10,15 +10,19 @@
     <link rel="stylesheet" href="./css/style.css">
     
     <style>
-        body, html { margin: 0; padding: 0; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background-color: #050505; }
+        body, html { margin: 0; padding: 0; height: 100dvh; overflow: hidden; background-color: #050505; }
         
+        /* ★修正：margin計算を廃止し、絶対配置で画面内に完全に収める */
         .dashboard-main { 
-            flex: 1; 
+            position: absolute;
+            top: 70px; /* ヘッダーの高さ */
+            bottom: 0; /* 下にピタリと合わせる */
+            left: 0;
+            right: 0;
             display: flex; 
-            margin-top: 60px; /* ヘッダー分 */
         }
 
-        /* 左側リストパネル */
+        /* 左側リストパネル（PC基本設定） */
         .eq-list-panel {
             width: 350px;
             background: #111;
@@ -55,6 +59,40 @@
         }
         .legend-row { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; margin-bottom: 3px; }
         .legend-color { width: 14px; height: 14px; border-radius: 2px; }
+
+        /* ★スマートフォン向けレスポンシブ設定 */
+        @media screen and (max-width: 768px) {
+            .dashboard-main {
+                flex-direction: column; 
+            }
+            .map-area {
+                order: 1; 
+                flex: 0 0 50%; /* 地図を上半分に */
+                width: 100%;
+            }
+            .eq-list-panel {
+                order: 2; 
+                width: 100%;
+                flex: 0 0 50%; /* リストを下半分に */
+                border-right: none;
+                border-top: 2px solid #333;
+                padding-bottom: 30px; /* ★スマホ下部のホームバーに隠れないよう余白を追加 */
+            }
+            #eq-info-overlay {
+                max-width: 220px !important;
+                padding: 10px !important;
+                top: 10px !important;
+                left: 10px !important;
+            }
+            #info-title {
+                font-size: 1rem !important;
+                margin-bottom: 5px !important;
+            }
+            #info-desc {
+                font-size: 0.75rem !important;
+                line-height: 1.4 !important;
+            }
+        }
     </style>
 </head>
 <body>
