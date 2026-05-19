@@ -36,6 +36,22 @@
         </div>
     </div>
 
+    <div id="onboarding-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>ようこそ！防災ポータルへ</h2>
+            <p>本日は実験にご参加いただき<br>ありがとうございます。</p>
+            <p>まずはあなたの「ユーザーID」を発行し、<br>事前アンケートにご回答ください。</p>
+    
+            <div class="warning-text">
+                ⚠️ アンケートに回答するまで、他のコンテンツはご利用いただけません。
+            </div>
+    
+            <button onclick="location.href='mypage.html'" class="btn-primary-modal">
+                  マイページへ進む
+            </button>
+        </div>
+    </div>
+
     <div class="hero-map-section tut-target" data-step="1" data-title="🌎 リアルタイム震源モニタ" data-desc="過去24時間以内に世界中で発生した地震（USGSデータ）をリアルタイムで可視化しています。円の色は震源の「深さ」を表しています。">
         <div id="leaflet-map"></div>
         <div class="hero-overlay">

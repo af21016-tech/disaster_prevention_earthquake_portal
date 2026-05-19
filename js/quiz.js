@@ -309,4 +309,17 @@ function showResultScreen() {
         if(medalNotification) medalNotification.style.display = 'none';
         if(resultMsg) resultMsg.innerText = "全問正解でのみメダルが授与されます。間違えた問題を復習して再挑戦しましょう。";
     }
+
+    // クイズ結果画面のHTMLに、マイページへのデカデカとしたボタンを挿入する
+    const resultContainer = document.getElementById('result-area');
+    resultContainer.innerHTML += `
+        <div style="margin-top: 30px; padding: 20px; background: #f1f8ff; border-radius: 8px; text-align: center;">
+            <h3 style="color: #2980b9;">🎉 新しいバッジを獲得したかも？</h3>
+            <p>マイページに戻って、あなたのコレクションを確認しましょう！</p>
+            <button onclick="location.href='mypage.html'" 
+                    style="background: #27ae60; color: white; padding: 12px 24px; font-size: 1.1em; border: none; border-radius: 5px; cursor: pointer;">
+                マイページへ行く 👤
+            </button>
+        </div>
+    `;
 }

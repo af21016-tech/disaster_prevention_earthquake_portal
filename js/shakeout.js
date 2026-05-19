@@ -440,7 +440,21 @@ function updateAfterHoldTimer(currentTime) {
 function selectAfterHoldAnswer(isCorrect, feedbackText) {
     if (isAnswered) return;
     if(typeof logUserAction === 'function') logUserAction('shakeout_afterhold_answer', `【${isCorrect ? "⭕冷静" : "❌パニック"}】 事後判断`);
-    isAnswered = true; showFeedback(isCorrect, feedbackText);
+    isAnswered = true; 
+    
+    if (isCorrect) {
+        // ★修正ポイント：正解時は無限ループを防ぐため、専用の「結果を見る」画面を出す
+        document.getElementById('content-box').innerHTML = `
+            <div class="feedback-box feedback-correct" style="font-size:1.1rem;">
+                <h3 style="color: #00B400; margin-top:0; font-size:1.5rem;">正しい判断です！</h3>
+                <p style="line-height: 1.6; margin-bottom:0;">${feedbackText}</p>
+            </div>
+            <button class="btn primary" style="font-size:1.2rem; padding:15px 30px;" onclick="showClear(scenarios[currentSceneId].hold.getClearText())">結果を見る</button>
+        `;
+    } else {
+        // 不正解の場合は、従来通りメニューへ戻る（showFeedbackに任せる）
+        showFeedback(false, feedbackText); 
+    }
 }
 
 function showClear(clearText) {

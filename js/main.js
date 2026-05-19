@@ -365,17 +365,16 @@ function initializeArchive3DMap(containerId) {
 }
 
 // ==========================================
-// SFJ Tutorial Spotlight Logic (修正版)
+// SFJ Tutorial Spotlight Logic & Onboarding (完全修正版)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    const btnTutorial = document.getElementById('btn-tutorial'); // indexには存在しない
+    const btnTutorial = document.getElementById('btn-tutorial'); 
     const overlay = document.getElementById('tut-overlay');
     const tooltip = document.getElementById('tut-tooltip');
     const btnClose = document.getElementById('tut-close');
     const btnNext = document.getElementById('tut-next');
     const btnPrev = document.getElementById('tut-prev');
     
-    // チュートリアル用のUI（overlay等）自体がないページでは終了
     if (!overlay || !tooltip) return;
 
     const targets = Array.from(document.querySelectorAll('.tut-target'))
@@ -385,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // チュートリアルを開始する関数
     function startTutorial() {
+        console.log("--- チュートリアルを開始します ---");
         currentStep = 0;
         overlay.style.display = 'block';
         tooltip.style.display = 'block';
@@ -395,20 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showStep(currentStep);
     }
 
-    // インデックスにボタンがある場合（もし復活させた際）のイベント
-    if (btnTutorial) {
-        btnTutorial.addEventListener('click', startTutorial);
-    }
-
-    // ---------------------------------------------------------
-    // ★マイページからの「強制スタート」チェック
-    // ---------------------------------------------------------
-    if (localStorage.getItem('start_tutorial_now') === 'true') {
-        localStorage.removeItem('start_tutorial_now');
-        startTutorial(); // ボタンがなくてもここから開始される
-    }
-
-    // --- 以下、showStep関数やクローズ処理などは前回と同じ ---
+    // チュートリアルを閉じる関数
     function closeTutorial() {
         overlay.style.opacity = '0';
         tooltip.style.opacity = '0';
@@ -417,8 +404,27 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.display = 'none';
             tooltip.style.display = 'none';
         }, 300);
+        
+        localStorage.setItem('tutorialCompleted', 'true');
+        console.log("チュートリアル完了フラグを保存しました。");
     }
 
+    // オンボーディングフロー制御
+    const isPreSurveyDone = localStorage.getItem('preSurveyCompleted');
+    const isTutorialDone = localStorage.getItem('tutorialCompleted');
+
+    if (!isPreSurveyDone || isPreSurveyDone !== 'true') {
+        const modal = document.getElementById('onboarding-modal');
+        if (modal) modal.style.display = 'flex';
+    } else if (!isTutorialDone || isTutorialDone !== 'true') {
+        startTutorial();
+    } else if (localStorage.getItem('start_tutorial_now') === 'true') {
+        localStorage.removeItem('start_tutorial_now');
+        startTutorial();
+    }
+
+    // ボタンのイベントリスナー設定
+    if (btnTutorial) btnTutorial.addEventListener('click', startTutorial);
     btnClose.addEventListener('click', closeTutorial);
     overlay.addEventListener('click', closeTutorial);
 
@@ -438,6 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ★ ここが正しい座標計算を行う関数です
     function showStep(index) {
         clearHighlight();
         const target = targets[index];
@@ -462,10 +469,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const updatedRect = target.getBoundingClientRect();
             let topPos = updatedRect.bottom + window.scrollY + 15;
             let leftPos = updatedRect.left + window.scrollX;
+            
+            // ① 画面の下にはみ出さない処理（下にスペースがない場合は上へ移動）
             if (topPos + tooltip.offsetHeight > window.scrollY + window.innerHeight) {
                 topPos = updatedRect.top + window.scrollY - tooltip.offsetHeight - 15;
             }
-            if (leftPos < 10) leftPos = 10;
+            
+            // ★ ④【今回追加！】上に移動した結果、画面外やヘッダーの裏に消えてしまう場合
+            // 巨大な要素（マップなど）の場合は、画面上部の安全な位置（ターゲットの内側）で固定する
+            const safeTopMargin = 100; // ヘッダーの高さ(約80px) + 少しの余白
+            if (topPos < window.scrollY + safeTopMargin) {
+                topPos = window.scrollY + safeTopMargin;
+            }
+            
+            // ② 画面の左にはみ出さない処理
+            if (leftPos < 10) {
+                leftPos = 10;
+            }
+            
+            // ③ 画面の右にはみ出さない処理（文字切れ防止）
+            if (leftPos + tooltip.offsetWidth > window.innerWidth - 10) {
+                leftPos = window.innerWidth - tooltip.offsetWidth - 10;
+            }
+
             tooltip.style.top = `${topPos}px`;
             tooltip.style.left = `${leftPos}px`;
         }, 350);

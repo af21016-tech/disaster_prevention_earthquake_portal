@@ -116,3 +116,52 @@ function showToast(message) {
         toast.style.opacity = '0'; 
     }, 2500);
 }
+
+function goToPreSurvey() {
+    console.log("--- 事前アンケートボタンがクリックされました ---");
+
+    // 1. ローカルストレージからIDを取得（※ご自身の保存キー名に合わせて変更してください）
+    const myUserId = localStorage.getItem('userId'); 
+    console.log("取得されたユーザーID:", myUserId);
+    
+    // 万が一、IDが取得できなかった場合の安全対策
+    const userIdParam = myUserId ? encodeURIComponent(myUserId) : "NO_ID";
+
+    // 2. GoogleフォームのURL設定
+    // ★【重要】ここをご自身のGoogleフォームのURLに必ず書き換えてください！
+    // 自動入力（URLパラメータ）を使わない場合は、通常のフォームURLをそのまま入れてください。
+    const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdA8XMdtvZg8Wg1gioXW0iOF6K7R1fOdFoAcdClf-lAtMt8Vg/viewform?usp=publish-editor";
+    
+    // URLが書き換えられているか自動チェック
+    if (baseUrl.includes("【ここに実際のフォームIDを入れる】")) {
+        alert("【エラー】コード内のGoogleフォームURLが書き換えられていません。プログラムを確認してください。");
+        return; // 処理を中断
+    }
+
+    // 3. 遷移先URLの組み立て（自動入力パラメータ付きの例。不要なら baseUrl のままでOK）
+    // ※「entry.123456789」の部分はご自身のフォームで取得した数字に変えてください
+    const finalUrl = baseUrl + "?usp=pp_url&entry.123456789=" + userIdParam;
+    console.log("生成された遷移先URL:", finalUrl);
+
+    // 4. アンケート回答フラグ（スタンプ）を金庫に保存
+    localStorage.setItem('preSurveyCompleted', 'true');
+    console.log("事前アンケート完了フラグを保存しました。");
+
+    // 5. 新しいタブで開く
+    const newWindow = window.open(finalUrl, '_blank');
+    
+    // 6. ポップアップブロックやブラウザのバッティング対策
+    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+        // ブラウザのポップアップブロックに引っかかった場合
+        alert("【確認】ブラウザによって新しいタブが開くのをブロックされました。画面上部（またはアドレスバー付近）の警告から「ポップアップを常に許可」にしてください。");
+        // バックアップ対策として、現在のタブを強制的に切り替える
+        location.href = finalUrl;
+    } else {
+        // 無事に新しいタブが開いた場合
+        // 直後にリロードすると処理がバッティングするため、0.5秒（500ミリ秒）待ってから元のページをリロードする
+        setTimeout(function() {
+            console.log("元のページをリロードします。");
+            location.reload();
+        }, 500);
+    }
+}
