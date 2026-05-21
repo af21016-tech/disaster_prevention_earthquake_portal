@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1779242272000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-20&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1779328635000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-21&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
-    "count": 5735
+    "count": 5736
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.9,
+        "place": "8 km E of Wadomari, Japan",
+        "time": 1779245184884,
+        "updated": 1779266147627,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000syw4",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000syw4&format=geojson",
+        "felt": 19,
+        "cdi": 3.6,
+        "mmi": 4.728,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 542,
+        "net": "us",
+        "code": "6000syw4",
+        "ids": ",us6000syw4,usauto6000syw4,attfbedf,",
+        "sources": ",us,usauto,at,",
+        "types": ",dyfi,ground-failure,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 109,
+        "dmin": 0.69,
+        "rms": 1.28,
+        "gap": 19,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.9 - 8 km E of Wadomari, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.7336,
+          27.392,
+          42
+        ]
+      },
+      "id": "us6000syw4"
+    },
     {
       "type": "Feature",
       "properties": {
