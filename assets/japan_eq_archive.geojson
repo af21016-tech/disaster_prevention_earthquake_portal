@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1779328635000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-21&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1779415102000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-22&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
@@ -15,7 +15,7 @@
         "mag": 5.9,
         "place": "8 km E of Wadomari, Japan",
         "time": 1779245184884,
-        "updated": 1779266147627,
+        "updated": 1779333150258,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000syw4",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000syw4&format=geojson",
@@ -94,8 +94,8 @@
       "properties": {
         "mag": 5.2,
         "place": "Volcano Islands, Japan region",
-        "time": 1778772846382,
-        "updated": 1778774153040,
+        "time": 1778772844551,
+        "updated": 1779385410040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sxnw",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sxnw&format=geojson",
@@ -111,10 +111,10 @@
         "ids": ",usauto6000sxnw,us6000sxnw,",
         "sources": ",usauto,us,",
         "types": ",internal-moment-tensor,origin,phase-data,",
-        "nst": 94,
-        "dmin": 9.259,
-        "rms": 1.14,
-        "gap": 33,
+        "nst": 95,
+        "dmin": 9.281,
+        "rms": 1.19,
+        "gap": 25,
         "magType": "mww",
         "type": "earthquake",
         "title": "M 5.2 - Volcano Islands, Japan region"
@@ -122,9 +122,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          141.443,
-          25.1362,
-          157.426
+          141.4667,
+          25.1294,
+          139.505
         ]
       },
       "id": "us6000sxnw"
@@ -213,9 +213,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5,
-        "place": "60 km ESE of Isen, Japan",
-        "time": 1778463677815,
-        "updated": 1778465709040,
+        "place": "70 km ESE of Isen, Japan",
+        "time": 1778463677618,
+        "updated": 1779408863040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000swtz",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000swtz&format=geojson",
@@ -231,19 +231,19 @@
         "ids": ",us6000swtz,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 71,
-        "dmin": 1.197,
-        "rms": 0.99,
-        "gap": 88,
+        "nst": 75,
+        "dmin": 1.279,
+        "rms": 1.18,
+        "gap": 89,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.0 - 60 km ESE of Isen, Japan"
+        "title": "M 5.0 - 70 km ESE of Isen, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.4593,
-          27.3989,
+          129.5696,
+          27.3848,
           10
         ]
       },
