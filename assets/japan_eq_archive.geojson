@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1779760445000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-26&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1779847312000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-27&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
@@ -254,8 +254,8 @@
       "properties": {
         "mag": 5.2,
         "place": "103 km ENE of Miyako, Japan",
-        "time": 1777938845742,
-        "updated": 1778718996648,
+        "time": 1777938847597,
+        "updated": 1779835681040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000si9t",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000si9t&format=geojson",
@@ -272,7 +272,7 @@
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,origin,phase-data,",
         "nst": 120,
-        "dmin": 1.718,
+        "dmin": 1.75,
         "rms": 0.64,
         "gap": 40,
         "magType": "mww",
@@ -282,9 +282,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.0625,
-          39.9983,
-          24.677
+          143.0788,
+          39.9553,
+          40.128
         ]
       },
       "id": "us7000si9t"
@@ -333,15 +333,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.8,
-        "place": "29 km ENE of Yilan, Taiwan",
-        "time": 1777639195578,
-        "updated": 1777742125738,
+        "place": "32 km ENE of Yilan, Taiwan",
+        "time": 1777639195952,
+        "updated": 1779805867168,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000shjp",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000shjp&format=geojson",
         "felt": 45,
         "cdi": 4.3,
-        "mmi": 3.844,
+        "mmi": 3.839,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -351,20 +351,20 @@
         "ids": ",us7000shjp,usauto7000shjp,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 71,
-        "dmin": 0.485,
-        "rms": 0.89,
-        "gap": 31,
+        "nst": 117,
+        "dmin": 0.507,
+        "rms": 0.83,
+        "gap": 22,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.8 - 29 km ENE of Yilan, Taiwan"
+        "title": "M 5.8 - 32 km ENE of Yilan, Taiwan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          122.02,
-          24.8748,
-          97.333
+          122.0444,
+          24.8743,
+          103
         ]
       },
       "id": "us7000shjp"
@@ -1575,7 +1575,7 @@
         "mag": 5,
         "place": "Kuril Islands",
         "time": 1773757966417,
-        "updated": 1775751552040,
+        "updated": 1779823022040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sgv2",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sgv2&format=geojson",
@@ -1615,7 +1615,7 @@
         "mag": 5,
         "place": "Kuril Islands",
         "time": 1773717898871,
-        "updated": 1775613401040,
+        "updated": 1779823021040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sgrg",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sgrg&format=geojson",
@@ -1655,7 +1655,7 @@
         "mag": 5,
         "place": "116 km E of Yamada, Japan",
         "time": 1773431721446,
-        "updated": 1776868564040,
+        "updated": 1779823015040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sg57",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sg57&format=geojson",
@@ -1695,7 +1695,7 @@
         "mag": 5.1,
         "place": "28 km S of Hualien City, Taiwan",
         "time": 1773317653809,
-        "updated": 1777380197040,
+        "updated": 1779823014040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sftk",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sftk&format=geojson",
