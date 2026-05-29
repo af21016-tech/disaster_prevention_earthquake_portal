@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1779932793000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-28&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1780019728000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-29&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
@@ -733,9 +733,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "135 km E of Yamada, Japan",
-        "time": 1776681853798,
-        "updated": 1778068026040,
+        "place": "133 km E of Yamada, Japan",
+        "time": 1776681850377,
+        "updated": 1779971398040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000srj9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000srj9&format=geojson",
@@ -751,20 +751,20 @@
         "ids": ",us6000srj9,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 93,
-        "dmin": 2.3,
-        "rms": 0.83,
-        "gap": 61,
+        "nst": 94,
+        "dmin": 2.268,
+        "rms": 0.97,
+        "gap": 62,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.1 - 135 km E of Yamada, Japan"
+        "title": "M 5.1 - 133 km E of Yamada, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.5218,
-          39.4674,
-          35
+          143.504,
+          39.5047,
+          10
         ]
       },
       "id": "us6000srj9"
