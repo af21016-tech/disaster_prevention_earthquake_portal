@@ -5,6 +5,28 @@ let geojsonLayer = null;
 let jmaRegionData = null; 
 let intensityLegend = null; // ★凡例オブジェクトをグローバルで保持
 
+// ★追加：JSONの「震度７」「震度５強」といった日本語文字列を、
+// プログラムが計算できる「数値（7.0, 5.5など）」に翻訳する関数
+function parseIntensityString(intensityStr) {
+    if (typeof intensityStr === 'number') return intensityStr;
+    if (!intensityStr) return 0;
+
+    const str = String(intensityStr); 
+    if (str.includes('7') || str.includes('７')) return 7.0;
+    if (str.includes('6強') || str.includes('６強')) return 6.5;
+    if (str.includes('6弱') || str.includes('６弱')) return 6.0;
+    if (str.includes('6') || str.includes('６')) return 6.0; // 阪神などの旧震度6
+    if (str.includes('5強') || str.includes('５強')) return 5.5;
+    if (str.includes('5弱') || str.includes('５弱')) return 5.0;
+    if (str.includes('5') || str.includes('５')) return 5.0; // 阪神などの旧震度5
+    if (str.includes('4') || str.includes('４')) return 4.0;
+    if (str.includes('3') || str.includes('３')) return 3.0;
+    if (str.includes('2') || str.includes('２')) return 2.0;
+    if (str.includes('1') || str.includes('１')) return 1.0;
+    
+    return 0;
+}
+
 // --- 気象庁震度階級のCUDカラー判定関数 ---
 function getIntensityColor(intensity) {
     if (intensity >= 7) return '#960096';   // 紫 (震度7)
@@ -49,7 +71,8 @@ function initMap() {
     L.control.zoom({ position: 'topright' }).addTo(map);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        // ★修正：「 | 出典：気象庁ホームページ」を追加（リンク付き）
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | 出典：<a href="https://www.data.jma.go.jp/eqev/data/index.html" target="_blank">気象庁ホームページ</a>',
         subdomains: 'abcd',
         maxZoom: 10
     }).addTo(map);
@@ -148,7 +171,8 @@ function selectEarthquake(eqId) {
 
     const intensityMap = {};
     eq.points.forEach(pt => {
-        intensityMap[pt.region] = pt.intensity;
+        // ★修正：JSONの日本語文字列を数値に変換してから保存する
+        intensityMap[pt.region] = parseIntensityString(pt.intensity);
     });
 
     geojsonLayer = L.geoJSON(jmaRegionData, {

@@ -100,7 +100,8 @@ function initializeRecentQuakeMap(containerId) {
     fullscreenControl.addTo(map);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        // ★修正：「 | 出典：USGS (アメリカ地質調査所)」を追加（リンク付き）
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | 出典：<a href="https://earthquake.usgs.gov/" target="_blank">USGS (アメリカ地質調査所)</a>',
         subdomains: 'abcd',
         maxZoom: 10,
         bounds: worldBounds,         
