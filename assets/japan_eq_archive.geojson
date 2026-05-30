@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1780019728000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-29&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1780105874000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-05-30&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
@@ -134,8 +134,8 @@
       "properties": {
         "mag": 5.1,
         "place": "Izu Islands, Japan region",
-        "time": 1778641713276,
-        "updated": 1778779891040,
+        "time": 1778641715413,
+        "updated": 1780097624040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sxc0",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sxc0&format=geojson",
@@ -151,10 +151,10 @@
         "ids": ",usauto6000sxc0,us6000sxc0,",
         "sources": ",usauto,us,",
         "types": ",internal-moment-tensor,moment-tensor,origin,phase-data,",
-        "nst": 58,
-        "dmin": 5.101,
-        "rms": 1.1,
-        "gap": 105,
+        "nst": 115,
+        "dmin": 5.089,
+        "rms": 0.85,
+        "gap": 92,
         "magType": "mww",
         "type": "earthquake",
         "title": "M 5.1 - Izu Islands, Japan region"
@@ -162,9 +162,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.4279,
-          30.3722,
-          457.16
+          138.3561,
+          30.3404,
+          484.752
         ]
       },
       "id": "us6000sxc0"
@@ -973,9 +973,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.3,
-        "place": "139 km E of Miyako, Japan",
-        "time": 1776672092967,
-        "updated": 1778767611040,
+        "place": "135 km E of Miyako, Japan",
+        "time": 1776672092498,
+        "updated": 1780060520040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sgym",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000sgym&format=geojson",
@@ -992,19 +992,19 @@
         "sources": ",us,",
         "types": ",origin,phase-data,",
         "nst": 77,
-        "dmin": 2.166,
-        "rms": 0.6,
+        "dmin": 2.135,
+        "rms": 0.51,
         "gap": 95,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.3 - 139 km E of Miyako, Japan"
+        "title": "M 5.3 - 135 km E of Miyako, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.5572,
-          39.7608,
-          35
+          143.5172,
+          39.7692,
+          31.612
         ]
       },
       "id": "us7000sgym"
@@ -1053,9 +1053,9 @@
       "type": "Feature",
       "properties": {
         "mag": 7.4,
-        "place": "98 km ENE of Miyako, Japan",
-        "time": 1776671578951,
-        "updated": 1778852313396,
+        "place": "97 km ENE of Miyako, Japan",
+        "time": 1776671578964,
+        "updated": 1780072791121,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sri7",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sri7&format=geojson",
@@ -1072,18 +1072,18 @@
         "sources": ",pt,us,usauto,",
         "types": ",dyfi,finite-fault,general-text,ground-failure,impact-link,impact-text,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 239,
-        "dmin": 1.675,
-        "rms": 0.53,
+        "dmin": 1.665,
+        "rms": 0.52,
         "gap": 23,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 7.4 - 98 km ENE of Miyako, Japan"
+        "title": "M 7.4 - 97 km ENE of Miyako, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.9946,
-          39.9936,
+          142.9851,
+          39.9993,
           25
         ]
       },
