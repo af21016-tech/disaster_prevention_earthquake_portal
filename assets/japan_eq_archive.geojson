@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1780279915000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-01&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1780366365000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-02&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
-    "count": 5736
+    "count": 5737
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.7,
+        "place": "Izu Islands, Japan region",
+        "time": 1780284870871,
+        "updated": 1780293516310,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spru",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000spru&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": 2.859,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 500,
+        "net": "us",
+        "code": "7000spru",
+        "ids": ",usauto7000spru,attfxolo,us7000spru,",
+        "sources": ",usauto,at,us,",
+        "types": ",internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 114,
+        "dmin": 6.086,
+        "rms": 0.83,
+        "gap": 38,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.7 - Izu Islands, Japan region"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.7476,
+          30.7158,
+          11
+        ]
+      },
+      "id": "us7000spru"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -17695,17 +17735,17 @@
         "mag": 7.5,
         "place": "2024 Noto Peninsula, Japan Earthquake",
         "time": 1704093009476,
-        "updated": 1768888783803,
+        "updated": 1780344796871,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000m0xl",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000m0xl&format=geojson",
-        "felt": 419,
-        "cdi": 8.8,
+        "felt": 420,
+        "cdi": 8.9,
         "mmi": 8.793,
         "alert": "red",
         "status": "reviewed",
         "tsunami": 1,
-        "sig": 2369,
+        "sig": 2374,
         "net": "us",
         "code": "6000m0xl",
         "ids": ",pt24001001,at00s6kml3,us6000m0xl,",
