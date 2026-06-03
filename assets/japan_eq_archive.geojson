@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1780366365000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-02&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1780453831000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-03&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
@@ -15,7 +15,7 @@
         "mag": 5.7,
         "place": "Izu Islands, Japan region",
         "time": 1780284870871,
-        "updated": 1780293516310,
+        "updated": 1780372666185,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spru",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000spru&format=geojson",
@@ -213,9 +213,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "79 km S of Hualien City, Taiwan",
-        "time": 1778568812598,
-        "updated": 1778645930124,
+        "place": "81 km S of Hualien City, Taiwan",
+        "time": 1778568812163,
+        "updated": 1780400185040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sx3h",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sx3h&format=geojson",
@@ -231,20 +231,20 @@
         "ids": ",us6000sx3h,usauto6000sx3h,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,moment-tensor,origin,phase-data,",
-        "nst": 89,
-        "dmin": 0.219,
-        "rms": 0.7,
+        "nst": 102,
+        "dmin": 0.26,
+        "rms": 0.71,
         "gap": 88,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.1 - 79 km S of Hualien City, Taiwan"
+        "title": "M 5.1 - 81 km S of Hualien City, Taiwan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          121.4893,
-          23.2629,
-          26.329
+          121.531,
+          23.2462,
+          23.172
         ]
       },
       "id": "us6000sx3h"
@@ -415,7 +415,7 @@
         "mag": 6.1,
         "place": "24 km WNW of Sarabetsu, Japan",
         "time": 1777235035653,
-        "updated": 1778764288793,
+        "updated": 1780426370040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000st1m",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000st1m&format=geojson",
