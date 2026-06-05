@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1780540046000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-04&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1780624904000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
@@ -412,38 +412,38 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 6.1,
-        "place": "24 km WNW of Sarabetsu, Japan",
-        "time": 1777235035653,
-        "updated": 1780426370040,
+        "mag": 5.9,
+        "place": "22 km W of Sarabetsu, Japan",
+        "time": 1777235035639,
+        "updated": 1780586023920,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000st1m",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000st1m&format=geojson",
         "felt": 19,
         "cdi": 5.3,
-        "mmi": 5.099,
+        "mmi": 4.63,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 583,
+        "sig": 546,
         "net": "us",
         "code": "6000st1m",
         "ids": ",us6000st1m,usauto6000st1m,",
         "sources": ",us,usauto,",
         "types": ",dyfi,ground-failure,impact-text,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 128,
-        "dmin": 0.722,
-        "rms": 0.66,
+        "dmin": 0.699,
+        "rms": 0.61,
         "gap": 35,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 6.1 - 24 km WNW of Sarabetsu, Japan"
+        "title": "M 5.9 - 22 km W of Sarabetsu, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.8944,
-          42.7102,
+          142.915,
+          42.6912,
           81
         ]
       },
@@ -454,8 +454,8 @@
       "properties": {
         "mag": 5,
         "place": "77 km E of Noda, Japan",
-        "time": 1777222642588,
-        "updated": 1778343754040,
+        "time": 1777222642583,
+        "updated": 1780584324040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000st11",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000st11&format=geojson",
@@ -473,7 +473,7 @@
         "types": ",internal-moment-tensor,origin,phase-data,",
         "nst": 90,
         "dmin": 1.465,
-        "rms": 0.62,
+        "rms": 0.61,
         "gap": 114,
         "magType": "mww",
         "type": "earthquake",
@@ -482,8 +482,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.7243,
-          40.0529,
+          142.721,
+          40.0489,
           35
         ]
       },
@@ -1575,7 +1575,7 @@
         "mag": 5.4,
         "place": "84 km S of Koshima, Japan",
         "time": 1774091524314,
-        "updated": 1775130115694,
+        "updated": 1780598276040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000si57",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000si57&format=geojson",
