@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1780969847000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-09&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1781056892000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-10&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
-    "count": 5737
+    "count": 5738
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.1,
+        "place": "120 km ESE of Kuril’sk, Russia",
+        "time": 1781033135189,
+        "updated": 1781034081040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000srvk",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000srvk&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 400,
+        "net": "us",
+        "code": "7000srvk",
+        "ids": ",us7000srvk,",
+        "sources": ",us,",
+        "types": ",origin,phase-data,",
+        "nst": 78,
+        "dmin": 5.267,
+        "rms": 0.79,
+        "gap": 178,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.1 - 120 km ESE of Kuril’sk, Russia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          149.2865,
+          44.8123,
+          56.076
+        ]
+      },
+      "id": "us7000srvk"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -93,38 +133,38 @@
       "type": "Feature",
       "properties": {
         "mag": 6.7,
-        "place": "49 km ESE of Ōfunato, Japan",
-        "time": 1778844121649,
-        "updated": 1779061975821,
+        "place": "44 km ESE of Ōfunato, Japan",
+        "time": 1778844121566,
+        "updated": 1781016947411,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sxwq",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sxwq&format=geojson",
-        "felt": 93,
+        "felt": 95,
         "cdi": 6.6,
-        "mmi": 5.624,
+        "mmi": 5.732,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 752,
+        "sig": 753,
         "net": "us",
         "code": "6000sxwq",
-        "ids": ",us6000sxwq,usauto6000sxwq,pt26135000,",
-        "sources": ",us,usauto,pt,",
-        "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 99,
-        "dmin": 2.085,
-        "rms": 1.07,
-        "gap": 43,
+        "ids": ",pt26135000,us6000sxwq,usauto6000sxwq,",
+        "sources": ",pt,us,usauto,",
+        "types": ",dyfi,ground-failure,impact-text,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 128,
+        "dmin": 2.065,
+        "rms": 0.77,
+        "gap": 34,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 6.7 - 49 km ESE of Ōfunato, Japan"
+        "title": "M 6.7 - 44 km ESE of Ōfunato, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.2498,
-          38.9127,
-          43.592
+          142.1826,
+          38.9095,
+          42
         ]
       },
       "id": "us6000sxwq"
