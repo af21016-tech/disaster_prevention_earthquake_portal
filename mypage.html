@@ -56,49 +56,7 @@
 
     <main class="mypage-container">
         
-        <section>
-            <div class="user-card">
-                <div class="user-avatar">👤</div>
-                <div class="user-info">
-                    <h2 id="user-id-display">Loading...</h2>
-                    <p>ユーザーID</p>
-                    <button class="btn secondary btn-small" id="btn-copy-id" style="margin-top: 10px;" data-log="マイページ：IDコピーボタンをクリック">IDをコピー</button>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">研究への協力 (Pilot Study Collaboration)</h2>
-            <div class="tech-card">
-                <div class="setting-item" style="border-left: 4px solid var(--cud-blue);">
-                    <div class="setting-info">
-                        <h4 style="color: var(--cud-blue);">パイロットスタディ・事前アンケート</h4>
-                        <p>パイロットスタディにご協力いただき、ありがとうございます。<br>右のボタンより、事前アンケートにご回答をお願いします。</p>
-                    </div>
-                    <button onclick="goToPreSurvey()" class="survey-button">
-                        事前アンケートに答える
-                    </button>
-                </div>
-            </div>
-
-            <div class="tech-card">
-                <div class="setting-item" style="border-left: 4px solid var(--cud-blue);">
-                    <div class="setting-info">
-                        <h4 style="color: var(--cud-blue);">パイロットスタディ・事後アンケート</h4>
-                        <p>パイロットスタディにご協力いただき、ありがとうございました。<br>実験期間終了後、右のボタンより、事後アンケートにご回答をお願いします。</p>
-                    </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvUNyU3b1_AuI8MEWPzbPcKeupkDu6eFcFSMVcgJOSdcehyQ/viewform?usp=publish-editor" 
-                       target="_blank" 
-                       class="btn primary" 
-                       style="background: var(--cud-blue); color: #000; border: none; min-width: 140px; text-align: center;" 
-                       data-log="マイページ：事後アンケートへのリンクをクリック">
-                       事後アンケートに回答する
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section>
+        <section class="tut-target" data-step="1" data-title="🏅 獲得した実績" data-desc="シミュレーターのプレイやクイズ結果に応じて、獲得したメダルがここにアンロックされて表示されます。">
             <h2 class="section-title">獲得した実績 (Achievements)</h2>
             <div id="my-badge-list"></div>
         </section>
@@ -115,7 +73,7 @@
                     <button class="btn secondary btn-small" id="btn-replay-tutorial" data-log="マイページ：チュートリアル再生ボタンをクリック">再生する</button>
                 </div>
 
-                <div class="setting-item">
+                <div class="setting-item tut-target" data-step="2" data-title="🐛 バグ報告 / フィードバック" data-desc="システムの不具合や使いにくい点などを、専用のGoogleフォームから報告することができます。">
                     <div class="setting-info">
                         <h4>バグ報告 / フィードバック</h4>
                         <p>システムの不具合や、操作しづらい点などがあれば、こちらからご報告をお願いします。</p>
@@ -128,7 +86,7 @@
                     </a>
                 </div>
 
-                <div class="setting-item">
+                <div class="setting-item tut-target" data-step="3" data-title="⚠️ 学習データの初期化" data-desc="獲得した実績（メダル）や学習履歴をリセットして、最初からやり直すことができます。">
                     <div class="setting-info">
                         <h4 style="color: #D55E00;">学習データの初期化</h4>
                         <p>獲得した実績やクイズの履歴をすべて消去します。（※ユーザーIDは保持されます）</p>
@@ -143,7 +101,22 @@
 
     <div id="toast"></div>
 
+    <div id="tut-overlay" class="tut-overlay"></div>
+    <div id="tut-tooltip" class="tut-tooltip">
+        <div class="tut-header">
+            <span class="tut-step-counter">STEP 1/3</span>
+            <button id="tut-close" class="tut-close" data-log="マイページ：チュートリアル閉じるボタンをクリック">✕</button>
+        </div>
+        <h3 id="tut-title" class="tut-title">タイトル</h3>
+        <p id="tut-desc" class="tut-desc">説明文がここに入ります。</p>
+        <div class="tut-actions">
+            <button id="tut-prev" class="btn-mypage" data-log="マイページ：チュートリアル前へボタンをクリック">◀ PREV</button>
+            <button id="tut-next" class="btn-mypage" style="background: #00E676; color: #000; border: none;" data-log="マイページ：チュートリアル次へボタンをクリック">NEXT ▶</button>
+        </div>
+    </div>
+
     <script src="./js/logger.js"></script>
+    <script src="./js/utils.js"></script>
     <script src="./js/mypage.js"></script>
 </body>
 </html>

@@ -1,16 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. ユーザーIDの完全同期 ---
-    const STORAGE_KEY = 'research_user_id'; 
-    let userId = localStorage.getItem(STORAGE_KEY);
-    
-    if (!userId) {
-        userId = crypto.randomUUID ? crypto.randomUUID() : 'User-' + Math.random().toString(36).substr(2, 8).toUpperCase();
-        localStorage.setItem(STORAGE_KEY, userId);
-    }
-    
-    const displayEl = document.getElementById('user-id-display');
-    if(displayEl) displayEl.innerText = userId;
+    // --- 1. ユーザーIDの取得 ---
+    const userId = getOrCreateUserId();
 
     // --- 2. クリップボードへのコピー機能 ---
     const btnCopy = document.getElementById('btn-copy-id');
@@ -81,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnTutorial.addEventListener('click', () => {
             localStorage.removeItem('quake_tutorial_done');
             localStorage.setItem('start_tutorial_now', 'true'); 
+            localStorage.setItem('is_replaying_tutorial', 'true'); // リプレイフラグをセット
             window.location.href = 'index.html'; 
         });
     }
@@ -96,6 +88,140 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToast('学習データを初期化しました');
             }
         });
+    }
+
+    // --- 5. マイページチュートリアル機能 ---
+    const overlay = document.getElementById('tut-overlay');
+    const tooltip = document.getElementById('tut-tooltip');
+    const btnClose = document.getElementById('tut-close');
+    const btnNext = document.getElementById('tut-next');
+    const btnPrev = document.getElementById('tut-prev');
+
+    if (overlay && tooltip) {
+        const targets = Array.from(document.querySelectorAll('.tut-target'))
+                             .sort((a, b) => parseInt(a.dataset.step) - parseInt(b.dataset.step));
+
+        let currentStep = 0;
+
+        function startMyPageTutorial() {
+            currentStep = 0;
+            
+            // リプレイ中のみ「✕」ボタンを表示し、初回オンボーディング時は非表示にする
+            const isReplay = localStorage.getItem('is_replaying_tutorial') === 'true';
+            if (btnClose) {
+                btnClose.style.display = isReplay ? 'block' : 'none';
+            }
+
+            overlay.style.display = 'block';
+            tooltip.style.display = 'block';
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                tooltip.style.opacity = '1';
+            }, 10);
+            showStep(currentStep);
+        }
+
+        function closeMyPageTutorial() {
+            const isReplay = localStorage.getItem('is_replaying_tutorial') === 'true';
+
+            overlay.style.opacity = '0';
+            tooltip.style.opacity = '0';
+            clearHighlight();
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                tooltip.style.display = 'none';
+            }, 300);
+            
+            localStorage.removeItem('start_mypage_tutorial');
+            localStorage.removeItem('is_replaying_tutorial'); // リプレイフラグを消去
+
+            // 初回チュートリアルの場合はホーム（index.html）に強制遷移
+            if (!isReplay) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        if (localStorage.getItem('start_mypage_tutorial') === 'true') {
+            startMyPageTutorial();
+        }
+
+        if (btnClose) btnClose.addEventListener('click', closeMyPageTutorial);
+        // overlay.addEventListener('click', closeMyPageTutorial); // 背景クリックでの終了を無効化
+
+        if (btnNext) {
+            btnNext.addEventListener('click', () => {
+                if (currentStep < targets.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    closeMyPageTutorial();
+                }
+            });
+        }
+
+        if (btnPrev) {
+            btnPrev.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        }
+
+        function showStep(index) {
+            clearHighlight();
+            const target = targets[index];
+            if (!target) return;
+
+            target.classList.add('tut-highlight');
+
+            const rect = target.getBoundingClientRect();
+            window.scrollTo({
+                top: window.scrollY + rect.top - 100,
+                behavior: 'smooth'
+            });
+
+            document.querySelector('.tut-step-counter').innerText = `STEP ${index + 1} / ${targets.length}`;
+            document.getElementById('tut-title').innerText = target.dataset.title;
+            document.getElementById('tut-desc').innerText = target.dataset.desc;
+
+            btnPrev.style.visibility = index === 0 ? 'hidden' : 'visible';
+            btnNext.innerText = index === targets.length - 1 ? 'FINISH ✔' : 'NEXT ▶';
+
+            setTimeout(() => {
+                const updatedRect = target.getBoundingClientRect();
+                let topPos = updatedRect.bottom + window.scrollY + 15;
+                let leftPos = updatedRect.left + window.scrollX;
+                
+                if (topPos + tooltip.offsetHeight > window.scrollY + window.innerHeight) {
+                    topPos = updatedRect.top + window.scrollY - tooltip.offsetHeight - 15;
+                }
+                
+                const safeTopMargin = 100;
+                if (topPos < window.scrollY + safeTopMargin) {
+                    topPos = window.scrollY + safeTopMargin;
+                }
+                
+                if (leftPos < 10) {
+                    leftPos = 10;
+                }
+                
+                if (leftPos + tooltip.offsetWidth > window.innerWidth - 10) {
+                    leftPos = window.innerWidth - tooltip.offsetWidth - 10;
+                }
+
+                tooltip.style.top = `${topPos}px`;
+                tooltip.style.left = `${leftPos}px`;
+            }, 350);
+        }
+
+        function showStepMyPage(index) {
+            // Not needed as showStep works
+        }
+
+        function clearHighlight() {
+            targets.forEach(el => el.classList.remove('tut-highlight'));
+        }
     }
 });
 
@@ -115,53 +241,4 @@ function showToast(message) {
     setTimeout(() => { 
         toast.style.opacity = '0'; 
     }, 2500);
-}
-
-function goToPreSurvey() {
-    console.log("--- 事前アンケートボタンがクリックされました ---");
-
-    // 1. ローカルストレージからIDを取得（※ご自身の保存キー名に合わせて変更してください）
-    const myUserId = localStorage.getItem('userId'); 
-    console.log("取得されたユーザーID:", myUserId);
-    
-    // 万が一、IDが取得できなかった場合の安全対策
-    const userIdParam = myUserId ? encodeURIComponent(myUserId) : "NO_ID";
-
-    // 2. GoogleフォームのURL設定
-    // ★【重要】ここをご自身のGoogleフォームのURLに必ず書き換えてください！
-    // 自動入力（URLパラメータ）を使わない場合は、通常のフォームURLをそのまま入れてください。
-    const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdA8XMdtvZg8Wg1gioXW0iOF6K7R1fOdFoAcdClf-lAtMt8Vg/viewform?usp=publish-editor";
-    
-    // URLが書き換えられているか自動チェック
-    if (baseUrl.includes("【ここに実際のフォームIDを入れる】")) {
-        alert("【エラー】コード内のGoogleフォームURLが書き換えられていません。プログラムを確認してください。");
-        return; // 処理を中断
-    }
-
-    // 3. 遷移先URLの組み立て（自動入力パラメータ付きの例。不要なら baseUrl のままでOK）
-    // ※「entry.123456789」の部分はご自身のフォームで取得した数字に変えてください
-    const finalUrl = baseUrl + "?usp=pp_url&entry.123456789=" + userIdParam;
-    console.log("生成された遷移先URL:", finalUrl);
-
-    // 4. アンケート回答フラグ（スタンプ）を金庫に保存
-    localStorage.setItem('preSurveyCompleted', 'true');
-    console.log("事前アンケート完了フラグを保存しました。");
-
-    // 5. 新しいタブで開く
-    const newWindow = window.open(finalUrl, '_blank');
-    
-    // 6. ポップアップブロックやブラウザのバッティング対策
-    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-        // ブラウザのポップアップブロックに引っかかった場合
-        alert("【確認】ブラウザによって新しいタブが開くのをブロックされました。画面上部（またはアドレスバー付近）の警告から「ポップアップを常に許可」にしてください。");
-        // バックアップ対策として、現在のタブを強制的に切り替える
-        location.href = finalUrl;
-    } else {
-        // 無事に新しいタブが開いた場合
-        // 直後にリロードすると処理がバッティングするため、0.5秒（500ミリ秒）待ってから元のページをリロードする
-        setTimeout(function() {
-            console.log("元のページをリロードします。");
-            location.reload();
-        }, 500);
-    }
 }

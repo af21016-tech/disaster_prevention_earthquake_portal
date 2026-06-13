@@ -105,6 +105,16 @@ header {
     color: var(--bg-color);
 }
 
+.btn-mypage:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #333333 !important;
+    border-color: #555555 !important;
+    color: #888888 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
 /* -----------------------------------------
    Hero Map Section (横幅と縦横比の最適化)
    ----------------------------------------- */
@@ -451,3 +461,143 @@ header {
     background-color: #0044cc;
     transform: scale(0.98);
 }
+
+/* =========================================
+   My Page Promo Card & Shakeout Utility Classes
+   ========================================= */
+
+/* マイページ誘導用の共通カード */
+.mypage-promo-card {
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.mypage-promo-card h3 {
+    color: var(--cud-blue);
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.mypage-promo-card p {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.mypage-promo-card button {
+    background: var(--cud-green);
+    color: #000;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mypage-promo-card button:hover {
+    background: #00b45a;
+    transform: scale(0.98);
+}
+
+/* 空間シェイクアウト画面での各種ボタンクラス */
+.shakeout-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 15px;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #1a1a1a;
+    color: #fff;
+    border: 2px solid #555;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.shakeout-menu-btn:hover {
+    border-color: var(--cud-yellow);
+}
+
+.shakeout-setup-btn {
+    flex: 1 1 40%;
+    padding: 15px;
+    background: #111;
+    border: 2px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+    transition: all 0.2s ease;
+}
+.shakeout-setup-btn:hover {
+    border-color: var(--cud-yellow);
+}
+
+.shakeout-action-btn {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 15px;
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #111;
+    color: #fff;
+    border: 2px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.shakeout-action-btn:hover {
+    border-color: var(--cud-yellow);
+}
+
+/* =========================================
+   Shared Progress Bars & Timer Bars
+   ========================================= */
+
+/* 進行状況バーおよびタイマーバーの共通外枠 */
+.progress-bar, .timer-container {
+    width: 100%;
+    height: 8px;
+    background: #222;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+/* 進行状況バーおよびタイマーバーの共通中身 */
+.progress-fill, .timer-bar {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+    background: var(--cud-green); /* デフォルトの安全色 */
+}
+
+/* タイマーバー独自の調整（transformによる極めて滑らかなアニメーション用） */
+.timer-bar {
+    width: 100%;
+    transform-origin: left;
+    transition: transform 0.1s linear;
+}
+

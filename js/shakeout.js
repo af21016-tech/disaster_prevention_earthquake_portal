@@ -15,10 +15,7 @@ let rhythmAnimFrame = null;
 let bgmAudio = null; 
 let targetEarthquakeTime = 5000; 
 
-// ★全ボタン共通のデザインスタイル
-const MENU_BTN_STYLE = "display:flex; align-items:center; justify-content:center; gap:15px; width:100%; max-width:400px; margin:0 auto 15px; padding:20px; font-size:1.2rem; font-weight:bold; background:#1a1a1a; color:#fff; border:2px solid #555; border-radius:10px; cursor:pointer;";
-const SETUP_BTN_STYLE = "flex: 1 1 40%; padding: 15px; background: #111; border: 2px solid #444; border-radius: 8px; color: #fff; font-size: 1.1rem; font-weight: bold; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 150px;";
-const ACTION_BTN_STYLE = "display:flex; align-items:center; text-align:left; gap:15px; width:100%; padding:15px 20px; margin-bottom:12px; font-size:1.2rem; font-weight:bold; background:#111; color:#fff; border:2px solid #444; border-radius:8px; cursor:pointer;";
+
 
 const scenarios = {
     sleep: {
@@ -141,8 +138,8 @@ function showMenu() {
     contentBox.innerHTML = `
         <h2 style="color: #FFBE00; margin-bottom: 2rem;">シミュレーション環境の選択</h2>
         <div style="display:flex; flex-direction:column;">
-            <button style="${MENU_BTN_STYLE}" onmouseover="this.style.borderColor='#FFBE00'" onmouseout="this.style.borderColor='#555'" onclick="startScenario('sleep')"><span style="font-size:2rem;">🛏️</span><span>就寝中（自室マッピング）</span></button>
-            <button style="${MENU_BTN_STYLE}" onmouseover="this.style.borderColor='#FFBE00'" onmouseout="this.style.borderColor='#555'" onclick="startScenario('arena')"><span style="font-size:2rem;">🏟️</span><span>ライブ会場（アリーナ）</span></button>
+            <button class="shakeout-menu-btn" onclick="startScenario('sleep')"><span style="font-size:2rem;">🛏️</span><span>就寝中（自室マッピング）</span></button>
+            <button class="shakeout-menu-btn" onclick="startScenario('arena')"><span style="font-size:2rem;">🏟️</span><span>ライブ会場（アリーナ）</span></button>
         </div>
     `;
 }
@@ -159,7 +156,7 @@ function showSetupStep(stepIndex) {
     const setupData = scenarios[currentSceneId].setupSteps[stepIndex];
     let html = `<h2 class="scene-title" style="margin-bottom:1.5rem;">${scenarios[currentSceneId].title}</h2><p class="situation-text" style="font-size:1.1rem; line-height:1.6; margin-bottom:2rem;">${setupData.text}</p><div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">`;
     setupData.options.forEach(opt => {
-        html += `<button style="${SETUP_BTN_STYLE}" onmouseover="this.style.borderColor='#FFBE00'" onmouseout="this.style.borderColor='#444'" onclick="saveSetup('${setupData.id}', '${opt.text}', '${opt.id}', '${opt.nextStep}')">
+        html += `<button class="shakeout-setup-btn" onclick="saveSetup('${setupData.id}', '${opt.text}', '${opt.id}', '${opt.nextStep}')">
                     <span style="font-size:3rem;">${opt.icon}</span><span>${opt.text}</span>
                  </button>`;
     });
@@ -259,19 +256,17 @@ function playPhase() {
 
     let shuffledOptions = [...phaseData.options].sort(() => Math.random() - 0.5);
     
-    // ★修正：残り時間のテキストを追加！
+    // ★修正：タイマーバーを廃止し、残り時間を中央巨大化
     let html = `<h2 class="scene-title" style="margin-bottom:1rem;">${scenarios[currentSceneId].title}</h2>
-                <div style="display:flex; justify-content:space-between; font-family:monospace; font-size:1.1rem; color:#aaa; margin-bottom:5px;">
-                    <span>残り時間</span><span id="timer-text" style="color:#fff; font-weight:bold;">${(timeLimit/1000).toFixed(1)}秒</span>
-                </div>
-                <div class="timer-container" style="display: block; margin-bottom:2rem;">
-                    <div class="timer-bar" id="timer-bar"></div>
+                <div style="text-align: center; margin: 1.5rem 0 2rem; font-family: var(--font-mono);">
+                    <div style="font-size: 0.9rem; color: #aaa; letter-spacing: 0.15em; margin-bottom: 5px;">残り時間</div>
+                    <div id="timer-text" style="font-size: 4rem; font-weight: bold; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); line-height: 1;">${(timeLimit/1000).toFixed(1)}秒</div>
                 </div>
                 <div class="situation-text" style="font-size:1.2rem; line-height:1.6; margin-bottom:2rem;">${phaseData.getText()}</div>
                 <div style="display:flex; flex-direction:column; gap:10px;">`;
                 
     shuffledOptions.forEach(opt => {
-        html += `<button style="${ACTION_BTN_STYLE}" onmouseover="this.style.borderColor='#FFBE00'" onmouseout="this.style.borderColor='#444'" onclick="selectAnswer(${opt.isCorrect}, '${opt.feedback}')"><span style="font-size:2.5rem;">${opt.icon}</span><span>${opt.text}</span></button>`;
+        html += `<button class="shakeout-action-btn" onclick="selectAnswer(${opt.isCorrect}, '${opt.feedback}')"><span style="font-size:2.5rem;">${opt.icon}</span><span>${opt.text}</span></button>`;
     });
     html += `</div>`;
     document.getElementById('content-box').innerHTML = html;
@@ -284,14 +279,21 @@ function playPhase() {
 function updateTimer(currentTime) {
     if (isAnswered) return;
     const remainingRatio = Math.max(0, 1 - ((currentTime - startTime) / timeLimit));
-    document.getElementById('timer-bar').style.transform = `scaleX(${remainingRatio})`;
+    const timerBarEl = document.getElementById('timer-bar');
+    if (timerBarEl) timerBarEl.style.transform = `scaleX(${remainingRatio})`;
     
     // ★追加：数字のカウントダウン処理
     const timerTextEl = document.getElementById('timer-text');
     if (timerTextEl) {
         const sec = (timeLimit / 1000) * remainingRatio;
         timerTextEl.innerText = `${sec.toFixed(1)}秒`;
-        if (sec <= 1.5) timerTextEl.style.color = '#FF2800'; // 1.5秒以下で赤く警告
+        if (sec <= 1.5) {
+            timerTextEl.style.color = '#FF2800'; // 1.5秒以下で赤く警告
+            timerTextEl.style.textShadow = '0 0 20px rgba(255, 40, 0, 0.8)';
+        } else {
+            timerTextEl.style.color = '#fff';
+            timerTextEl.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
+        }
     }
 
     if (remainingRatio > 0) timerAnimation = requestAnimationFrame(updateTimer);
@@ -333,14 +335,12 @@ function playHoldPhase() {
     timeLimit = holdData.time;
     isHolding = false; isAnswered = false;
 
-    // ★修正：HOLD ON画面にも数字のタイマーを追加
+    // ★修正：タイマーバーを廃止し、耐える時間を中央巨大化
     document.getElementById('content-box').innerHTML = `
         <h2 class="scene-title">${scenarios[currentSceneId].title}</h2>
-        <div style="display:flex; justify-content:space-between; font-family:monospace; font-size:1.1rem; color:#aaa; margin-bottom:5px;">
-            <span>耐える時間</span><span id="hold-timer-text" style="color:#00B400; font-weight:bold;">${(timeLimit/1000).toFixed(1)}秒</span>
-        </div>
-        <div class="timer-container" style="display: block; margin-bottom:2rem;">
-            <div class="timer-bar" id="hold-timer-bar" style="background: #00B400; transform: scaleX(0);"></div>
+        <div style="text-align: center; margin: 1.5rem 0 2rem; font-family: var(--font-mono);">
+            <div style="font-size: 0.9rem; color: #aaa; letter-spacing: 0.15em; margin-bottom: 5px;">耐える時間</div>
+            <div id="hold-timer-text" style="font-size: 4rem; font-weight: bold; color: #00B400; text-shadow: 0 0 15px rgba(0,180,0,0.5); line-height: 1;">${(timeLimit/1000).toFixed(1)}秒</div>
         </div>
         <div class="situation-text" style="font-size:1.2rem; line-height:1.6; margin-bottom:3rem;">${holdData.text}</div>
         <div class="btn-hold" id="btn-hold" style="background: #8B0000; border: 6px solid #FF2800; color: #fff; width: 250px; height: 250px; border-radius: 50%; font-size: 1.5rem; font-weight: bold; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; user-select: none; box-shadow: 0 0 30px rgba(255,0,0,0.5); transition: 0.1s;">
@@ -372,13 +372,21 @@ function playHoldPhase() {
 function updateHoldProgress(currentTime) {
     if (!isHolding || isAnswered) return;
     const holdRatio = Math.min(1, (currentTime - holdStartTime) / timeLimit);
-    document.getElementById('hold-timer-bar').style.transform = `scaleX(${holdRatio})`;
+    const holdTimerBarEl = document.getElementById('hold-timer-bar');
+    if (holdTimerBarEl) holdTimerBarEl.style.transform = `scaleX(${holdRatio})`;
     
     // ★追加：数字のカウントダウン処理
     const holdTimerTextEl = document.getElementById('hold-timer-text');
     if(holdTimerTextEl) {
         const sec = (timeLimit / 1000) * (1 - holdRatio);
         holdTimerTextEl.innerText = `${sec.toFixed(1)}秒`;
+        if (sec <= 1.5) {
+            holdTimerTextEl.style.color = '#FF2800';
+            holdTimerTextEl.style.textShadow = '0 0 20px rgba(255, 40, 0, 0.8)';
+        } else {
+            holdTimerTextEl.style.color = '#00B400';
+            holdTimerTextEl.style.textShadow = '0 0 15px rgba(0, 180, 0, 0.5)';
+        }
     }
 
     if (holdRatio < 1) holdTimerAnim = requestAnimationFrame(updateHoldProgress);
@@ -396,19 +404,17 @@ function playAfterHoldPhase() {
 
     let shuffledOptions = [...phaseData.options].sort(() => Math.random() - 0.5);
     
-    // ★修正：最後のフェーズにも数字のタイマーを追加
+    // ★修正：タイマーバーを廃止し、残り時間を中央巨大化
     let html = `<h2 class="scene-title" style="margin-bottom:1rem;">${scenarios[currentSceneId].title}</h2>
-                <div style="display:flex; justify-content:space-between; font-family:monospace; font-size:1.1rem; color:#aaa; margin-bottom:5px;">
-                    <span>残り時間</span><span id="timer-text" style="color:#fff; font-weight:bold;">${(timeLimit/1000).toFixed(1)}秒</span>
-                </div>
-                <div class="timer-container" style="display: block; margin-bottom:2rem;">
-                    <div class="timer-bar" id="timer-bar"></div>
+                <div style="text-align: center; margin: 1.5rem 0 2rem; font-family: var(--font-mono);">
+                    <div style="font-size: 0.9rem; color: #aaa; letter-spacing: 0.15em; margin-bottom: 5px;">残り時間</div>
+                    <div id="timer-text" style="font-size: 4rem; font-weight: bold; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); line-height: 1;">${(timeLimit/1000).toFixed(1)}秒</div>
                 </div>
                 <div class="situation-text" style="font-size:1.2rem; line-height:1.6; margin-bottom:2rem;">${phaseData.getText()}</div>
                 <div style="display:flex; flex-direction:column; gap:10px;">`;
                 
     shuffledOptions.forEach(opt => {
-        html += `<button style="${ACTION_BTN_STYLE}" onmouseover="this.style.borderColor='#FFBE00'" onmouseout="this.style.borderColor='#444'" onclick="selectAfterHoldAnswer(${opt.isCorrect}, '${opt.feedback}')"><span style="font-size:2.5rem;">${opt.icon}</span><span>${opt.text}</span></button>`;
+        html += `<button class="shakeout-action-btn" onclick="selectAfterHoldAnswer(${opt.isCorrect}, '${opt.feedback}')"><span style="font-size:2.5rem;">${opt.icon}</span><span>${opt.text}</span></button>`;
     });
     html += `</div>`;
     document.getElementById('content-box').innerHTML = html;
@@ -420,14 +426,21 @@ function playAfterHoldPhase() {
 function updateAfterHoldTimer(currentTime) {
     if (isAnswered) return;
     const remainingRatio = Math.max(0, 1 - ((currentTime - startTime) / timeLimit));
-    document.getElementById('timer-bar').style.transform = `scaleX(${remainingRatio})`;
+    const timerBarEl = document.getElementById('timer-bar');
+    if (timerBarEl) timerBarEl.style.transform = `scaleX(${remainingRatio})`;
 
     // ★追加：数字のカウントダウン処理
     const timerTextEl = document.getElementById('timer-text');
     if (timerTextEl) {
         const sec = (timeLimit / 1000) * remainingRatio;
         timerTextEl.innerText = `${sec.toFixed(1)}秒`;
-        if (sec <= 2.0) timerTextEl.style.color = '#FF2800';
+        if (sec <= 2.0) {
+            timerTextEl.style.color = '#FF2800';
+            timerTextEl.style.textShadow = '0 0 20px rgba(255, 40, 0, 0.8)';
+        } else {
+            timerTextEl.style.color = '#fff';
+            timerTextEl.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
+        }
     }
 
     if (remainingRatio > 0) requestAnimationFrame(updateAfterHoldTimer);

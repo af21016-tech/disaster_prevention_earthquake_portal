@@ -80,11 +80,7 @@ function startStage(stageIndex) {
     
     if (!pool || pool.length === 0) return;
     
-    let arr = [...pool];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
+    let arr = shuffleArray(pool);
     
     currentStageQuestions = arr.slice(0, QUESTIONS_PER_PLAY);
     currentQuestionIndex = 0;
@@ -181,10 +177,19 @@ function startTimer() {
 function updateTimerUI() {
     const scoreCounter = document.getElementById('score-counter');
     if (scoreCounter) {
-        scoreCounter.innerText = `残り: ${Math.max(0, timeLeft).toFixed(1)}秒`;
+        scoreCounter.innerText = `スコア: ${correctCount}点`;
+        scoreCounter.style.color = '#888';
+        scoreCounter.style.fontWeight = 'normal';
+    }
+    const timerDisplay = document.getElementById('timer-display');
+    if (timerDisplay) {
+        timerDisplay.innerText = `${Math.max(0, timeLeft).toFixed(1)}秒`;
         if (timeLeft <= 3.0) {
-            scoreCounter.style.color = '#D55E00'; 
-            scoreCounter.style.fontWeight = 'bold';
+            timerDisplay.style.color = '#FF2800'; 
+            timerDisplay.style.textShadow = '0 0 20px rgba(255, 40, 0, 0.8)';
+        } else {
+            timerDisplay.style.color = '#fff';
+            timerDisplay.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
         }
     }
 }
@@ -311,15 +316,6 @@ function showResultScreen() {
     }
 
     // クイズ結果画面のHTMLに、マイページへのデカデカとしたボタンを挿入する
-    const resultContainer = document.getElementById('result-area');
-    resultContainer.innerHTML += `
-        <div style="margin-top: 30px; padding: 20px; background: #f1f8ff; border-radius: 8px; text-align: center;">
-            <h3 style="color: #2980b9;">🎉 新しいバッジを獲得したかも？</h3>
-            <p>マイページに戻って、あなたのコレクションを確認しましょう！</p>
-            <button onclick="location.href='mypage.html'" 
-                    style="background: #27ae60; color: white; padding: 12px 24px; font-size: 1.1em; border: none; border-radius: 5px; cursor: pointer;">
-                マイページへ行く 👤
-            </button>
-        </div>
-    `;
+    const resultContainer = document.getElementById('result-screen');
+    appendMyPageLink(resultContainer);
 }

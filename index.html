@@ -17,8 +17,8 @@
             <p>Interactive Disaster Simulator</p>
         </div>
         <div class="header-actions">
-            <span id="user-display" class="user-id-badge">ID: Loading...</span>
-            <a href="mypage.html" class="btn-mypage" data-log="トップ画面：MY PAGEリンクをクリック">MY PAGE</a>
+            <button id="btn-post-survey" class="btn-mypage" disabled data-log="トップ画面：事後アンケートボタンをクリック">完了コード発行まで残り 15:00</button>
+            <a href="mypage.html" class="btn-mypage tut-target" data-step="9" data-title="👤 マイページ" data-desc="獲得した実績の確認や各種設定、バグ報告はこちらから行えます。次のボタンを押してマイページに進みましょう。" data-log="トップ画面：MY PAGEリンクをクリック">MY PAGE</a>
         </div>
     </header>
 
@@ -36,18 +36,21 @@
         </div>
     </div>
 
-    <div id="onboarding-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h2>ようこそ！防災ポータルへ</h2>
-            <p>本日は実験にご参加いただき<br>ありがとうございます。</p>
-            <p>まずはあなたの「ユーザーID」を発行し、<br>事前アンケートにご回答ください。</p>
-    
-            <div class="warning-text">
-                ⚠️ アンケートに回答するまで、他のコンテンツはご利用いただけません。
+
+    <div id="completion-modal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px;">
+            <h2>🎉 タスク完了</h2>
+            <p>お疲れ様でした。以下の完了コードをコピーして、ランサーズのアンケート画面に入力してください。</p>
+            
+            <div style="background: var(--surface-hover); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin: 20px 0; font-family: var(--font-mono); font-size: 1.25rem; word-break: break-all; color: var(--cud-yellow); letter-spacing: 0.05em; font-weight: bold; position: relative;">
+                <span id="completion-code-val">User-XXXX...</span>
             </div>
-    
-            <button onclick="location.href='mypage.html'" class="btn-primary-modal">
-                  マイページへ進む
+            
+            <button id="btn-copy-completion" class="btn-primary-modal" style="background: var(--cud-green); color: #000; box-shadow: 0 4px 10px rgba(0, 230, 118, 0.3); margin-bottom: 15px;">
+                📋 完了コードをコピー
+            </button>
+            <button id="btn-close-completion" class="btn-mypage" style="width: 100%; border-color: #555; padding: 10px;">
+                閉じる
             </button>
         </div>
     </div>
@@ -124,6 +127,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="./js/logger.js"></script>
+    <script src="./js/utils.js"></script>
     <script src="./js/main.js" defer></script>
 </body>
 </html>

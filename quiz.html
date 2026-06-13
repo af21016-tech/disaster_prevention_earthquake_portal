@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>サバイバル・クイズ | Quake Interactive Archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?v=1.1">
     
     <style>
         .quiz-container { max-width: 800px; margin: 100px auto 2rem; padding: 2rem; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .progress-bar { width: 100%; height: 8px; background: #333; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--cud-orange); width: 0%; transition: width 0.3s ease; }
+        /* 進行状況バーの非表示化 */
+        .progress-bar {
+            display: none !important;
+        }
+        .progress-fill {
+            display: none !important;
+        }
         
         .question-box { margin-bottom: 2rem; }
         .question-box h2 { color: #fff; font-size: 1.3rem; line-height: 1.6; letter-spacing: 0.05em; }
@@ -59,10 +64,13 @@
         </div>
 
         <div id="quiz-screen" style="display: none;">
-            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+            <div style="text-align: center; margin: 1.5rem 0 2rem; font-family: var(--font-mono);">
+                <div style="font-size: 0.9rem; color: #aaa; letter-spacing: 0.15em; margin-bottom: 5px;">残り時間</div>
+                <div id="timer-display" style="font-size: 4rem; font-weight: bold; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); line-height: 1;">10.0秒</div>
+            </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: #888; font-family: var(--font-mono); font-size: 0.9rem;">
                 <span id="q-counter">Q. 1 / 5</span>
-                <span id="score-counter">Score: 0</span>
+                <span id="score-counter">スコア: 0点</span>
             </div>
             
             <div class="question-box">
@@ -102,6 +110,7 @@
     </main>
 
     <script src="./js/logger.js"></script>
+    <script src="./js/utils.js"></script>
     <script src="./js/quiz.js"></script>
 </body>
 </html>

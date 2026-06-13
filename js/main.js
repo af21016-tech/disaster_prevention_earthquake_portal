@@ -7,36 +7,14 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. ユーザーIDの初期化と表示
-    initializeUser();
-
-    // 2. Leafletマップの初期化
+    // 1. Leafletマップの初期化
     initializeRecentQuakeMap('leaflet-map');      // index.html用（ダッシュボードの小マップ）
     initializeRecentQuakeMap('leaflet-map-full'); // live-map.html用（全画面マップ）
     
-    // 3. 3Dアーカイブマップの初期化
+    // 2. 3Dアーカイブマップの初期化
     initializeArchive3DMap('map-3d-container'); // index.html用
     initializeArchive3DMap('map-3d-full');      // archive-3d.html用
 });
-
-/**
- * ユーザーIDを生成・管理する関数
- */
-function initializeUser() {
-    const STORAGE_KEY = 'research_user_id';
-    let userId = localStorage.getItem(STORAGE_KEY);
-    
-    if (!userId) {
-        userId = crypto.randomUUID();
-        localStorage.setItem(STORAGE_KEY, userId);
-    }
-    
-    const displayEl = document.getElementById('user-display');
-    if (displayEl) {
-        displayEl.innerHTML = `ID: <span class="user-id-badge">${userId.substring(0, 8)}...</span>`;
-        displayEl.title = userId;
-    }
-}
 
 /**
  * 震源の深さ(km)に応じてCUD推奨カラーを返す関数
@@ -387,6 +365,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTutorial() {
         console.log("--- チュートリアルを開始します ---");
         currentStep = 0;
+        
+        // リプレイ中のみ「✕」ボタンを表示し、初回オンボーディング時は非表示にする
+        const isReplay = localStorage.getItem('is_replaying_tutorial') === 'true';
+        if (btnClose) {
+            btnClose.style.display = isReplay ? 'block' : 'none';
+        }
+
         overlay.style.display = 'block';
         tooltip.style.display = 'block';
         setTimeout(() => {
@@ -407,17 +392,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
         
         localStorage.setItem('tutorialCompleted', 'true');
+        localStorage.removeItem('is_replaying_tutorial'); // リプレイフラグを消去
         console.log("チュートリアル完了フラグを保存しました。");
     }
 
-    // オンボーディングフロー制御
-    const isPreSurveyDone = localStorage.getItem('preSurveyCompleted');
+    // オンボーディング・チュートリアル制御
     const isTutorialDone = localStorage.getItem('tutorialCompleted');
 
-    if (!isPreSurveyDone || isPreSurveyDone !== 'true') {
-        const modal = document.getElementById('onboarding-modal');
-        if (modal) modal.style.display = 'flex';
-    } else if (!isTutorialDone || isTutorialDone !== 'true') {
+    if (!isTutorialDone || isTutorialDone !== 'true') {
         startTutorial();
     } else if (localStorage.getItem('start_tutorial_now') === 'true') {
         localStorage.removeItem('start_tutorial_now');
@@ -427,14 +409,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // ボタンのイベントリスナー設定
     if (btnTutorial) btnTutorial.addEventListener('click', startTutorial);
     btnClose.addEventListener('click', closeTutorial);
-    overlay.addEventListener('click', closeTutorial);
+    // overlay.addEventListener('click', closeTutorial); // 背景クリックでの終了を無効化
 
     btnNext.addEventListener('click', () => {
         if (currentStep < targets.length - 1) {
             currentStep++;
             showStep(currentStep);
         } else {
-            closeTutorial();
+            // ステップ9でNEXTを押した時、マイページに遷移する
+            const currentTarget = targets[currentStep];
+            if (currentTarget && currentTarget.getAttribute('href') === 'mypage.html') {
+                // マイページ遷移時はリプレイフラグを削除せず、非表示化のみ行う
+                overlay.style.opacity = '0';
+                tooltip.style.opacity = '0';
+                clearHighlight();
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    tooltip.style.display = 'none';
+                }, 300);
+                
+                localStorage.setItem('tutorialCompleted', 'true');
+                localStorage.setItem('start_mypage_tutorial', 'true');
+                window.location.href = 'mypage.html';
+            } else {
+                closeTutorial();
+            }
         }
     });
 
@@ -500,5 +499,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function clearHighlight() {
         targets.forEach(el => el.classList.remove('tut-highlight'));
+    }
+});
+
+// ==========================================
+// 事後アンケート完了コード発行＆カウントダウン処理
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const btnPostSurvey = document.getElementById('btn-post-survey');
+    if (!btnPostSurvey) return;
+
+    // タイマー更新関数
+    function updateTimer() {
+        const elapsed = parseInt(localStorage.getItem('accumulated_elapsed_time') || '0', 10);
+        const limit = 15 * 60 * 1000; // 15分（900,000ミリ秒）
+        const remaining = limit - elapsed;
+
+        if (remaining > 0) {
+            btnPostSurvey.disabled = true;
+            
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            const displayTime = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+            btnPostSurvey.textContent = `完了コード発行まで残り ${displayTime}`;
+        } else {
+            btnPostSurvey.disabled = false;
+            btnPostSurvey.style.backgroundColor = 'var(--cud-orange)';
+            btnPostSurvey.style.borderColor = 'var(--cud-orange)';
+            btnPostSurvey.style.color = '#fff';
+            btnPostSurvey.textContent = '完了コードを発行する';
+            clearInterval(timerInterval);
+        }
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer(); // 初回実行
+
+    // ボタンクリック時の処理
+    btnPostSurvey.addEventListener('click', () => {
+        btnPostSurvey.disabled = true;
+        btnPostSurvey.textContent = '送信中...';
+
+        // 共通関数 sendAllLogsToGAS を実行
+        if (typeof sendAllLogsToGAS === 'function') {
+            sendAllLogsToGAS()
+                .then(() => console.log("Logs successfully sent to GAS."))
+                .catch((err) => console.error("GAS send error:", err))
+                .finally(() => {
+                    btnPostSurvey.disabled = false;
+                    btnPostSurvey.textContent = '完了コードを発行する';
+
+                    // 完了モーダルの表示
+                    const modal = document.getElementById('completion-modal');
+                    const codeVal = document.getElementById('completion-code-val');
+                    if (modal && codeVal) {
+                        const userId = localStorage.getItem('research_user_id') || 'User-unknown';
+                        codeVal.textContent = userId;
+                        modal.style.display = 'flex';
+                    }
+                });
+        } else {
+            console.error("sendAllLogsToGAS is not defined.");
+            // フォールバックでモーダル表示
+            const modal = document.getElementById('completion-modal');
+            const codeVal = document.getElementById('completion-code-val');
+            if (modal && codeVal) {
+                const userId = localStorage.getItem('research_user_id') || 'User-unknown';
+                codeVal.textContent = userId;
+                modal.style.display = 'flex';
+            }
+        }
+    });
+
+    // コピー機能の実装
+    const btnCopy = document.getElementById('btn-copy-completion');
+    if (btnCopy) {
+        btnCopy.addEventListener('click', () => {
+            const userId = localStorage.getItem('research_user_id') || 'User-unknown';
+            navigator.clipboard.writeText(userId).then(() => {
+                const originalText = btnCopy.textContent;
+                btnCopy.textContent = '✓ コピーしました！';
+                btnCopy.style.background = '#00B45A';
+                setTimeout(() => {
+                    btnCopy.textContent = originalText;
+                    btnCopy.style.background = 'var(--cud-green)';
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy:", err);
+                alert('コピーに失敗しました。手動でコピーしてください: ' + userId);
+            });
+        });
+    }
+
+    // 閉じるボタンの実装
+    const btnCloseModal = document.getElementById('btn-close-completion');
+    if (btnCloseModal) {
+        btnCloseModal.addEventListener('click', () => {
+            const modal = document.getElementById('completion-modal');
+            if (modal) modal.style.display = 'none';
+        });
     }
 });

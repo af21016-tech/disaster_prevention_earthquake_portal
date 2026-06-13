@@ -58,14 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
+
 
 function startQuiz() {
     currentQuestions = shuffleArray(fakeNewsData).slice(0, QUESTIONS_PER_PLAY);
@@ -125,14 +118,19 @@ function startTimer() {
 }
 
 function updateTimerUI() {
-    const progressFill = document.getElementById('progress');
-    if(progressFill) {
-        // 時間経過でバーが減る表現（元のプログレスバーを流用）
-        const percentage = (timeLeft / TIME_LIMIT) * 100;
-        progressFill.style.width = `${percentage}%`;
-        if (timeLeft > 5) progressFill.style.backgroundColor = '#b366ff';
-        else if (timeLeft > 2) progressFill.style.backgroundColor = '#F0E442';
-        else progressFill.style.backgroundColor = '#D55E00';
+    const timerDisplay = document.getElementById('timer-display');
+    if (timerDisplay) {
+        timerDisplay.innerText = `${Math.max(0, timeLeft).toFixed(1)}秒`;
+        if (timeLeft > 5) {
+            timerDisplay.style.color = '#b366ff'; 
+            timerDisplay.style.textShadow = '0 0 20px rgba(179,102,255,0.6)';
+        } else if (timeLeft > 2.5) {
+            timerDisplay.style.color = '#F0E442'; 
+            timerDisplay.style.textShadow = '0 0 20px rgba(240,228,66,0.6)';
+        } else {
+            timerDisplay.style.color = '#FF2800'; 
+            timerDisplay.style.textShadow = '0 0 25px rgba(255,40,0,0.8)';
+        }
     }
 }
 
@@ -247,15 +245,6 @@ function showResultScreen() {
     }
 
     // クイズ結果画面のHTMLに、マイページへのデカデカとしたボタンを挿入する
-    const resultContainer = document.getElementById('result-area');
-    resultContainer.innerHTML += `
-        <div style="margin-top: 30px; padding: 20px; background: #f1f8ff; border-radius: 8px; text-align: center;">
-            <h3 style="color: #2980b9;">🎉 新しいバッジを獲得したかも？</h3>
-            <p>マイページに戻って、あなたのコレクションを確認しましょう！</p>
-            <button onclick="location.href='mypage.html'" 
-                    style="background: #27ae60; color: white; padding: 12px 24px; font-size: 1.1em; border: none; border-radius: 5px; cursor: pointer;">
-                マイページへ行く 👤
-            </button>
-        </div>
-    `;
+    const resultContainer = document.getElementById('result-screen');
+    appendMyPageLink(resultContainer);
 }

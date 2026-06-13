@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>空間シェイクアウト | Quake Interactive Archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?v=1.1">
     
     <style>
         .shakeout-container { max-width: 800px; margin: 100px auto 2rem; text-align: center; }
@@ -29,7 +29,7 @@
         .shaking { animation: earthquake 0.3s infinite; border-color: var(--cud-orange); }
         
         /* タイマー表示 */
-        .timer-display { font-family: var(--font-mono); font-size: 3rem; color: #fff; z-index: 10; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .timer-display { font-family: var(--font-mono); font-size: 3.5rem; color: #fff; z-index: 10; text-shadow: 0 0 15px rgba(255,255,255,0.6); font-weight: bold; }
         
         /* アクションボタン */
         .action-area { padding: 2rem; background: var(--surface-color); border-radius: 8px; border: 1px solid var(--border-color); }
@@ -38,6 +38,14 @@
         #btn-action:disabled { background: #333; color: #666; box-shadow: none; cursor: not-allowed; }
         
         .instruction { color: #aaa; margin-top: 15px; font-size: 0.9rem; }
+        
+        /* タイマーバーの非表示化 */
+        .timer-container {
+            display: none !important;
+        }
+        .timer-bar {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -84,6 +92,7 @@
     </main>
 
     <script src="./js/logger.js"></script>
+    <script src="./js/utils.js"></script>
     <script src="./js/shakeout.js"></script>
 </body>
 </html>
