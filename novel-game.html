@@ -22,6 +22,38 @@
         .choice-btn:hover { background: var(--cud-orange); color: #000; }
         
         #start-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background: #050505; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+
+        /* 同意ボタン用スタイル */
+        .menu-btn {
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid var(--cud-orange);
+            color: var(--cud-orange);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            box-sizing: border-box;
+            min-width: 220px;
+        }
+        .menu-btn:hover:not(:disabled) {
+            background: var(--cud-orange);
+            color: #000;
+        }
+        .menu-btn:disabled {
+            border-color: #555;
+            color: #666;
+            cursor: not-allowed;
+            background: #111;
+            opacity: 0.6;
+        }
     </style>
 </head>
 <body>
@@ -33,10 +65,29 @@
         </div>
     </header>
 
-    <div id="start-screen">
-        <h1 style="font-size: 2.5rem; letter-spacing: 0.2em; margin-bottom: 2rem; color: #fff;">3.11<br>記憶の追体験</h1>
-        <p style="color: #aaa; margin-bottom: 3rem; line-height: 1.8;">あの時、あなたならどう動いたか。<br>生存本能と愛他性が交錯する、インタラクティブ・ノベル。</p>
-        <button class="btn primary" id="btn-start" style="font-size: 1.2rem; padding: 15px 30px;" data-log="ノベルゲーム：物語を開始するボタンをクリック">物語を開始する</button>
+    <div id="start-screen" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; box-sizing: border-box;">
+        <div style="max-width: 650px; width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <h1 style="font-size: 2.5rem; letter-spacing: 0.2em; margin-bottom: 1.5rem; color: #fff; text-align: center;">3.11<br>記憶の追体験</h1>
+            <p style="color: #aaa; margin-bottom: 1.5rem; line-height: 1.8; text-align: center;">あの時、あなたならどう動いたか。<br>生存本能と愛他性が交錯する、インタラクティブ・ノベル。</p>
+            
+            <!-- プレイ前の注意事項 -->
+            <div style="background: rgba(255, 123, 0, 0.08); border-left: 4px solid var(--cud-orange); padding: 1.25rem; border-radius: 6px; text-align: left; margin-bottom: 1.5rem; font-size: 0.85rem; line-height: 1.6; color: #EAEAEA; width: 100%; box-sizing: border-box;">
+                <strong style="color: var(--cud-orange); font-size: 0.95rem; display: block; margin-bottom: 6px;">⚠️ プレイ前の注意事項（心理的影響について）</strong>
+                本コンテンツには、東日本大震災における津波被害や、避難行動時の緊迫した描写・精神的選択肢が含まれています。<br>
+                これらにより、過去の記憶が呼び起こされ精神的なストレス（フラッシュバックやPTSDなど）を覚えるおそれがある方は、プレイをお控えいただくか、十分にご注意ください。プレイ中に体調に異変や不安を感じた場合は、速やかにプレイを中止し、画面右上の「戻る」ボタンより退出してください。
+            </div>
+
+            <!-- 同意チェックボックス (Active Consent) -->
+            <div style="margin-bottom: 2rem; display: flex; align-items: center; justify-content: flex-start; width: 100%; gap: 10px; font-size: 0.95rem; color: #EAEAEA; box-sizing: border-box;">
+                <input type="checkbox" id="consent-checkbox" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--cud-orange);" data-log="ノベルゲーム：同意チェックボックスをクリック">
+                <label for="consent-checkbox" style="cursor: pointer; user-select: none;">私は上記の注意事項を確認し、同意した上でプレイします。</label>
+            </div>
+
+            <div style="display: flex; gap: 20px; justify-content: center; width: 100%; flex-wrap: wrap;">
+                <a href="index.html" class="menu-btn" data-log="ノベルゲーム：プレイを中止して戻るボタンをクリック">プレイを中止して戻る</a>
+                <button class="menu-btn" id="btn-start" disabled data-log="ノベルゲーム：物語を開始するボタンをクリック">物語を開始する</button>
+            </div>
+        </div>
     </div>
 
     <div class="game-container" id="game-ui" style="display: none;">
@@ -63,8 +114,8 @@
         </div>
     </div>
 
-    <script src="./js/logger.js"></script>
-    <script src="./js/utils.js"></script>
-    <script src="./js/novel_game.js"></script>
+    <script src="./js/logger.js?v=20260614_2"></script>
+    <script src="./js/utils.js?v=20260614_2"></script>
+    <script src="./js/novel_game.js?v=20260614_2"></script>
 </body>
 </html>

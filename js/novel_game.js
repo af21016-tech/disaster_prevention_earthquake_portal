@@ -151,24 +151,47 @@ const scenario = {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('btn-start').addEventListener('click', () => {
-        document.getElementById('start-screen').style.display = 'none';
-        gameUi.style.display = 'flex';
-        novelStartTime = Date.now();
-        showScene("intro1");
-    });
+function initNovelGame() {
+    const btnStart = document.getElementById('btn-start');
+    const consentCheckbox = document.getElementById('consent-checkbox');
 
-    btnNext.addEventListener('click', () => {
-        if (isTyping) {
-            clearInterval(typeInterval);
-            messageEl.innerHTML = scenario[currentSceneId].texts[textIndex - 1].replace(/\n/g, '<br>');
-            isTyping = false;
-        } else {
-            showNextText();
-        }
-    });
-});
+    // 同意チェックボックスの変更イベントハンドラー
+    if (consentCheckbox && btnStart) {
+        consentCheckbox.addEventListener('change', () => {
+            btnStart.disabled = !consentCheckbox.checked;
+        });
+        
+        // 念のため初期ロード時にもチェック状態を反映
+        btnStart.disabled = !consentCheckbox.checked;
+    }
+
+    if (btnStart) {
+        btnStart.addEventListener('click', () => {
+            document.getElementById('start-screen').style.display = 'none';
+            gameUi.style.display = 'flex';
+            novelStartTime = Date.now();
+            showScene("intro1");
+        });
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            if (isTyping) {
+                clearInterval(typeInterval);
+                messageEl.innerHTML = scenario[currentSceneId].texts[textIndex - 1].replace(/\n/g, '<br>');
+                isTyping = false;
+            } else {
+                showNextText();
+            }
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNovelGame);
+} else {
+    initNovelGame();
+}
 
 function showScene(sceneId) {
     if (sceneId === "show_result") {

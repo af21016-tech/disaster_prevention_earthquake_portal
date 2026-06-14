@@ -412,12 +412,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // overlay.addEventListener('click', closeTutorial); // 背景クリックでの終了を無効化
 
     btnNext.addEventListener('click', () => {
-        if (currentStep < targets.length - 1) {
+        const totalSteps = targets.length + 1;
+        if (currentStep < totalSteps - 1) {
             currentStep++;
             showStep(currentStep);
         } else {
-            // ステップ9でNEXTを押した時、マイページに遷移する
-            const currentTarget = targets[currentStep];
+            // 最後のステップでNEXTを押した時、マイページに遷移する
+            const currentTarget = targets[currentStep - 1];
             if (currentTarget && currentTarget.getAttribute('href') === 'mypage.html') {
                 // マイページ遷移時はリプレイフラグを削除せず、非表示化のみ行う
                 overlay.style.opacity = '0';
@@ -444,10 +445,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ★ ここが正しい座標計算を行う関数です
+    // ★ 座標計算および吹き出し表示を行う関数
     function showStep(index) {
         clearHighlight();
-        const target = targets[index];
+        
+        const totalSteps = targets.length + 1;
+        document.querySelector('.tut-step-counter').innerText = `STEP ${index + 1} / ${totalSteps}`;
+        btnPrev.style.visibility = index === 0 ? 'hidden' : 'visible';
+        btnNext.innerText = index === totalSteps - 1 ? 'FINISH ✔' : 'NEXT ▶';
+
+        if (index === 0) {
+            // ステップ0: ようこそメッセージと実験概要、タイマーの仕様説明
+            document.getElementById('tut-title').innerText = "🌐 実験へようこそ";
+            document.getElementById('tut-desc').innerHTML = `
+                このシステムは、過去の巨大地震データや防災行動についてインタラクティブに学ぶためのシミュレーターです。<br><br>
+                <strong>【実験の進め方とタイマー】</strong><br>
+                ・画面右上には学習タイマーが表示されています。<br>
+                ・<strong>30秒間操作がないとタイマーは一時停止</strong>しますのでご注意ください。合計で<strong>15分間</strong>学習してください。<br><br>
+                <strong>【実験の終了手順】</strong><br>
+                ・15分経過すると、右上のボタンが「<strong>実験を終了して完了コードを発行する</strong>」に変わります。<br>
+                ・ボタンをクリックすると、学習ログが一括送信され、ランサーズに入力するための<strong>完了コード（ユーザーID）</strong>が発行されます。<br><br>
+                <strong>【その他】</strong><br>
+                ・このチュートリアルをもう一度見たい場合は、画面右上の「<strong>MY PAGE</strong>」にある「<strong>再生する</strong>」ボタンからいつでもやり直すことができます。
+            `;
+
+            // ツールチップを画面中央に固定表示
+            setTimeout(() => {
+                tooltip.style.position = 'fixed';
+                tooltip.style.top = '50%';
+                tooltip.style.left = '50%';
+                tooltip.style.transform = 'translate(-50%, -50%)';
+            }, 50);
+            return;
+        }
+
+        // 通常のターゲットが存在するステップ
+        const target = targets[index - 1];
         if (!target) return;
 
         target.classList.add('tut-highlight');
@@ -458,14 +491,14 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
 
-        document.querySelector('.tut-step-counter').innerText = `STEP ${index + 1} / ${targets.length}`;
         document.getElementById('tut-title').innerText = target.dataset.title;
         document.getElementById('tut-desc').innerText = target.dataset.desc;
 
-        btnPrev.style.visibility = index === 0 ? 'hidden' : 'visible';
-        btnNext.innerText = index === targets.length - 1 ? 'FINISH ✔' : 'NEXT ▶';
-
         setTimeout(() => {
+            // ツールチップの位置設定を absolute に戻し、中央配置の transform を解除する
+            tooltip.style.position = 'absolute';
+            tooltip.style.transform = 'none';
+
             const updatedRect = target.getBoundingClientRect();
             let topPos = updatedRect.bottom + window.scrollY + 15;
             let leftPos = updatedRect.left + window.scrollX;
@@ -475,9 +508,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 topPos = updatedRect.top + window.scrollY - tooltip.offsetHeight - 15;
             }
             
-            // ★ ④【今回追加！】上に移動した結果、画面外やヘッダーの裏に消えてしまう場合
-            // 巨大な要素（マップなど）の場合は、画面上部の安全な位置（ターゲットの内側）で固定する
-            const safeTopMargin = 100; // ヘッダーの高さ(約80px) + 少しの余白
+            // ★ ④上に移動した結果、画面外やヘッダーの裏に消えてしまう場合
+            const safeTopMargin = 100;
             if (topPos < window.scrollY + safeTopMargin) {
                 topPos = window.scrollY + safeTopMargin;
             }
@@ -521,13 +553,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const minutes = Math.floor(remaining / 60000);
             const seconds = Math.floor((remaining % 60000) / 1000);
             const displayTime = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
-            btnPostSurvey.textContent = `完了コード発行まで残り ${displayTime}`;
+            btnPostSurvey.textContent = `実験終了まで残り ${displayTime}`;
         } else {
             btnPostSurvey.disabled = false;
             btnPostSurvey.style.backgroundColor = 'var(--cud-orange)';
             btnPostSurvey.style.borderColor = 'var(--cud-orange)';
             btnPostSurvey.style.color = '#fff';
-            btnPostSurvey.textContent = '完了コードを発行する';
+            btnPostSurvey.textContent = '実験を終了して完了コードを発行する';
             clearInterval(timerInterval);
         }
     }
@@ -543,13 +575,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // 共通関数 sendAllLogsToGAS を実行
         if (typeof sendAllLogsToGAS === 'function') {
             sendAllLogsToGAS()
-                .then(() => console.log("Logs successfully sent to GAS."))
-                .catch((err) => console.error("GAS send error:", err))
-                .finally(() => {
-                    btnPostSurvey.disabled = false;
-                    btnPostSurvey.textContent = '完了コードを発行する';
-
-                    // 完了モーダルの表示
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("GAS response not ok");
+                    }
+                    console.log("Logs successfully sent to GAS.");
+                    // 送信成功時のみ完了モーダルの表示
                     const modal = document.getElementById('completion-modal');
                     const codeVal = document.getElementById('completion-code-val');
                     if (modal && codeVal) {
@@ -557,17 +588,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         codeVal.textContent = userId;
                         modal.style.display = 'flex';
                     }
+                })
+                .catch((err) => {
+                    console.error("GAS send error:", err);
+                    alert("ログの送信に失敗しました。インターネットの接続状況を確認の上、時間をおいてもう一度お試しください。");
+                })
+                .finally(() => {
+                    btnPostSurvey.disabled = false;
+                    btnPostSurvey.textContent = '実験を終了して完了コードを発行する';
                 });
         } else {
             console.error("sendAllLogsToGAS is not defined.");
-            // フォールバックでモーダル表示
-            const modal = document.getElementById('completion-modal');
-            const codeVal = document.getElementById('completion-code-val');
-            if (modal && codeVal) {
-                const userId = localStorage.getItem('research_user_id') || 'User-unknown';
-                codeVal.textContent = userId;
-                modal.style.display = 'flex';
-            }
+            alert("システムエラー：ログ送信機能が読み込まれていません。管理者にお問い合わせください。");
+            btnPostSurvey.disabled = false;
+            btnPostSurvey.textContent = '実験を終了して完了コードを発行する';
         }
     });
 

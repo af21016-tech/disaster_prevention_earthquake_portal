@@ -51,9 +51,12 @@ function addSystemLog(actionType, detailInfo = "", scoreVal = "") {
  * 既存のアクションログ関数（下位互換性およびリアルタイム送信維持のため）
  */
 function logUserAction(actionType, detailInfo = "", scoreVal = "") {
-    // ローカルにログを蓄積
+    // ローカルにログを蓄積（一括送信されるまでLocalStorageに保持）
     addSystemLog(actionType, detailInfo, scoreVal);
 
+    // 【一括送信化のためコメントアウト】
+    // 同時アクセス過多によるGASの制限エラーを防ぐため、リアルタイム送信は廃止し一括送信に統合します。
+    /*
     const userId = getUserIdForLog();
     let pagePath = window.location.pathname.split('/').pop();
     if (!pagePath || pagePath === "") pagePath = "index.html";
@@ -67,7 +70,6 @@ function logUserAction(actionType, detailInfo = "", scoreVal = "") {
         score: scoreVal
     };
 
-    // ★あなたのGASのURLに書き換えてください
     const GAS_URL = "https://script.google.com/macros/s/AKfycbzyCTHJf_sRkgJJle0p08ZpuvSt7DZQHa6FpkLCf6xoZLpsCy9MEteGogyH1yzUce-c/exec";
 
     fetch(GAS_URL, {
@@ -75,6 +77,7 @@ function logUserAction(actionType, detailInfo = "", scoreVal = "") {
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(logData)
     }).catch(err => console.error("Log send error:", err));
+    */
 }
 
 /**
@@ -119,7 +122,7 @@ function recordInteraction() {
     lastRecordedTime = now;
 
     const lastInteraction = parseInt(localStorage.getItem('last_interaction_time') || now, 10);
-    const wasInactive = (now - lastInteraction) >= 60000;
+    const wasInactive = (now - lastInteraction) >= 30000; // 30秒以上操作がなければ非アクティブと判定
 
     localStorage.setItem('last_interaction_time', now.toString());
     if (wasInactive) {
@@ -150,7 +153,7 @@ function tickTimer() {
 
     const now = Date.now();
     const lastInteraction = parseInt(localStorage.getItem('last_interaction_time') || now, 10);
-    const isInactive = (now - lastInteraction) >= 60000;
+    const isInactive = (now - lastInteraction) >= 30000; // 30秒以上操作がなければ非アクティブと判定
 
     if (!isInactive) {
         const lastUpdate = parseInt(localStorage.getItem('last_timer_update_time') || now, 10);
