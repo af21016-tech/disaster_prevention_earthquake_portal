@@ -79,7 +79,7 @@ function initializeRecentQuakeMap(containerId) {
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         // ★修正：「 | 出典：USGS (アメリカ地質調査所)」を追加（リンク付き）
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | 出典：<a href="https://earthquake.usgs.gov/" target="_blank">USGS (アメリカ地質調査所)</a>',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | 出典：<a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener noreferrer">USGS (アメリカ地質調査所)</a>',
         subdomains: 'abcd',
         maxZoom: 10,
         bounds: worldBounds,         
@@ -107,10 +107,11 @@ function initializeRecentQuakeMap(containerId) {
                 onEachFeature: function (feature, layer) {
                     if (feature.properties && feature.properties.place) {
                         const time = new Date(feature.properties.time).toLocaleString('ja-JP');
+                        const placeEscaped = feature.properties.place.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
                         layer.bindPopup(`
                             <strong style="font-family: var(--font-sans); font-size: 1.1rem; color: #333;">M ${feature.properties.mag.toFixed(1)}</strong><br>
                             <span style="font-size:0.8rem; color: #666;">深さ: ${feature.geometry.coordinates[2].toFixed(1)} km</span><br>
-                            <span style="font-size:0.8rem; color: #666;">${feature.properties.place}</span><br>
+                            <span style="font-size:0.8rem; color: #666;">${placeEscaped}</span><br>
                             <span style="font-size:0.75rem; color: #666;">${time}</span>
                         `);
                     }
@@ -553,12 +554,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const minutes = Math.floor(remaining / 60000);
             const seconds = Math.floor((remaining % 60000) / 1000);
             const displayTime = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
-            btnPostSurvey.textContent = `実験終了まで残り ${displayTime}`;
+            btnPostSurvey.textContent = `完了コードが発行できるようになるまで残り ${displayTime}`;
         } else {
             btnPostSurvey.disabled = false;
             btnPostSurvey.style.backgroundColor = 'var(--cud-orange)';
             btnPostSurvey.style.borderColor = 'var(--cud-orange)';
-            btnPostSurvey.style.color = '#fff';
+            btnPostSurvey.style.color = '#000';
             btnPostSurvey.textContent = '実験を終了して完了コードを発行する';
             clearInterval(timerInterval);
         }

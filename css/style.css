@@ -115,6 +115,11 @@ header {
     transform: none !important;
 }
 
+#btn-post-survey {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
 /* -----------------------------------------
    Hero Map Section (横幅と縦横比の最適化)
    ----------------------------------------- */

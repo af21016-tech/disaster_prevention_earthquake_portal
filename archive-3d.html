@@ -90,7 +90,7 @@
         <div id="map-3d-full"></div>
         
         <div class="map-attribution">
-            都道府県境情報出典：<a href="https://nlftp.mlit.go.jp/ksj/" target="_blank" data-log="3Dマップ：国土数値情報リンクをクリック">国土数値情報（国土交通省）</a>を加工して作成
+            都道府県境情報出典：<a href="https://nlftp.mlit.go.jp/ksj/" target="_blank" rel="noopener noreferrer" data-log="3Dマップ：国土数値情報リンクをクリック">国土数値情報（国土交通省）</a>を加工して作成
         </div>
         
         <div id="time-slicer-ui">
@@ -109,8 +109,13 @@
         </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" 
+            integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" 
+            integrity="sha256-ArtK3nEPPmBzKeN6IfCYvDrHDrbjPa+KZeefTbeF57I=" 
+            crossorigin="anonymous"></script>
     <script src="./js/logger.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/main.js"></script>

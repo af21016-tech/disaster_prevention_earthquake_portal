@@ -7,9 +7,15 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" 
+          integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" 
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" 
+          integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" 
+          crossorigin="anonymous" />
     
     <link rel="stylesheet" href="./css/style.css">
     
@@ -165,17 +171,21 @@
                 </div>
                 <div class="source-text">
                     <strong>[出典・データクレジット]</strong><br>
-                    ・ベースマップ：&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" data-log="ハザードマップ：OpenStreetMap出典リンクをクリック">OpenStreetMap</a> contributors<br>
-                    ・ハザード情報：<a href="https://disaportal.gsi.go.jp/" target="_blank" data-log="ハザードマップ：ハザードマップポータル出典リンクをクリック">国土地理院 ハザードマップポータル</a><br>
-                    ・避難所情報：国土地理院「<a href="https://hinanmap.gsi.go.jp/hinanjocp/hinanbasho/koukaidate.html" target="_blank" data-log="ハザードマップ：指定緊急避難場所データ出典リンクをクリック">指定緊急避難場所データ</a>」を当サイトで加工して作成
+                    ・ベースマップ：&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" data-log="ハザードマップ：OpenStreetMap出典リンクをクリック">OpenStreetMap</a> contributors<br>
+                    ・ハザード情報：<a href="https://disaportal.gsi.go.jp/" target="_blank" rel="noopener noreferrer" data-log="ハザードマップ：ハザードマップポータル出典リンクをクリック">国土地理院 ハザードマップポータル</a><br>
+                    ・避難所情報：国土地理院「<a href="https://hinanmap.gsi.go.jp/hinanjocp/hinanbasho/koukaidate.html" target="_blank" rel="noopener noreferrer" data-log="ハザードマップ：指定緊急避難場所データ出典リンクをクリック">指定緊急避難場所データ</a>」を当サイトで加工して作成
                 </div>
             </div>
 
         </div>
     </main>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+            integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg="
+            crossorigin="anonymous"></script>
     <script src="./js/logger.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/prefectures.js"></script>

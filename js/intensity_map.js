@@ -72,7 +72,7 @@ function initMap() {
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         // ★修正：「 | 出典：気象庁ホームページ」を追加（リンク付き）
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | 出典：<a href="https://www.data.jma.go.jp/eqev/data/index.html" target="_blank">気象庁ホームページ</a>',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | 出典：<a href="https://www.data.jma.go.jp/eqev/data/index.html" target="_blank" rel="noopener noreferrer">気象庁ホームページ</a>',
         subdomains: 'abcd',
         maxZoom: 10
     }).addTo(map);

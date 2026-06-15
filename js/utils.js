@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // index.html等のヘッダー内表示エリア用
     const displayEl = document.getElementById('user-display');
     if (displayEl) {
-        displayEl.innerHTML = `ID: <span class="user-id-badge">${userId.substring(0, 8)}...</span>`;
+        displayEl.innerHTML = 'ID: <span class="user-id-badge"></span>';
+        displayEl.querySelector('.user-id-badge').textContent = userId.substring(0, 8) + '...';
         displayEl.title = userId;
     }
     

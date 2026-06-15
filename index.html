@@ -6,7 +6,9 @@
     <title>Quake Interactive Archive | 過去の災害から学ぶ防災シミュレーター</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Biz+UDPGOthic:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -17,7 +19,7 @@
             <p>Interactive Disaster Simulator</p>
         </div>
         <div class="header-actions">
-            <button id="btn-post-survey" class="btn-mypage" disabled data-log="トップ画面：事後アンケートボタンをクリック">実験終了まで残り 15:00</button>
+            <button id="btn-post-survey" class="btn-mypage" disabled data-log="トップ画面：事後アンケートボタンをクリック">完了コードが発行できるようになるまで残り 15:00</button>
             <a href="mypage.html" class="btn-mypage tut-target" data-step="9" data-title="👤 マイページ" data-desc="獲得した実績の確認や各種設定、バグ報告はこちらから行えます。次のボタンを押してマイページに進みましょう。" data-log="トップ画面：MY PAGEリンクをクリック">MY PAGE</a>
         </div>
     </header>
@@ -125,7 +127,9 @@
         </section>
     </main>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="anonymous"></script>
     <script src="./js/logger.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/main.js" defer></script>

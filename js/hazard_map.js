@@ -12,7 +12,7 @@ function initHazardMap() {
     L.control.zoom({ position: 'bottomright' }).addTo(map);
 
     // ★追加：地図右下に国土地理院の全体クレジットを強制表示
-    map.attributionControl.addAttribution('出典: <a href="https://www.gsi.go.jp/" target="_blank">国土地理院</a>');
+    map.attributionControl.addAttribution('出典: <a href="https://www.gsi.go.jp/" target="_blank" rel="noopener noreferrer">国土地理院</a>');
 
     // --- 背景地図レイヤー（漆黒のDarkマップ） ---
     const darkMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
