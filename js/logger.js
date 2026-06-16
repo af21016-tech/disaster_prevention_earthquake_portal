@@ -2,6 +2,9 @@
 // Quake Interactive Archive - 共通ログシステム
 // ==========================================
 
+// Cloudflare Workers プロキシのURL（デプロイ後に作成されるWorkersのURLに差し替えてください）
+const PROXY_API_URL = "https://disaster-portal-logger.af21016.workers.dev/";
+
 /**
  * ユーザーIDを取得または生成するヘルパー関数
  */
@@ -70,9 +73,7 @@ function logUserAction(actionType, detailInfo = "", scoreVal = "") {
         score: scoreVal
     };
 
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbzyCTHJf_sRkgJJle0p08ZpuvSt7DZQHa6FpkLCf6xoZLpsCy9MEteGogyH1yzUce-c/exec";
-
-    fetch(GAS_URL, {
+    fetch(PROXY_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(logData)
@@ -84,7 +85,6 @@ function logUserAction(actionType, detailInfo = "", scoreVal = "") {
  * 蓄積されたすべてのログをGASへ送信する関数
  */
 function sendAllLogsToGAS() {
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbzyCTHJf_sRkgJJle0p08ZpuvSt7DZQHa6FpkLCf6xoZLpsCy9MEteGogyH1yzUce-c/exec";
     const userId = getUserIdForLog();
     const logs = localStorage.getItem('system_logs') || "[]";
 
@@ -100,7 +100,7 @@ function sendAllLogsToGAS() {
         logs: parsedLogs
     };
 
-    return fetch(GAS_URL, {
+    return fetch(PROXY_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload)
