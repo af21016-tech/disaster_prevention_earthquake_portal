@@ -13,7 +13,7 @@ const ALLOWED_ORIGINS = [
   "http://127.0.0.1:5500",
   "http://localhost:8000",
   "http://127.0.0.1:8000",
-  "https://your-github-username.github.io" // ★ここに本番のGitHub Pages URLを入力してください。
+  "https://af21016-tech.github.io" // ★ここに本番のGitHub Pages URLを入力してください。
 ];
 
 export default {

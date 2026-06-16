@@ -413,13 +413,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // overlay.addEventListener('click', closeTutorial); // 背景クリックでの終了を無効化
 
     btnNext.addEventListener('click', () => {
-        const totalSteps = targets.length + 1;
+        const totalSteps = targets.length + 3;
         if (currentStep < totalSteps - 1) {
             currentStep++;
             showStep(currentStep);
         } else {
             // 最後のステップでNEXTを押した時、マイページに遷移する
-            const currentTarget = targets[currentStep - 1];
+            const currentTarget = targets[currentStep - 3];
             if (currentTarget && currentTarget.getAttribute('href') === 'mypage.html') {
                 // マイページ遷移時はリプレイフラグを削除せず、非表示化のみ行う
                 overlay.style.opacity = '0';
@@ -450,23 +450,60 @@ document.addEventListener('DOMContentLoaded', () => {
     function showStep(index) {
         clearHighlight();
         
-        const totalSteps = targets.length + 1;
+        // 幅指定のリセット（第0、1、2ステップでの横幅変更を他のステップに引き継がないため）
+        tooltip.style.width = '';
+        
+        const totalSteps = targets.length + 3;
         document.querySelector('.tut-step-counter').innerText = `STEP ${index + 1} / ${totalSteps}`;
         btnPrev.style.visibility = index === 0 ? 'hidden' : 'visible';
         btnNext.innerText = index === totalSteps - 1 ? 'FINISH ✔' : 'NEXT ▶';
 
         if (index === 0) {
-            // ステップ0: ようこそメッセージと実験概要、タイマーの仕様説明
+            // ステップ0: ようこそメッセージと実験概要
+            tooltip.style.width = '480px'; // 横幅を広げて縦長による見切れを防ぐ
             document.getElementById('tut-title').innerText = "🌐 実験へようこそ";
             document.getElementById('tut-desc').innerHTML = `
                 このシステムは、過去の巨大地震データや防災行動についてインタラクティブに学ぶためのシミュレーターです。<br><br>
-                <strong>【実験の進め方とタイマー】</strong><br>
+                まずはシステムの基本的な使い方と、実験の進め方についてご案内します。
+            `;
+
+            // ツールチップを画面中央に固定表示
+            setTimeout(() => {
+                tooltip.style.position = 'fixed';
+                tooltip.style.top = '50%';
+                tooltip.style.left = '50%';
+                tooltip.style.transform = 'translate(-50%, -50%)';
+            }, 50);
+            return;
+        }
+
+        if (index === 1) {
+            // ステップ1: 実験の進め方とタイマー
+            tooltip.style.width = '480px';
+            document.getElementById('tut-title').innerText = "⏱️ 実験の進め方とタイマー";
+            document.getElementById('tut-desc').innerHTML = `
                 ・画面右上には学習タイマーが表示されています。<br>
-                ・<strong>30秒間操作がないとタイマーは一時停止</strong>しますのでご注意ください。合計で<strong>15分間</strong>学習してください。<br><br>
-                <strong>【実験の終了手順】</strong><br>
-                ・15分経過すると、右上のボタンが「<strong>実験を終了して完了コードを発行する</strong>」に変わります。<br>
+                ・<strong>30秒間操作がないとタイマーは一時停止</strong>しますのでご注意ください。<br>
+                ・あなたが直感的に「面白そう」「役に立ちそう」と思うものを中心に、<strong>10分間</strong>自由にサイト内を探索・プレイしてください。
+            `;
+
+            // ツールチップを画面中央に固定表示
+            setTimeout(() => {
+                tooltip.style.position = 'fixed';
+                tooltip.style.top = '50%';
+                tooltip.style.left = '50%';
+                tooltip.style.transform = 'translate(-50%, -50%)';
+            }, 50);
+            return;
+        }
+
+        if (index === 2) {
+            // ステップ2: 実験の終了手順
+            tooltip.style.width = '480px';
+            document.getElementById('tut-title').innerText = "🎉 実験の終了手順";
+            document.getElementById('tut-desc').innerHTML = `
+                ・10分経過すると、右上のボタンが「<strong>実験を終了して完了コードを発行する</strong>」に変わります。<br>
                 ・ボタンをクリックすると、学習ログが一括送信され、ランサーズに入力するための<strong>完了コード（ユーザーID）</strong>が発行されます。<br><br>
-                <strong>【その他】</strong><br>
                 ・このチュートリアルをもう一度見たい場合は、画面右上の「<strong>MY PAGE</strong>」にある「<strong>再生する</strong>」ボタンからいつでもやり直すことができます。
             `;
 
@@ -480,8 +517,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 通常のターゲットが存在するステップ
-        const target = targets[index - 1];
+        // 通常のターゲットが存在するステップ (index >= 3)
+        const target = targets[index - 3];
         if (!target) return;
 
         target.classList.add('tut-highlight');
@@ -545,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // タイマー更新関数
     function updateTimer() {
         const elapsed = parseInt(localStorage.getItem('accumulated_elapsed_time') || '0', 10);
-        const limit = 15 * 60 * 1000; // 15分（900,000ミリ秒）
+        const limit = 10 * 60 * 1000; // 10分（600,000ミリ秒）
         const remaining = limit - elapsed;
 
         if (remaining > 0) {

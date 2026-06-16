@@ -9,12 +9,32 @@
     <link rel="stylesheet" href="./css/style.css">
     
     <style>
-        body, html { margin: 0; padding: 0; background-color: #111111; color: #ffffff; height: 100dvh; display: flex; flex-direction: column; }
+        body, html { margin: 0; padding: 0; background-color: #111111; color: #ffffff; min-height: 100vh; }
         
-        .live-header { flex: 0 0 auto; padding: 1rem 2rem; background: #1a1a1a; border-bottom: 1px solid #333333; display: flex; justify-content: space-between; align-items: center; }
+        .live-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 2000;
+            padding: 1rem 2rem;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         .live-header h1 { font-size: 1.25rem; margin: 0; }
 
-        .mypage-container { flex: 1; padding: 2rem; max-width: 900px; margin: 100px auto 0; width: 100%; display: flex; flex-direction: column; gap: 2.5rem; overflow-y: auto; }
+        .mypage-container {
+            max-width: 900px;
+            margin: 100px auto 0;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            padding-bottom: 100px;
+        }
         
         .section-title { font-size: 1.1rem; color: #888; border-bottom: 1px solid #333; padding-bottom: 0.5rem; margin-bottom: 1.5rem; letter-spacing: 0.1em; }
 
@@ -40,6 +60,18 @@
 
         /* トースト通知 */
         #toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #00E676; color: #000; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 0.9rem; z-index: 10000; display: none; }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .live-header {
+                padding: 0.8rem 1rem;
+            }
+            .mypage-container {
+                margin-top: 80px;
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
