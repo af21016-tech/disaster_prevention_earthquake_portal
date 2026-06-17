@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1781577028000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-16&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1781662502000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-17&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
     "count": 5739
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.5,
+        "place": "4 km NW of Noda, Japan",
+        "time": 1781606794658,
+        "updated": 1781662417824,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000std7",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000std7&format=geojson",
+        "felt": 112,
+        "cdi": 5,
+        "mmi": 4.333,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 521,
+        "net": "us",
+        "code": "7000std7",
+        "ids": ",us7000std7,usauto7000std7,",
+        "sources": ",us,usauto,",
+        "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 91,
+        "dmin": 1.435,
+        "rms": 0.94,
+        "gap": 96,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.5 - 4 km NW of Noda, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.8371,
+          35.9814,
+          71.777
+        ]
+      },
+      "id": "us7000std7"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -328,46 +368,6 @@
         ]
       },
       "id": "us6000sx3h"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "mag": 5,
-        "place": "70 km ESE of Isen, Japan",
-        "time": 1778463677618,
-        "updated": 1779408863040,
-        "tz": null,
-        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000swtz",
-        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000swtz&format=geojson",
-        "felt": null,
-        "cdi": null,
-        "mmi": null,
-        "alert": null,
-        "status": "reviewed",
-        "tsunami": 0,
-        "sig": 385,
-        "net": "us",
-        "code": "6000swtz",
-        "ids": ",us6000swtz,",
-        "sources": ",us,",
-        "types": ",origin,phase-data,",
-        "nst": 75,
-        "dmin": 1.279,
-        "rms": 1.18,
-        "gap": 89,
-        "magType": "mb",
-        "type": "earthquake",
-        "title": "M 5.0 - 70 km ESE of Isen, Japan"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          129.5696,
-          27.3848,
-          10
-        ]
-      },
-      "id": "us6000swtz"
     },
     {
       "type": "Feature",
@@ -1175,11 +1175,11 @@
         "mag": 7.4,
         "place": "97 km ENE of Miyako, Japan",
         "time": 1776671578964,
-        "updated": 1780072791121,
+        "updated": 1781613314375,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sri7",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sri7&format=geojson",
-        "felt": 135,
+        "felt": 136,
         "cdi": 6.6,
         "mmi": 5.989,
         "alert": "green",
@@ -4815,17 +4815,17 @@
         "mag": 7.6,
         "place": "2025 Aomori Prefecture, Japan Earthquake",
         "time": 1765203309896,
-        "updated": 1772649814040,
+        "updated": 1781613259815,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000rtdt",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000rtdt&format=geojson",
-        "felt": 258,
-        "cdi": 7.4,
+        "felt": 259,
+        "cdi": 9,
         "mmi": 6.911,
         "alert": "yellow",
         "status": "reviewed",
         "tsunami": 1,
-        "sig": 1080,
+        "sig": 1122,
         "net": "us",
         "code": "6000rtdt",
         "ids": ",at00t6yfla,pt25342050,us6000rtdt,usauto6000rtdt,",
