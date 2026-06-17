@@ -44,6 +44,11 @@
             <h2>🎉 タスク完了</h2>
             <p>お疲れ様でした。以下の完了コードをコピーして、ランサーズのアンケート画面に入力してください。</p>
             
+            <div id="completion-warning" style="display: none; color: #D55E00; margin: 15px 0; font-size: 0.9rem; border: 1px solid #D55E00; padding: 12px; border-radius: 6px; background: rgba(213, 94, 0, 0.1); text-align: left; line-height: 1.5;">
+                <strong>⚠️ ログ送信の遅延または失敗について:</strong><br>
+                アクセス集中やネットワークの影響により、学習ログの送信に一部失敗、または遅延が発生しました。ただし、完了コードは正常に発行されています。こちらのコードをコピーしてランサーズにご入力ください。
+            </div>
+            
             <div style="background: var(--surface-hover); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin: 20px 0; font-family: var(--font-mono); font-size: 1.25rem; word-break: break-all; color: var(--cud-yellow); letter-spacing: 0.05em; font-weight: bold; position: relative;">
                 <span id="completion-code-val">User-XXXX...</span>
             </div>

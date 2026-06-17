@@ -7,25 +7,34 @@
  * 3. 任意のセキュリティルール（IPレートリミットやOrigin制限）を追加可能。
  */
 
-// 許可するオリジンのリスト（本番公開ドメインに合わせて変更してください）
-const ALLOWED_ORIGINS = [
-  "http://localhost:5500", // ローカルテスト用（VSCode Live Serverなど）
-  "http://127.0.0.1:5500",
-  "http://localhost:8000",
-  "http://127.0.0.1:8000",
-  "https://af21016-tech.github.io" // ★ここに本番のGitHub Pages URLを入力してください。
-];
+// 許可するオリジンの判定関数（ローカルテスト用、GitHub Pages、nullオリジンを自動許可）
+function isAllowedOrigin(origin) {
+  if (!origin) return true; // Originヘッダーがない（CORS対象外の直接リクエスト等）は許可
+  if (origin === "null") return true; // iframeやローカルファイル(file://)からのリクエストを許可
+  
+  // localhost または 127.0.0.1 の全ポートを許可
+  if (/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+    return true;
+  }
+  
+  // github.io の全サブドメイン（https）を許可
+  if (/^https:\/\/[a-zA-Z0-9-]+\.github\.io$/.test(origin)) {
+    return true;
+  }
+  
+  return false;
+}
 
 export default {
   async fetch(request, env, ctx) {
     const origin = request.headers.get("Origin");
 
-    // Originが許可リストに含まれているかチェック
-    const isAllowedOrigin = ALLOWED_ORIGINS.includes(origin);
+    // Originが許可ルールに適合しているかチェック
+    const allowed = isAllowedOrigin(origin);
 
     // CORS用の共通ヘッダーを設定
     const corsHeaders = {
-      "Access-Control-Allow-Origin": isAllowedOrigin ? origin : "null",
+      "Access-Control-Allow-Origin": allowed ? (origin || "*") : "null",
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Max-Age": "86400", // 24時間キャッシュ
@@ -48,7 +57,7 @@ export default {
     }
 
     // 3. 許可されていないオリジンからのPOSTリクエストを拒否
-    if (!isAllowedOrigin) {
+    if (!allowed) {
       return new Response("Forbidden (CORS)", {
         status: 403,
         headers: corsHeaders

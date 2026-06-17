@@ -618,9 +618,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error("GAS response not ok");
                     }
                     console.log("Logs successfully sent to GAS.");
-                    // 送信成功時のみ完了モーダルの表示
+                    
+                    // ログ送信成功時はローカルのログをクリアして重複送信を防ぐ
+                    localStorage.setItem('system_logs', '[]');
+
+                    // 完了モーダルの表示
                     const modal = document.getElementById('completion-modal');
                     const codeVal = document.getElementById('completion-code-val');
+                    const warningEl = document.getElementById('completion-warning');
+                    if (warningEl) warningEl.style.display = 'none'; // 警告を非表示
                     if (modal && codeVal) {
                         const userId = localStorage.getItem('research_user_id') || 'User-unknown';
                         codeVal.textContent = userId;
@@ -629,7 +635,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch((err) => {
                     console.error("GAS send error:", err);
-                    alert("ログの送信に失敗しました。インターネットの接続状況を確認の上、時間をおいてもう一度お試しください。");
+                    
+                    // エラー時も完了モーダルを表示し、警告メッセージを表示する（CORS制限や一時的過負荷への対応）
+                    const modal = document.getElementById('completion-modal');
+                    const codeVal = document.getElementById('completion-code-val');
+                    const warningEl = document.getElementById('completion-warning');
+                    if (warningEl) warningEl.style.display = 'block'; // 警告を表示
+                    if (modal && codeVal) {
+                        const userId = localStorage.getItem('research_user_id') || 'User-unknown';
+                        codeVal.textContent = userId;
+                        modal.style.display = 'flex';
+                    }
                 })
                 .finally(() => {
                     btnPostSurvey.disabled = false;
