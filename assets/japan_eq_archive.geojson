@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1782266173000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-24&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1782352737000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-25&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.4.0",
-    "count": 5740
+    "count": 5741
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 6.9,
+        "place": "30 km ENE of Kuji, Japan",
+        "time": 1782340214931,
+        "updated": 1782352578196,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zq",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t7zq&format=geojson",
+        "felt": 59,
+        "cdi": 6.9,
+        "mmi": 6.149,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 773,
+        "net": "us",
+        "code": "6000t7zq",
+        "ids": ",pt26175002,us6000t7zq,atth5qif,",
+        "sources": ",pt,us,at,",
+        "types": ",dyfi,ground-failure,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 110,
+        "dmin": 0.932,
+        "rms": 0.64,
+        "gap": 34,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 6.9 - 30 km ENE of Kuji, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.0981,
+          40.2912,
+          50.923
+        ]
+      },
+      "id": "us6000t7zq"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -133,9 +173,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "120 km ESE of Kuril’sk, Russia",
-        "time": 1781033135189,
-        "updated": 1781034081040,
+        "place": "144 km ESE of Kuril’sk, Russia",
+        "time": 1781033133869,
+        "updated": 1782325956040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000srvk",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000srvk&format=geojson",
@@ -151,20 +191,20 @@
         "ids": ",us7000srvk,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 78,
-        "dmin": 5.267,
-        "rms": 0.79,
-        "gap": 178,
+        "nst": 136,
+        "dmin": 7.27,
+        "rms": 0.72,
+        "gap": 80,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.1 - 120 km ESE of Kuril’sk, Russia"
+        "title": "M 5.1 - 144 km ESE of Kuril’sk, Russia"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          149.2865,
-          44.8123,
-          56.076
+          149.4805,
+          44.5924,
+          52.932
         ]
       },
       "id": "us7000srvk"
@@ -1375,7 +1415,7 @@
         "mag": 5.2,
         "place": "185 km SSE of Nemuro, Japan",
         "time": 1775900991393,
-        "updated": 1776932466040,
+        "updated": 1782318871040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000spac",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000spac&format=geojson",
@@ -1415,7 +1455,7 @@
         "mag": 5.1,
         "place": "Izu Islands, Japan region",
         "time": 1775760864881,
-        "updated": 1776608831040,
+        "updated": 1782318869040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000snqs",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000snqs&format=geojson",
