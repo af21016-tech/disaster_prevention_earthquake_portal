@@ -1,11 +1,11 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1782784770000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-06-30&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1782871517000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-01&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
-    "api": "2.4.0",
+    "api": "2.7.0",
     "count": 5744
   },
   "features": [
@@ -172,38 +172,38 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.3,
+        "mag": 5.6,
         "place": "Izu Islands, Japan region",
-        "time": 1781810260105,
-        "updated": 1781811325040,
+        "time": 1781810259316,
+        "updated": 1782854796495,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000suds",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000suds&format=geojson",
         "felt": null,
         "cdi": null,
-        "mmi": null,
-        "alert": null,
+        "mmi": 2.632,
+        "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 432,
+        "sig": 482,
         "net": "us",
         "code": "7000suds",
         "ids": ",usauto7000suds,us7000suds,",
         "sources": ",usauto,us,",
-        "types": ",internal-moment-tensor,moment-tensor,origin,phase-data,",
-        "nst": 185,
-        "dmin": 6.457,
-        "rms": 0.88,
-        "gap": 86,
-        "magType": "mww",
+        "types": ",internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 213,
+        "dmin": 3.374,
+        "rms": 0.53,
+        "gap": 41,
+        "magType": "mwb",
         "type": "earthquake",
-        "title": "M 5.3 - Izu Islands, Japan region"
+        "title": "M 5.6 - Izu Islands, Japan region"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.2657,
-          30.6099,
+          142.1488,
+          30.4823,
           10
         ]
       },
