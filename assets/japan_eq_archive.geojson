@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1782957515000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-02&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1783042170000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-03&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 6,
         "place": "49 km E of Noda, Japan",
         "time": 1782907709986,
-        "updated": 1782921668211,
+        "updated": 1782995862139,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t9ej",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t9ej&format=geojson",
@@ -293,15 +293,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.7,
-        "place": "33 km ESE of Ol’ga, Russia",
-        "time": 1781087657371,
-        "updated": 1781175626031,
+        "place": "48 km ESE of Ol’ga, Russia",
+        "time": 1781087657636,
+        "updated": 1782979404213,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ss03",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000ss03&format=geojson",
         "felt": 1,
         "cdi": 1,
-        "mmi": 2.647,
+        "mmi": 2.648,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -311,20 +311,20 @@
         "ids": ",us7000ss03,usauto7000ss03,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 100,
-        "dmin": 2.723,
-        "rms": 0.69,
-        "gap": 26,
+        "nst": 303,
+        "dmin": 2.854,
+        "rms": 0.65,
+        "gap": 21,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.7 - 33 km ESE of Ol’ga, Russia"
+        "title": "M 5.7 - 48 km ESE of Ol’ga, Russia"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.6736,
-          43.6289,
-          343.313
+          135.8435,
+          43.582,
+          342
         ]
       },
       "id": "us7000ss03"
