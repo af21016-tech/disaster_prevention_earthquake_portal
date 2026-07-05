@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1783128538000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-04&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1783215877000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 5.9,
         "place": "296 km SSW of Severo-Kuril’sk, Russia",
         "time": 1783066973615,
-        "updated": 1783088489040,
+        "updated": 1783154908279,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t9tf",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t9tf&format=geojson",
@@ -55,7 +55,7 @@
         "mag": 6.1,
         "place": "136 km NNE of Hirara, Japan",
         "time": 1783051488066,
-        "updated": 1783062457963,
+        "updated": 1783139243892,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t9sj",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t9sj&format=geojson",
@@ -293,15 +293,15 @@
       "type": "Feature",
       "properties": {
         "mag": 6.9,
-        "place": "30 km ENE of Kuji, Japan",
-        "time": 1782340214931,
-        "updated": 1782496796650,
+        "place": "32 km ENE of Noda, Japan",
+        "time": 1782340212953,
+        "updated": 1783209270290,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zq",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t7zq&format=geojson",
         "felt": 95,
         "cdi": 6.9,
-        "mmi": 6.618,
+        "mmi": 6.723,
         "alert": "yellow",
         "status": "reviewed",
         "tsunami": 0,
@@ -311,20 +311,20 @@
         "ids": ",pt26175002,us6000t7zq,atth5qif,",
         "sources": ",pt,us,at,",
         "types": ",dyfi,ground-failure,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 110,
-        "dmin": 0.932,
-        "rms": 0.64,
+        "nst": 123,
+        "dmin": 0.988,
+        "rms": 0.67,
         "gap": 34,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 6.9 - 30 km ENE of Kuji, Japan"
+        "title": "M 6.9 - 32 km ENE of Noda, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.0981,
-          40.2912,
-          50.923
+          142.1507,
+          40.2505,
+          34
         ]
       },
       "id": "us6000t7zq"
