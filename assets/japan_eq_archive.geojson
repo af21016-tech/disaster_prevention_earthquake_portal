@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1783215877000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1783302643000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-06&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -212,39 +212,39 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.7,
-        "place": "7 km N of Oshino, Japan",
-        "time": 1782480541877,
-        "updated": 1782749579971,
+        "mag": 5.2,
+        "place": "1 km S of Ōtsuki, Japan",
+        "time": 1782480541036,
+        "updated": 1783285040068,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8fe",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t8fe&format=geojson",
         "felt": 143,
-        "cdi": 5.6,
+        "cdi": 5.4,
         "mmi": 5.064,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 580,
+        "sig": 493,
         "net": "us",
         "code": "6000t8fe",
         "ids": ",us6000t8fe,",
         "sources": ",us,",
-        "types": ",dyfi,ground-failure,losspager,origin,phase-data,shakemap,",
-        "nst": 75,
-        "dmin": 1.15,
-        "rms": 0.69,
+        "types": ",dyfi,ground-failure,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 98,
+        "dmin": 1.122,
+        "rms": 0.84,
         "gap": 49,
-        "magType": "mb",
+        "magType": "mwr",
         "type": "earthquake",
-        "title": "M 5.7 - 7 km N of Oshino, Japan"
+        "title": "M 5.2 - 1 km S of Ōtsuki, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.8566,
-          35.5228,
-          50.925
+          138.9744,
+          35.6048,
+          43.164
         ]
       },
       "id": "us6000t8fe"
@@ -293,15 +293,15 @@
       "type": "Feature",
       "properties": {
         "mag": 6.9,
-        "place": "32 km ENE of Noda, Japan",
-        "time": 1782340212953,
-        "updated": 1783209270290,
+        "place": "33 km ENE of Noda, Japan",
+        "time": 1782340212989,
+        "updated": 1783296484374,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zq",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t7zq&format=geojson",
         "felt": 95,
         "cdi": 6.9,
-        "mmi": 6.723,
+        "mmi": 6.718,
         "alert": "yellow",
         "status": "reviewed",
         "tsunami": 0,
@@ -310,20 +310,20 @@
         "code": "6000t7zq",
         "ids": ",pt26175002,us6000t7zq,atth5qif,",
         "sources": ",pt,us,at,",
-        "types": ",dyfi,ground-failure,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "types": ",dyfi,ground-failure,impact-text,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 123,
-        "dmin": 0.988,
-        "rms": 0.67,
+        "dmin": 0.994,
+        "rms": 0.7,
         "gap": 34,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 6.9 - 32 km ENE of Noda, Japan"
+        "title": "M 6.9 - 33 km ENE of Noda, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.1507,
-          40.2505,
+          142.1614,
+          40.2515,
           34
         ]
       },
@@ -123295,7 +123295,7 @@
         "mag": 9.1,
         "place": "2011 Great Tohoku Earthquake, Japan",
         "time": 1299822384120,
-        "updated": 1776102134045,
+        "updated": 1783224518502,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/official20110311054624120_30",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=official20110311054624120_30&format=geojson",
