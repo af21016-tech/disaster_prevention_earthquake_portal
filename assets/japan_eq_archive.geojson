@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1783560475000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-09&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1783646723000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-10&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5748
+    "count": 5749
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.1,
+        "place": "50 km SW of Shirahama, Japan",
+        "time": 1783601937039,
+        "updated": 1783642600550,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sz7n",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000sz7n&format=geojson",
+        "felt": 4,
+        "cdi": 2.7,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 401,
+        "net": "us",
+        "code": "7000sz7n",
+        "ids": ",us7000sz7n,",
+        "sources": ",us,",
+        "types": ",dyfi,origin,phase-data,",
+        "nst": 43,
+        "dmin": 1.004,
+        "rms": 0.77,
+        "gap": 108,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.1 - 50 km SW of Shirahama, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.9851,
+          33.3425,
+          10
+        ]
+      },
+      "id": "us7000sz7n"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -372,39 +412,39 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.5,
-        "place": "4 km NW of Noda, Japan",
-        "time": 1781606794658,
-        "updated": 1782578890659,
+        "mag": 5.3,
+        "place": "2 km SW of Koga, Japan",
+        "time": 1781606795062,
+        "updated": 1783584410877,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000std7",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000std7&format=geojson",
         "felt": 130,
-        "cdi": 5,
+        "cdi": 4.8,
         "mmi": 4.424,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 530,
+        "sig": 495,
         "net": "us",
         "code": "7000std7",
         "ids": ",us7000std7,usauto7000std7,",
         "sources": ",us,usauto,",
-        "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 91,
-        "dmin": 1.435,
-        "rms": 0.94,
-        "gap": 96,
-        "magType": "mb",
+        "types": ",dyfi,impact-text,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 292,
+        "dmin": 1.259,
+        "rms": 0.59,
+        "gap": 57,
+        "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.5 - 4 km NW of Noda, Japan"
+        "title": "M 5.3 - 2 km SW of Koga, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.8371,
-          35.9814,
-          71.777
+          139.6995,
+          36.1715,
+          63.617
         ]
       },
       "id": "us7000std7"
