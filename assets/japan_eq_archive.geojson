@@ -1,14 +1,94 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1784164654000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-16&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1784251270000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-17&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5750
+    "count": 5752
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.2,
+        "place": "48 km E of Nishinoomote, Japan",
+        "time": 1784238582977,
+        "updated": 1784242934096,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t15t",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t15t&format=geojson",
+        "felt": 1,
+        "cdi": 2,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 416,
+        "net": "us",
+        "code": "7000t15t",
+        "ids": ",us7000t15t,usauto7000t15t,",
+        "sources": ",us,usauto,",
+        "types": ",dyfi,internal-moment-tensor,origin,phase-data,",
+        "nst": 78,
+        "dmin": 1.173,
+        "rms": 1.28,
+        "gap": 112,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.2 - 48 km E of Nishinoomote, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.5099,
+          30.7625,
+          35
+        ]
+      },
+      "id": "us7000t15t"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.5,
+        "place": "Volcano Islands, Japan region",
+        "time": 1784188149543,
+        "updated": 1784212253040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t0x0",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t0x0&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": 0,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 465,
+        "net": "us",
+        "code": "7000t0x0",
+        "ids": ",usauto7000t0x0,us7000t0x0,",
+        "sources": ",usauto,us,",
+        "types": ",internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 86,
+        "dmin": 7.699,
+        "rms": 0.88,
+        "gap": 70,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.5 - Volcano Islands, Japan region"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.3909,
+          22.8589,
+          12.806
+        ]
+      },
+      "id": "us7000t0x0"
+    },
     {
       "type": "Feature",
       "properties": {
