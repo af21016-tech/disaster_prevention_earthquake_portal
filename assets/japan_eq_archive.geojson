@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1784337200000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-18&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1784423931000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-07-19&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -815,7 +815,7 @@
         "mag": 5.1,
         "place": "Izu Islands, Japan region",
         "time": 1778641715413,
-        "updated": 1780097624040,
+        "updated": 1784399005040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sxc0",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sxc0&format=geojson",
@@ -855,7 +855,7 @@
         "mag": 5.1,
         "place": "81 km S of Hualien City, Taiwan",
         "time": 1778568812163,
-        "updated": 1780400185040,
+        "updated": 1784399003040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sx3h",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000sx3h&format=geojson",
