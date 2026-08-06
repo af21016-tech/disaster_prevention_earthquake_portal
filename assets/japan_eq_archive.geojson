@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1785892635000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1785978880000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-06&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -452,10 +452,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.1,
-        "place": "50 km SW of Shirahama, Japan",
-        "time": 1783601937039,
-        "updated": 1783668533585,
+        "mag": 5,
+        "place": "57 km SSW of Shirahama, Japan",
+        "time": 1783601936654,
+        "updated": 1785923386180,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sz7n",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000sz7n&format=geojson",
@@ -465,25 +465,25 @@
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 402,
+        "sig": 386,
         "net": "us",
         "code": "7000sz7n",
         "ids": ",us7000sz7n,",
         "sources": ",us,",
         "types": ",dyfi,origin,phase-data,",
-        "nst": 43,
-        "dmin": 1.004,
-        "rms": 0.77,
-        "gap": 108,
+        "nst": 72,
+        "dmin": 1.063,
+        "rms": 0.72,
+        "gap": 94,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.1 - 50 km SW of Shirahama, Japan"
+        "title": "M 5.0 - 57 km SSW of Shirahama, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          134.9851,
-          33.3425,
+          135.0124,
+          33.251,
           10
         ]
       },
