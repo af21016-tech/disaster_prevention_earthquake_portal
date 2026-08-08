@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1786067839000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-07&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1786149594000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-08&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 5.4,
         "place": "145 km E of Yamada, Japan",
         "time": 1786038216862,
-        "updated": 1786045799290,
+        "updated": 1786125032032,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000timf",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000timf&format=geojson",
@@ -255,7 +255,7 @@
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
         "time": 1785223635512,
-        "updated": 1785818703869,
+        "updated": 1786133691902,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
@@ -332,10 +332,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.2,
+        "mag": 5.1,
         "place": "48 km E of Nishinoomote, Japan",
-        "time": 1784238582977,
-        "updated": 1784326939222,
+        "time": 1784238583422,
+        "updated": 1786078654529,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t15t",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t15t&format=geojson",
@@ -345,25 +345,25 @@
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 416,
+        "sig": 401,
         "net": "us",
         "code": "7000t15t",
         "ids": ",us7000t15t,usauto7000t15t,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,origin,phase-data,",
-        "nst": 78,
-        "dmin": 1.173,
-        "rms": 1.28,
-        "gap": 112,
+        "nst": 84,
+        "dmin": 1.148,
+        "rms": 1.04,
+        "gap": 80,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.2 - 48 km E of Nishinoomote, Japan"
+        "title": "M 5.1 - 48 km E of Nishinoomote, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          131.5099,
-          30.7625,
+          131.5012,
+          30.793,
           35
         ]
       },
