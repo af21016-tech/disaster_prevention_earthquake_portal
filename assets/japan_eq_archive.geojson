@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1786409025000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-11&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1786495907000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-12&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -333,9 +333,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "85 km SE of Tatsugō, Japan",
-        "time": 1784798542460,
-        "updated": 1784799723040,
+        "place": "79 km SE of Tatsugō, Japan",
+        "time": 1784798542368,
+        "updated": 1786456047040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t2n3",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t2n3&format=geojson",
@@ -351,19 +351,19 @@
         "ids": ",us7000t2n3,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 58,
-        "dmin": 1.997,
-        "rms": 1.06,
-        "gap": 104,
+        "nst": 65,
+        "dmin": 1.955,
+        "rms": 0.89,
+        "gap": 62,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.1 - 85 km SE of Tatsugō, Japan"
+        "title": "M 5.1 - 79 km SE of Tatsugō, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.1887,
-          27.8812,
+          130.1205,
+          27.8995,
           10
         ]
       },
@@ -1015,7 +1015,7 @@
         "mag": 5.7,
         "place": "Izu Islands, Japan region",
         "time": 1780284870868,
-        "updated": 1782265170433,
+        "updated": 1786455243040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000spru",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000spru&format=geojson",
