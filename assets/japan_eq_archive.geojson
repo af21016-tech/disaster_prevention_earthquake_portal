@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1786495907000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-12&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1786582367000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-13&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -212,10 +212,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.4,
-        "place": "11 km N of Tsunagi, Japan",
-        "time": 1785331176661,
-        "updated": 1785418106687,
+        "mag": 5.3,
+        "place": "12 km N of Tsunagi, Japan",
+        "time": 1785331176674,
+        "updated": 1786552422468,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgmx",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgmx&format=geojson",
@@ -225,25 +225,25 @@
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 451,
+        "sig": 434,
         "net": "us",
         "code": "6000tgmx",
         "ids": ",us6000tgmx,usauto6000tgmx,",
         "sources": ",us,usauto,",
         "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 79,
-        "dmin": 0.829,
-        "rms": 0.51,
-        "gap": 74,
+        "nst": 93,
+        "dmin": 0.834,
+        "rms": 0.54,
+        "gap": 73,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.4 - 11 km N of Tsunagi, Japan"
+        "title": "M 5.3 - 12 km N of Tsunagi, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.4881,
-          32.34,
+          130.4586,
+          32.3461,
           10
         ]
       },
@@ -295,11 +295,11 @@
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
         "time": 1785223635512,
-        "updated": 1786133691902,
+        "updated": 1786536843379,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
-        "felt": 90,
+        "felt": 91,
         "cdi": 8.7,
         "mmi": 9.243,
         "alert": "red",
@@ -412,10 +412,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.5,
+        "mag": 5.3,
         "place": "Volcano Islands, Japan region",
-        "time": 1784188149543,
-        "updated": 1784274807369,
+        "time": 1784188150570,
+        "updated": 1786513461040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t0x0",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t0x0&format=geojson",
@@ -425,26 +425,26 @@
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 465,
+        "sig": 432,
         "net": "us",
         "code": "7000t0x0",
         "ids": ",usauto7000t0x0,us7000t0x0,",
         "sources": ",usauto,us,",
         "types": ",internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 86,
-        "dmin": 7.699,
-        "rms": 0.88,
+        "nst": 87,
+        "dmin": 4.669,
+        "rms": 0.58,
         "gap": 70,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.5 - Volcano Islands, Japan region"
+        "title": "M 5.3 - Volcano Islands, Japan region"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          144.3909,
-          22.8589,
-          12.806
+          144.3516,
+          22.8421,
+          18.081
         ]
       },
       "id": "us7000t0x0"
