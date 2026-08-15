@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1786668728000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-14&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1786753755000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-15&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -92,10 +92,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.2,
-        "place": "48 km ESE of Tsunō, Japan",
-        "time": 1785611452622,
-        "updated": 1785763918040,
+        "mag": 5.3,
+        "place": "44 km SE of Tsunō, Japan",
+        "time": 1785611453802,
+        "updated": 1786730702196,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000thhk",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000thhk&format=geojson",
@@ -105,26 +105,26 @@
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 416,
+        "sig": 432,
         "net": "us",
         "code": "6000thhk",
         "ids": ",us6000thhk,usauto6000thhk,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,moment-tensor,origin,phase-data,",
-        "nst": 83,
-        "dmin": 1.409,
-        "rms": 1.16,
-        "gap": 88,
+        "nst": 97,
+        "dmin": 1.379,
+        "rms": 0.71,
+        "gap": 80,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.2 - 48 km ESE of Tsunō, Japan"
+        "title": "M 5.3 - 44 km SE of Tsunō, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          131.9999,
-          32.0078,
-          26.229
+          131.9561,
+          32.0214,
+          35
         ]
       },
       "id": "us6000thhk"
@@ -295,7 +295,7 @@
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
         "time": 1785223635512,
-        "updated": 1786665203934,
+        "updated": 1786696100401,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
