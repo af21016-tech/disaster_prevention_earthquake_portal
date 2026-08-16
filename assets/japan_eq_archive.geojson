@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1786753755000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-15&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1786840216000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-16&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5761
+    "count": 5762
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.5,
+        "place": "Volcano Islands, Japan region",
+        "time": 1786822350371,
+        "updated": 1786829901742,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tl36",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tl36&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": 2.736,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 465,
+        "net": "us",
+        "code": "6000tl36",
+        "ids": ",usauto6000tl36,us6000tl36,",
+        "sources": ",usauto,us,",
+        "types": ",internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 119,
+        "dmin": 8.647,
+        "rms": 0.95,
+        "gap": 79,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.5 - Volcano Islands, Japan region"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.7868,
+          23.4461,
+          39.954
+        ]
+      },
+      "id": "us6000tl36"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -935,7 +975,7 @@
         "mag": 5.7,
         "place": "48 km ESE of Ol’ga, Russia",
         "time": 1781087657636,
-        "updated": 1782979404213,
+        "updated": 1786814830040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ss03",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000ss03&format=geojson",
@@ -975,7 +1015,7 @@
         "mag": 5.1,
         "place": "144 km ESE of Kuril’sk, Russia",
         "time": 1781033133869,
-        "updated": 1782325956040,
+        "updated": 1786814829040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000srvk",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000srvk&format=geojson",
@@ -123815,11 +123855,11 @@
         "mag": 9.1,
         "place": "2011 Great Tohoku Earthquake, Japan",
         "time": 1299822384120,
-        "updated": 1785312572830,
+        "updated": 1786835019669,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/official20110311054624120_30",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=official20110311054624120_30&format=geojson",
-        "felt": 1458,
+        "felt": 1459,
         "cdi": 9.1,
         "mmi": 8.18,
         "alert": null,
