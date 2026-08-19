@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1787012903000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-18&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1787099288000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-19&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -14,8 +14,8 @@
       "properties": {
         "mag": 5.1,
         "place": "Kuril Islands",
-        "time": 1787002595887,
-        "updated": 1787003604040,
+        "time": 1787002596105,
+        "updated": 1787024897040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tlbz",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tlbz&format=geojson",
@@ -31,10 +31,10 @@
         "ids": ",us6000tlbz,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 77,
-        "dmin": 7.375,
-        "rms": 0.8,
-        "gap": 120,
+        "nst": 107,
+        "dmin": 5.998,
+        "rms": 0.6,
+        "gap": 51,
         "magType": "mb",
         "type": "earthquake",
         "title": "M 5.1 - Kuril Islands"
@@ -42,9 +42,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          151.3834,
-          46.4341,
-          90.992
+          151.4468,
+          46.4392,
+          93.538
         ]
       },
       "id": "us6000tlbz"
@@ -333,37 +333,37 @@
       "type": "Feature",
       "properties": {
         "mag": 5.6,
-        "place": "16 km NE of Tsunagi, Japan",
-        "time": 1785226115421,
-        "updated": 1785369986447,
+        "place": "15 km SSW of Honmachi, Japan",
+        "time": 1785226114854,
+        "updated": 1787032404477,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgbm",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgbm&format=geojson",
-        "felt": null,
-        "cdi": null,
-        "mmi": 6.164,
+        "felt": 3,
+        "cdi": 7.3,
+        "mmi": 6.319,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 482,
+        "sig": 485,
         "net": "us",
         "code": "6000tgbm",
         "ids": ",us6000tgbm,usauto6000tgbm,",
         "sources": ",us,usauto,",
-        "types": ",ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 71,
-        "dmin": 0.849,
-        "rms": 1.37,
-        "gap": 82,
+        "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 103,
+        "dmin": 0.799,
+        "rms": 0.86,
+        "gap": 75,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.6 - 16 km NE of Tsunagi, Japan"
+        "title": "M 5.6 - 15 km SSW of Honmachi, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.5868,
-          32.3529,
+          130.5385,
+          32.3769,
           10
         ]
       },
@@ -374,14 +374,14 @@
       "properties": {
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
-        "time": 1785223635512,
-        "updated": 1786696100401,
+        "time": 1785223634942,
+        "updated": 1787029788307,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
-        "felt": 92,
+        "felt": 95,
         "cdi": 8.7,
-        "mmi": 9.243,
+        "mmi": 9.24,
         "alert": "red",
         "status": "reviewed",
         "tsunami": 0,
@@ -390,10 +390,10 @@
         "code": "6000tgb9",
         "ids": ",attivjdk,pt26209004,us6000tgb9,usauto6000tgb9,",
         "sources": ",at,pt,us,usauto,",
-        "types": ",associate,dyfi,earthquake-name,finite-fault,general-text,ground-failure,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,significance,",
-        "nst": 102,
-        "dmin": 1.191,
-        "rms": 1.38,
+        "types": ",associate,dyfi,earthquake-name,finite-fault,general-text,ground-failure,impact-text,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,significance,",
+        "nst": 122,
+        "dmin": 0.52,
+        "rms": 1.11,
         "gap": 39,
         "magType": "mww",
         "type": "earthquake",
@@ -402,8 +402,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.7217,
-          32.6817,
+          130.6843,
+          32.6297,
           10
         ]
       },
