@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1787272304000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-21&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1787358517000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-22&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5763
+    "count": 5764
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.4,
+        "place": "148 km SSE of Tateyama, Japan",
+        "time": 1787313727072,
+        "updated": 1787321352119,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmfe",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmfe&format=geojson",
+        "felt": 8,
+        "cdi": 2.7,
+        "mmi": 3.775,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 451,
+        "net": "us",
+        "code": "6000tmfe",
+        "ids": ",us6000tmfe,usauto6000tmfe,",
+        "sources": ",us,usauto,",
+        "types": ",dyfi,internal-moment-tensor,losspager,origin,phase-data,shakemap,",
+        "nst": 114,
+        "dmin": 3.125,
+        "rms": 0.96,
+        "gap": 49,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.4 - 148 km SSE of Tateyama, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.3802,
+          33.7171,
+          61.666
+        ]
+      },
+      "id": "us6000tmfe"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -2575,7 +2615,7 @@
         "mag": 6.5,
         "place": "123 km E of Yamada, Japan",
         "time": 1774534731927,
-        "updated": 1781104491040,
+        "updated": 1787355518065,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000s7u4",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000s7u4&format=geojson",
