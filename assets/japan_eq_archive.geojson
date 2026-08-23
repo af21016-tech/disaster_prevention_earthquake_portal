@@ -1,27 +1,67 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1787358517000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-22&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1787445063000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-23&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5764
+    "count": 5765
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.8,
+        "place": "4 km N of Toride, Japan",
+        "time": 1787418039472,
+        "updated": 1787444619303,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmta",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmta&format=geojson",
+        "felt": 107,
+        "cdi": 5.3,
+        "mmi": 4.935,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 574,
+        "net": "us",
+        "code": "6000tmta",
+        "ids": ",us6000tmta,usauto6000tmta,",
+        "sources": ",us,usauto,",
+        "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 119,
+        "dmin": 1.627,
+        "rms": 0.72,
+        "gap": 47,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.8 - 4 km N of Toride, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.0778,
+          35.9375,
+          61
+        ]
+      },
+      "id": "us6000tmta"
+    },
     {
       "type": "Feature",
       "properties": {
         "mag": 5.4,
         "place": "148 km SSE of Tateyama, Japan",
         "time": 1787313727072,
-        "updated": 1787321352119,
+        "updated": 1787419264692,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmfe",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmfe&format=geojson",
-        "felt": 8,
+        "felt": 9,
         "cdi": 2.7,
-        "mmi": 3.775,
+        "mmi": 3.768,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -132,38 +172,38 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.6,
-        "place": "42 km E of Noda, Japan",
-        "time": 1786211878745,
-        "updated": 1786298686510,
+        "mag": 5.5,
+        "place": "47 km ENE of Noda, Japan",
+        "time": 1786211878812,
+        "updated": 1787409769249,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tjaj",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tjaj&format=geojson",
         "felt": 2,
         "cdi": 3.8,
-        "mmi": 4.041,
+        "mmi": 4.242,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 483,
+        "sig": 466,
         "net": "us",
         "code": "6000tjaj",
         "ids": ",us6000tjaj,usauto6000tjaj,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 118,
-        "dmin": 1.133,
-        "rms": 0.56,
+        "nst": 123,
+        "dmin": 1.15,
+        "rms": 0.68,
         "gap": 96,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.6 - 42 km E of Noda, Japan"
+        "title": "M 5.5 - 47 km ENE of Noda, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.3107,
-          40.1723,
+          142.3591,
+          40.1992,
           34
         ]
       },
@@ -253,15 +293,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.5,
-        "place": "57 km E of Mutsu, Japan",
-        "time": 1785552481570,
-        "updated": 1785682242040,
+        "place": "63 km E of Mutsu, Japan",
+        "time": 1785552480535,
+        "updated": 1787370509817,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000thdk",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000thdk&format=geojson",
         "felt": 7,
         "cdi": 3.8,
-        "mmi": 4.35,
+        "mmi": 4.338,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -271,20 +311,20 @@
         "ids": ",us6000thdk,usauto6000thdk,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 73,
-        "dmin": 0.843,
-        "rms": 0.83,
-        "gap": 72,
+        "nst": 102,
+        "dmin": 0.873,
+        "rms": 0.97,
+        "gap": 124,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.5 - 57 km E of Mutsu, Japan"
+        "title": "M 5.5 - 63 km E of Mutsu, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          141.8958,
-          41.352,
-          82.29
+          141.97,
+          41.3318,
+          74.853
         ]
       },
       "id": "us6000thdk"
