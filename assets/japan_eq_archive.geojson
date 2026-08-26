@@ -1,14 +1,94 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1787617801000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-25&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1787704260000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-26&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5766
+    "count": 5768
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5,
+        "place": "31 km S of Nemuro, Japan",
+        "time": 1787648840740,
+        "updated": 1787650047040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tnbv",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tnbv&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 385,
+        "net": "us",
+        "code": "6000tnbv",
+        "ids": ",us6000tnbv,",
+        "sources": ",us,",
+        "types": ",origin,phase-data,",
+        "nst": 81,
+        "dmin": 2.1,
+        "rms": 0.74,
+        "gap": 121,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.0 - 31 km S of Nemuro, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          145.6343,
+          43.045,
+          96.855
+        ]
+      },
+      "id": "us6000tnbv"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.5,
+        "place": "108 km NE of Hengchun, Taiwan",
+        "time": 1787641210853,
+        "updated": 1787674737880,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tnbm",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tnbm&format=geojson",
+        "felt": 14,
+        "cdi": 3.8,
+        "mmi": 5.453,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 471,
+        "net": "us",
+        "code": "6000tnbm",
+        "ids": ",us6000tnbm,usauto6000tnbm,",
+        "sources": ",us,usauto,",
+        "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 101,
+        "dmin": 0.5,
+        "rms": 1.05,
+        "gap": 28,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.5 - 108 km NE of Hengchun, Taiwan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.5709,
+          22.6053,
+          14.608
+        ]
+      },
+      "id": "us6000tnbm"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -55,17 +135,17 @@
         "mag": 5.8,
         "place": "4 km N of Toride, Japan",
         "time": 1787418039472,
-        "updated": 1787616780826,
+        "updated": 1787697737624,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmta",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmta&format=geojson",
-        "felt": 144,
+        "felt": 153,
         "cdi": 5.7,
         "mmi": 4.624,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 600,
+        "sig": 605,
         "net": "us",
         "code": "6000tmta",
         "ids": ",us6000tmta,usauto6000tmta,",
@@ -134,8 +214,8 @@
       "properties": {
         "mag": 5.1,
         "place": "Kuril Islands",
-        "time": 1787002596105,
-        "updated": 1787024897040,
+        "time": 1787002595316,
+        "updated": 1787702358040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tlbz",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tlbz&format=geojson",
@@ -151,9 +231,9 @@
         "ids": ",us6000tlbz,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 107,
-        "dmin": 5.998,
-        "rms": 0.6,
+        "nst": 112,
+        "dmin": 6.021,
+        "rms": 0.68,
         "gap": 51,
         "magType": "mb",
         "type": "earthquake",
@@ -162,9 +242,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          151.4468,
-          46.4392,
-          93.538
+          151.4834,
+          46.4513,
+          85.946
         ]
       },
       "id": "us6000tlbz"
@@ -415,7 +495,7 @@
         "mag": 5.3,
         "place": "12 km N of Tsunagi, Japan",
         "time": 1785331176674,
-        "updated": 1786552422468,
+        "updated": 1787692758040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgmx",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgmx&format=geojson",
@@ -573,9 +653,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "48 km E of Nishinoomote, Japan",
-        "time": 1784238583422,
-        "updated": 1786078654529,
+        "place": "42 km E of Nishinoomote, Japan",
+        "time": 1784238583161,
+        "updated": 1787634485040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t15t",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t15t&format=geojson",
@@ -592,18 +672,18 @@
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,origin,phase-data,",
         "nst": 84,
-        "dmin": 1.148,
-        "rms": 1.04,
+        "dmin": 1.166,
+        "rms": 1.05,
         "gap": 80,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.1 - 48 km E of Nishinoomote, Japan"
+        "title": "M 5.1 - 42 km E of Nishinoomote, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          131.5012,
-          30.793,
+          131.4468,
+          30.7109,
           35
         ]
       },
@@ -1013,15 +1093,15 @@
       "type": "Feature",
       "properties": {
         "mag": 6.9,
-        "place": "32 km ENE of Kuji, Japan",
-        "time": 1782340213021,
-        "updated": 1784957397357,
+        "place": "35 km ENE of Noda, Japan",
+        "time": 1782340212962,
+        "updated": 1787629976850,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zq",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t7zq&format=geojson",
         "felt": 95,
         "cdi": 6.9,
-        "mmi": 6.796,
+        "mmi": 6.699,
         "alert": "yellow",
         "status": "reviewed",
         "tsunami": 0,
@@ -1031,19 +1111,19 @@
         "ids": ",pt26175002,us6000t7zq,atth5qif,",
         "sources": ",pt,us,at,",
         "types": ",dyfi,ground-failure,impact-text,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 123,
-        "dmin": 0.965,
-        "rms": 0.67,
+        "nst": 122,
+        "dmin": 1.003,
+        "rms": 0.68,
         "gap": 34,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 6.9 - 32 km ENE of Kuji, Japan"
+        "title": "M 6.9 - 35 km ENE of Noda, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.1353,
-          40.2745,
+          142.1794,
+          40.2563,
           34
         ]
       },
