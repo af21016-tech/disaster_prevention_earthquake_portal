@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1787704260000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-26&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1787807963000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-27&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5768
+    "count": 5769
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.6,
+        "place": "212 km E of Onagawa Chō, Japan",
+        "time": 1787772101921,
+        "updated": 1787781094951,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tc18",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tc18&format=geojson",
+        "felt": 1,
+        "cdi": 2,
+        "mmi": 3.024,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 483,
+        "net": "us",
+        "code": "7000tc18",
+        "ids": ",us7000tc18,",
+        "sources": ",us,",
+        "types": ",dyfi,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 137,
+        "dmin": 3.42,
+        "rms": 0.79,
+        "gap": 64,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.6 - 212 km E of Onagawa Chō, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.8477,
+          38.1292,
+          10
+        ]
+      },
+      "id": "us7000tc18"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -55,7 +95,7 @@
         "mag": 5.5,
         "place": "108 km NE of Hengchun, Taiwan",
         "time": 1787641210853,
-        "updated": 1787674737880,
+        "updated": 1787728167608,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tnbm",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tnbm&format=geojson",
@@ -575,7 +615,7 @@
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
         "time": 1785223634942,
-        "updated": 1787029788307,
+        "updated": 1787761133991,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
