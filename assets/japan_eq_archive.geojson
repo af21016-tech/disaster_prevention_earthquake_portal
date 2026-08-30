@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1787977699000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-29&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1788055023000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-08-30&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -173,15 +173,15 @@
       "type": "Feature",
       "properties": {
         "mag": 6,
-        "place": "33 km SSW of Honchō, Japan",
-        "time": 1787492693514,
-        "updated": 1787579578974,
+        "place": "32 km SSW of Honchō, Japan",
+        "time": 1787492693389,
+        "updated": 1788040173051,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmz6",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmz6&format=geojson",
         "felt": 12,
         "cdi": 3.4,
-        "mmi": 4.484,
+        "mmi": 5.551,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -191,20 +191,20 @@
         "ids": ",us6000tmz6,usauto6000tmz6,attk866t,",
         "sources": ",us,usauto,at,",
         "types": ",dyfi,ground-failure,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 118,
-        "dmin": 0.306,
-        "rms": 0.76,
+        "nst": 136,
+        "dmin": 0.312,
+        "rms": 0.78,
         "gap": 101,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 6.0 - 33 km SSW of Honchō, Japan"
+        "title": "M 6.0 - 32 km SSW of Honchō, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.8255,
-          41.8344,
-          42.867
+          142.802,
+          41.8495,
+          41
         ]
       },
       "id": "us6000tmz6"
