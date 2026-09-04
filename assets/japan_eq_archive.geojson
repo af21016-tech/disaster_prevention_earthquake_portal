@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1788399702000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-03&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1788485717000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-04&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -654,14 +654,14 @@
       "properties": {
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
-        "time": 1785223634942,
-        "updated": 1787761133991,
+        "time": 1785223634640,
+        "updated": 1788439103563,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
         "felt": 95,
         "cdi": 8.7,
-        "mmi": 9.24,
+        "mmi": 9.242,
         "alert": "red",
         "status": "reviewed",
         "tsunami": 0,
@@ -672,9 +672,9 @@
         "sources": ",at,pt,us,usauto,",
         "types": ",associate,dyfi,earthquake-name,finite-fault,general-text,ground-failure,impact-text,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,significance,",
         "nst": 122,
-        "dmin": 0.52,
-        "rms": 1.11,
-        "gap": 39,
+        "dmin": 0.56,
+        "rms": 0.99,
+        "gap": 38,
         "magType": "mww",
         "type": "earthquake",
         "title": "M 6.8 - The 2026 Kumamoto Region, Japan Earthquake"
@@ -682,9 +682,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.6843,
-          32.6297,
-          10
+          130.6269,
+          32.6043,
+          8
         ]
       },
       "id": "us6000tgb9"
@@ -1093,9 +1093,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.2,
-        "place": "6 km SW of Ōtsuki, Japan",
-        "time": 1782480540241,
-        "updated": 1785444027040,
+        "place": "5 km W of Ōtsuki, Japan",
+        "time": 1782480540376,
+        "updated": 1788442562040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8fe",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t8fe&format=geojson",
@@ -1110,20 +1110,20 @@
         "code": "6000t8fe",
         "ids": ",us6000t8fe,",
         "sources": ",us,",
-        "types": ",dyfi,ground-failure,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "types": ",dyfi,ground-failure,impact-text,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 97,
-        "dmin": 1.118,
-        "rms": 0.66,
+        "dmin": 1.087,
+        "rms": 0.69,
         "gap": 49,
         "magType": "mwr",
         "type": "earthquake",
-        "title": "M 5.2 - 6 km SW of Ōtsuki, Japan"
+        "title": "M 5.2 - 5 km W of Ōtsuki, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          138.9232,
-          35.5833,
+          138.9127,
+          35.6137,
           35
         ]
       },
