@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1788485717000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-04&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1788572205000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5770
+    "count": 5771
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.5,
+        "place": "156 km E of Kuril’sk, Russia",
+        "time": 1788565950886,
+        "updated": 1788567566018,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tefx",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tefx&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": 3.957,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 465,
+        "net": "us",
+        "code": "7000tefx",
+        "ids": ",us7000tefx,",
+        "sources": ",us,",
+        "types": ",losspager,origin,phase-data,shakemap,",
+        "nst": 97,
+        "dmin": 5.247,
+        "rms": 0.97,
+        "gap": 82,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.5 - 156 km E of Kuril’sk, Russia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          149.8346,
+          44.9792,
+          36.429
+        ]
+      },
+      "id": "us7000tefx"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -213,15 +253,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.8,
-        "place": "4 km N of Toride, Japan",
-        "time": 1787418039472,
-        "updated": 1787697737624,
+        "place": "2 km NNW of Toride, Japan",
+        "time": 1787418039299,
+        "updated": 1788536968206,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmta",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmta&format=geojson",
         "felt": 153,
         "cdi": 5.7,
-        "mmi": 4.624,
+        "mmi": 5.93,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -231,19 +271,19 @@
         "ids": ",us6000tmta,usauto6000tmta,",
         "sources": ",us,usauto,",
         "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 119,
-        "dmin": 1.627,
-        "rms": 0.72,
+        "nst": 121,
+        "dmin": 1.633,
+        "rms": 0.68,
         "gap": 47,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.8 - 4 km N of Toride, Japan"
+        "title": "M 5.8 - 2 km NNW of Toride, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.0778,
-          35.9375,
+          140.0771,
+          35.9182,
           61
         ]
       },
@@ -1175,7 +1215,7 @@
         "mag": 6.9,
         "place": "35 km ENE of Noda, Japan",
         "time": 1782340212962,
-        "updated": 1787629976850,
+        "updated": 1788536450040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zq",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000t7zq&format=geojson",
@@ -1215,7 +1255,7 @@
         "mag": 5.3,
         "place": "Izu Islands, Japan region",
         "time": 1781810259218,
-        "updated": 1784832056040,
+        "updated": 1788536456040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000suds",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000suds&format=geojson",
