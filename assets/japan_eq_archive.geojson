@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1788572205000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1788658253000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-06&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -13,15 +13,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.5,
-        "place": "156 km E of Kuril’sk, Russia",
-        "time": 1788565950886,
-        "updated": 1788567566018,
+        "place": "168 km ESE of Kuril’sk, Russia",
+        "time": 1788565949825,
+        "updated": 1788652741035,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tefx",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tefx&format=geojson",
         "felt": null,
         "cdi": null,
-        "mmi": 3.957,
+        "mmi": 3.794,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -30,21 +30,21 @@
         "code": "7000tefx",
         "ids": ",us7000tefx,",
         "sources": ",us,",
-        "types": ",losspager,origin,phase-data,shakemap,",
-        "nst": 97,
-        "dmin": 5.247,
-        "rms": 0.97,
+        "types": ",losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 105,
+        "dmin": 5.348,
+        "rms": 1.19,
         "gap": 82,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.5 - 156 km E of Kuril’sk, Russia"
+        "title": "M 5.5 - 168 km ESE of Kuril’sk, Russia"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          149.8346,
-          44.9792,
-          36.429
+          149.9838,
+          44.9418,
+          32
         ]
       },
       "id": "us7000tefx"
