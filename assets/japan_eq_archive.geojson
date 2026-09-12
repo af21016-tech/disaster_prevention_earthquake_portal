@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1789090849000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-11&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1789177615000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-12&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -253,15 +253,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.8,
-        "place": "2 km NNW of Toride, Japan",
-        "time": 1787418039299,
-        "updated": 1788839342845,
+        "place": "5 km E of Ushiku, Japan",
+        "time": 1787418039194,
+        "updated": 1789132263947,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmta",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmta&format=geojson",
         "felt": 154,
         "cdi": 5.7,
-        "mmi": 5.93,
+        "mmi": 6.016,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -270,20 +270,20 @@
         "code": "6000tmta",
         "ids": ",us6000tmta,usauto6000tmta,",
         "sources": ",us,usauto,",
-        "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "types": ",dyfi,ground-failure,impact-text,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 121,
-        "dmin": 1.633,
-        "rms": 0.68,
+        "dmin": 1.706,
+        "rms": 1.07,
         "gap": 47,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.8 - 2 km NNW of Toride, Japan"
+        "title": "M 5.8 - 5 km E of Ushiku, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.0771,
-          35.9182,
+          140.1972,
+          35.9675,
           61
         ]
       },
