@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1789263456000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-13&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1789350949000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-14&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -215,7 +215,7 @@
         "mag": 5.5,
         "place": "108 km NE of Hengchun, Taiwan",
         "time": 1787641210853,
-        "updated": 1787728167608,
+        "updated": 1789273581040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tnbm",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tnbm&format=geojson",
@@ -333,15 +333,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.4,
-        "place": "148 km SSE of Tateyama, Japan",
-        "time": 1787313727072,
-        "updated": 1787419264692,
+        "place": "153 km SSE of Tateyama, Japan",
+        "time": 1787313727291,
+        "updated": 1789304269209,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmfe",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmfe&format=geojson",
         "felt": 9,
         "cdi": 2.7,
-        "mmi": 3.768,
+        "mmi": 3.571,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -351,20 +351,20 @@
         "ids": ",us6000tmfe,usauto6000tmfe,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,losspager,origin,phase-data,shakemap,",
-        "nst": 114,
-        "dmin": 3.125,
-        "rms": 0.96,
+        "nst": 132,
+        "dmin": 1.612,
+        "rms": 0.95,
         "gap": 49,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.4 - 148 km SSE of Tateyama, Japan"
+        "title": "M 5.4 - 153 km SSE of Tateyama, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.3802,
-          33.7171,
-          61.666
+          140.4935,
+          33.6984,
+          65.527
         ]
       },
       "id": "us6000tmfe"
