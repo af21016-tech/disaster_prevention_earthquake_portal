@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1789696059000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-18&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1789782728000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-19&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -13,19 +13,59 @@
       "type": "Feature",
       "properties": {
         "mag": 5,
+        "place": "Izu Islands, Japan region",
+        "time": 1789715968254,
+        "updated": 1789717282040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ti89",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000ti89&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 385,
+        "net": "us",
+        "code": "7000ti89",
+        "ids": ",us7000ti89,",
+        "sources": ",us,",
+        "types": ",origin,phase-data,",
+        "nst": 40,
+        "dmin": 4.853,
+        "rms": 0.85,
+        "gap": 132,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.0 - Izu Islands, Japan region"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.5763,
+          32.243,
+          35.294
+        ]
+      },
+      "id": "us7000ti89"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5,
         "place": "5 km NE of Mitsukaidō, Japan",
         "time": 1789571258245,
-        "updated": 1789650779229,
+        "updated": 1789741673604,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000thv6",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000thv6&format=geojson",
-        "felt": 66,
+        "felt": 71,
         "cdi": 3.8,
         "mmi": null,
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 410,
+        "sig": 412,
         "net": "us",
         "code": "7000thv6",
         "ids": ",us7000thv6,",
@@ -173,15 +213,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.6,
-        "place": "209 km ESE of Ōfunato, Japan",
-        "time": 1787772102872,
-        "updated": 1787859118869,
+        "place": "206 km ESE of Ōfunato, Japan",
+        "time": 1787772102986,
+        "updated": 1789751745967,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tc18",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tc18&format=geojson",
         "felt": 1,
         "cdi": 2,
-        "mmi": 3.059,
+        "mmi": 0,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -191,20 +231,20 @@
         "ids": ",us7000tc18,",
         "sources": ",us,",
         "types": ",dyfi,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 258,
-        "dmin": 3.377,
-        "rms": 0.77,
+        "nst": 234,
+        "dmin": 3.362,
+        "rms": 0.66,
         "gap": 62,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.6 - 209 km ESE of Ōfunato, Japan"
+        "title": "M 5.6 - 206 km ESE of Ōfunato, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.8447,
-          38.1821,
-          16.05
+          143.7989,
+          38.1728,
+          17.09
         ]
       },
       "id": "us7000tc18"
@@ -455,7 +495,7 @@
         "mag": 5.6,
         "place": "Volcano Islands, Japan region",
         "time": 1786822351970,
-        "updated": 1788107465890,
+        "updated": 1789749907040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tl36",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tl36&format=geojson",
@@ -928,46 +968,6 @@
         ]
       },
       "id": "us7000t0x0"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "mag": 5,
-        "place": "50 km E of Noda, Japan",
-        "time": 1784016451196,
-        "updated": 1787590573040,
-        "tz": null,
-        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t09z",
-        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t09z&format=geojson",
-        "felt": 2,
-        "cdi": 2.2,
-        "mmi": null,
-        "alert": null,
-        "status": "reviewed",
-        "tsunami": 0,
-        "sig": 385,
-        "net": "us",
-        "code": "7000t09z",
-        "ids": ",us7000t09z,",
-        "sources": ",us,",
-        "types": ",dyfi,moment-tensor,origin,phase-data,",
-        "nst": 110,
-        "dmin": 1.182,
-        "rms": 0.74,
-        "gap": 124,
-        "magType": "mb",
-        "type": "earthquake",
-        "title": "M 5.0 - 50 km E of Noda, Japan"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          142.4027,
-          40.1915,
-          56.541
-        ]
-      },
-      "id": "us7000t09z"
     },
     {
       "type": "Feature",
