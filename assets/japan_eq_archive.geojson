@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1789955739000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-21&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790042596000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-22&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -13,12 +13,12 @@
       "type": "Feature",
       "properties": {
         "mag": 5,
-        "place": "16 km WSW of Shikotan, Russia",
-        "time": 1789946738807,
-        "updated": 1789947719040,
+        "place": "38 km E of Nobeoka, Japan",
+        "time": 1789997912404,
+        "updated": 1789998975040,
         "tz": null,
-        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tiu3",
-        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tiu3&format=geojson",
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tixp",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tixp&format=geojson",
         "felt": null,
         "cdi": null,
         "mmi": null,
@@ -27,27 +27,27 @@
         "tsunami": 0,
         "sig": 385,
         "net": "us",
-        "code": "7000tiu3",
-        "ids": ",us7000tiu3,",
+        "code": "7000tixp",
+        "ids": ",us7000tixp,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 68,
-        "dmin": 2.871,
+        "nst": 59,
+        "dmin": 1.757,
         "rms": 0.75,
-        "gap": 132,
+        "gap": 108,
         "magType": "mb",
         "type": "earthquake",
-        "title": "M 5.0 - 16 km WSW of Shikotan, Russia"
+        "title": "M 5.0 - 38 km E of Nobeoka, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          146.5339,
-          43.7443,
-          64.936
+          132.0805,
+          32.5978,
+          42.736
         ]
       },
-      "id": "us7000tiu3"
+      "id": "us7000tixp"
     },
     {
       "type": "Feature",
