@@ -1,14 +1,94 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790042596000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-22&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790128869000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-23&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5776
+    "count": 5778
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.1,
+        "place": "88 km NNW of Uken, Japan",
+        "time": 1790073982312,
+        "updated": 1790075179040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tj4y",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tj4y&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 400,
+        "net": "us",
+        "code": "7000tj4y",
+        "ids": ",us7000tj4y,",
+        "sources": ",us,",
+        "types": ",origin,phase-data,",
+        "nst": 67,
+        "dmin": 2.809,
+        "rms": 0.86,
+        "gap": 99,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.1 - 88 km NNW of Uken, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.8944,
+          29.0367,
+          10
+        ]
+      },
+      "id": "us7000tj4y"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5,
+        "place": "Volcano Islands, Japan region",
+        "time": 1790054304687,
+        "updated": 1790055484040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tj3k",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tj3k&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 385,
+        "net": "us",
+        "code": "7000tj3k",
+        "ids": ",us7000tj3k,",
+        "sources": ",us,",
+        "types": ",origin,phase-data,",
+        "nst": 108,
+        "dmin": 10.557,
+        "rms": 1.02,
+        "gap": 119,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.0 - Volcano Islands, Japan region"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.4369,
+          23.1331,
+          10
+        ]
+      },
+      "id": "us7000tj3k"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -135,17 +215,17 @@
         "mag": 5,
         "place": "5 km NE of Mitsukaidō, Japan",
         "time": 1789571258245,
-        "updated": 1789741673604,
+        "updated": 1790093168522,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000thv6",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000thv6&format=geojson",
-        "felt": 71,
-        "cdi": 3.8,
+        "felt": 73,
+        "cdi": 3.6,
         "mmi": null,
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 412,
+        "sig": 411,
         "net": "us",
         "code": "7000thv6",
         "ids": ",us7000thv6,",
