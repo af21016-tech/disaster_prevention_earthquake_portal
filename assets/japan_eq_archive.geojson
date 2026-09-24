@@ -1,14 +1,54 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790128869000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-23&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790214606000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-24&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
     "count": 5778
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5,
+        "place": "Mariana Islands region",
+        "time": 1790168511614,
+        "updated": 1790212317490,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
+        "felt": null,
+        "cdi": null,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 385,
+        "net": "us",
+        "code": "6000tx38",
+        "ids": ",us6000tx38,",
+        "sources": ",us,",
+        "types": ",event-sequence,oaf,origin,phase-data,",
+        "nst": 140,
+        "dmin": 6.912,
+        "rms": 0.56,
+        "gap": 26,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.0 - Mariana Islands region"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.0239,
+          21.6622,
+          306.016
+        ]
+      },
+      "id": "us6000tx38"
+    },
     {
       "type": "Feature",
       "properties": {
@@ -208,46 +248,6 @@
         ]
       },
       "id": "us7000ti89"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "mag": 5,
-        "place": "5 km NE of Mitsukaidō, Japan",
-        "time": 1789571258245,
-        "updated": 1790093168522,
-        "tz": null,
-        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000thv6",
-        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000thv6&format=geojson",
-        "felt": 73,
-        "cdi": 3.6,
-        "mmi": null,
-        "alert": null,
-        "status": "reviewed",
-        "tsunami": 0,
-        "sig": 411,
-        "net": "us",
-        "code": "7000thv6",
-        "ids": ",us7000thv6,",
-        "sources": ",us,",
-        "types": ",dyfi,origin,phase-data,",
-        "nst": 67,
-        "dmin": 1.542,
-        "rms": 0.77,
-        "gap": 123,
-        "magType": "mb",
-        "type": "earthquake",
-        "title": "M 5.0 - 5 km NE of Mitsukaidō, Japan"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          140.0207,
-          36.0556,
-          77.348
-        ]
-      },
-      "id": "us7000thv6"
     },
     {
       "type": "Feature",
@@ -455,7 +455,7 @@
         "mag": 5.5,
         "place": "114 km NE of Hengchun, Taiwan",
         "time": 1787641209902,
-        "updated": 1789494029304,
+        "updated": 1790183144040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tnbm",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tnbm&format=geojson",
@@ -535,11 +535,11 @@
         "mag": 5.8,
         "place": "5 km E of Ushiku, Japan",
         "time": 1787418039194,
-        "updated": 1789803318847,
+        "updated": 1790174918907,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmta",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmta&format=geojson",
-        "felt": 155,
+        "felt": 156,
         "cdi": 5.7,
         "mmi": 6.016,
         "alert": "green",
@@ -575,7 +575,7 @@
         "mag": 5.4,
         "place": "153 km SSE of Tateyama, Japan",
         "time": 1787313727291,
-        "updated": 1789304269209,
+        "updated": 1790181263040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmfe",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmfe&format=geojson",
@@ -590,7 +590,7 @@
         "code": "6000tmfe",
         "ids": ",us6000tmfe,usauto6000tmfe,",
         "sources": ",us,usauto,",
-        "types": ",dyfi,internal-moment-tensor,losspager,origin,phase-data,shakemap,",
+        "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 132,
         "dmin": 1.612,
         "rms": 0.95,
