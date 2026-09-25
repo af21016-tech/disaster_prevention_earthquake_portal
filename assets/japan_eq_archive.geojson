@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790214606000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-24&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790302004000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-25&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511614,
-        "updated": 1790212317490,
+        "updated": 1790255515973,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -253,9 +253,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "101 km S of Yudomari, Japan",
-        "time": 1789245178910,
-        "updated": 1789248296469,
+        "place": "99 km S of Yudomari, Japan",
+        "time": 1789245177905,
+        "updated": 1790268419528,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000th1q",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000th1q&format=geojson",
@@ -271,20 +271,20 @@
         "ids": ",us7000th1q,",
         "sources": ",us,",
         "types": ",dyfi,moment-tensor,origin,phase-data,",
-        "nst": 95,
-        "dmin": 2.179,
-        "rms": 0.72,
-        "gap": 118,
+        "nst": 106,
+        "dmin": 2.166,
+        "rms": 0.88,
+        "gap": 89,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.1 - 101 km S of Yudomari, Japan"
+        "title": "M 5.1 - 99 km S of Yudomari, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.3787,
-          29.3244,
-          45.513
+          130.3836,
+          29.3365,
+          35.096
         ]
       },
       "id": "us7000th1q"
@@ -533,15 +533,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.8,
-        "place": "5 km E of Ushiku, Japan",
-        "time": 1787418039194,
-        "updated": 1790174918907,
+        "place": "3 km E of Fujishiro, Japan",
+        "time": 1787418039373,
+        "updated": 1790260873551,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmta",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmta&format=geojson",
         "felt": 156,
         "cdi": 5.7,
-        "mmi": 6.016,
+        "mmi": 5.98,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -552,18 +552,18 @@
         "sources": ",us,usauto,",
         "types": ",dyfi,ground-failure,impact-text,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 121,
-        "dmin": 1.706,
-        "rms": 1.07,
+        "dmin": 1.69,
+        "rms": 0.9,
         "gap": 47,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.8 - 5 km E of Ushiku, Japan"
+        "title": "M 5.8 - 3 km E of Fujishiro, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.1972,
-          35.9675,
+          140.1526,
+          35.9175,
           61
         ]
       },
