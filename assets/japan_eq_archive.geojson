@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790302004000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-25&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790388739000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-26&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511614,
-        "updated": 1790255515973,
+        "updated": 1790341922430,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -124495,7 +124495,7 @@
         "mag": 9.1,
         "place": "2011 Great Tohoku Earthquake, Japan",
         "time": 1299822384120,
-        "updated": 1786835019669,
+        "updated": 1790377722510,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/official20110311054624120_30",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=official20110311054624120_30&format=geojson",
