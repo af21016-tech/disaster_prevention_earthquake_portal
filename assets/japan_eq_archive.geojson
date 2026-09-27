@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790388739000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-26&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790474717000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-27&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511614,
-        "updated": 1790341922430,
+        "updated": 1790428316322,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -293,15 +293,15 @@
       "type": "Feature",
       "properties": {
         "mag": 5.5,
-        "place": "168 km ESE of Kuril’sk, Russia",
-        "time": 1788565949825,
-        "updated": 1788652741035,
+        "place": "152 km E of Kuril’sk, Russia",
+        "time": 1788565950709,
+        "updated": 1790459903474,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tefx",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tefx&format=geojson",
         "felt": null,
         "cdi": null,
-        "mmi": 3.794,
+        "mmi": 3.944,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -311,19 +311,19 @@
         "ids": ",us7000tefx,",
         "sources": ",us,",
         "types": ",losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 105,
-        "dmin": 5.348,
-        "rms": 1.19,
-        "gap": 82,
+        "nst": 123,
+        "dmin": 5.23,
+        "rms": 0.7,
+        "gap": 93,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.5 - 168 km ESE of Kuril’sk, Russia"
+        "title": "M 5.5 - 152 km E of Kuril’sk, Russia"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          149.9838,
-          44.9418,
+          149.8017,
+          45.0284,
           32
         ]
       },
@@ -373,9 +373,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.6,
-        "place": "206 km ESE of Ōfunato, Japan",
-        "time": 1787772102986,
-        "updated": 1789751745967,
+        "place": "203 km ESE of Ōfunato, Japan",
+        "time": 1787772101862,
+        "updated": 1790437248140,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tc18",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tc18&format=geojson",
@@ -391,20 +391,20 @@
         "ids": ",us7000tc18,",
         "sources": ",us,",
         "types": ",dyfi,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 234,
-        "dmin": 3.362,
-        "rms": 0.66,
-        "gap": 62,
+        "nst": 259,
+        "dmin": 3.328,
+        "rms": 0.72,
+        "gap": 33,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.6 - 206 km ESE of Ōfunato, Japan"
+        "title": "M 5.6 - 203 km ESE of Ōfunato, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.7989,
-          38.1728,
-          17.09
+          143.7684,
+          38.1969,
+          10
         ]
       },
       "id": "us7000tc18"
