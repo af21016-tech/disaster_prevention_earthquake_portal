@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790650572000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-29&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790735860000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-30&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -15,7 +15,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511614,
-        "updated": 1790601119835,
+        "updated": 1790687519640,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -454,14 +454,14 @@
       "properties": {
         "mag": 5.5,
         "place": "114 km NE of Hengchun, Taiwan",
-        "time": 1787641209902,
-        "updated": 1790183144040,
+        "time": 1787641209830,
+        "updated": 1790688329147,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tnbm",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tnbm&format=geojson",
         "felt": 14,
         "cdi": 3.8,
-        "mmi": 4.81,
+        "mmi": 4.764,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -472,8 +472,8 @@
         "sources": ",us,usauto,",
         "types": ",dyfi,ground-failure,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 132,
-        "dmin": 0.558,
-        "rms": 1.21,
+        "dmin": 0.561,
+        "rms": 1.22,
         "gap": 28,
         "magType": "mww",
         "type": "earthquake",
@@ -482,9 +482,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          121.6411,
-          22.6102,
-          10.13
+          121.6435,
+          22.6063,
+          9.82
         ]
       },
       "id": "us6000tnbm"
@@ -572,10 +572,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.4,
-        "place": "153 km SSE of Tateyama, Japan",
-        "time": 1787313727291,
-        "updated": 1790181263040,
+        "mag": 5.3,
+        "place": "148 km SSE of Tateyama, Japan",
+        "time": 1787313728085,
+        "updated": 1790675204040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmfe",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tmfe&format=geojson",
@@ -585,26 +585,26 @@
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 451,
+        "sig": 435,
         "net": "us",
         "code": "6000tmfe",
         "ids": ",us6000tmfe,usauto6000tmfe,",
         "sources": ",us,usauto,",
         "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 132,
-        "dmin": 1.612,
-        "rms": 0.95,
+        "nst": 129,
+        "dmin": 1.565,
+        "rms": 0.92,
         "gap": 49,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.4 - 153 km SSE of Tateyama, Japan"
+        "title": "M 5.3 - 148 km SSE of Tateyama, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.4935,
-          33.6984,
-          65.527
+          140.4689,
+          33.744,
+          70.69
         ]
       },
       "id": "us6000tmfe"
@@ -974,14 +974,14 @@
       "properties": {
         "mag": 6.8,
         "place": "The 2026 Kumamoto Region, Japan Earthquake",
-        "time": 1785223634640,
-        "updated": 1789931408775,
+        "time": 1785223634658,
+        "updated": 1790687886631,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgb9&format=geojson",
         "felt": 97,
         "cdi": 8.7,
-        "mmi": 9.242,
+        "mmi": 9.231,
         "alert": "red",
         "status": "reviewed",
         "tsunami": 0,
@@ -992,9 +992,9 @@
         "sources": ",at,pt,us,usauto,",
         "types": ",associate,dyfi,earthquake-name,finite-fault,general-text,ground-failure,impact-text,internal-moment-tensor,internal-origin,losspager,moment-tensor,origin,phase-data,shakemap,significance,",
         "nst": 122,
-        "dmin": 0.56,
-        "rms": 0.99,
-        "gap": 38,
+        "dmin": 0.538,
+        "rms": 1.07,
+        "gap": 39,
         "magType": "mww",
         "type": "earthquake",
         "title": "M 6.8 - The 2026 Kumamoto Region, Japan Earthquake"
@@ -1002,8 +1002,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.6269,
-          32.6043,
+          130.6601,
+          32.6177,
           8
         ]
       },
@@ -1135,7 +1135,7 @@
         "mag": 5.1,
         "place": "133 km ENE of Miyako, Japan",
         "time": 1784015048723,
-        "updated": 1785738256040,
+        "updated": 1790719527040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t09u",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t09u&format=geojson",
@@ -1175,7 +1175,7 @@
         "mag": 5,
         "place": "57 km SSW of Shirahama, Japan",
         "time": 1783601936654,
-        "updated": 1785923386180,
+        "updated": 1790719520040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000sz7n",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000sz7n&format=geojson",
