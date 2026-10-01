@@ -1,21 +1,61 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790735860000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-09-30&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790822493000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-01&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5778
+    "count": 5779
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.6,
+        "place": "74 km S of Yonakuni, Japan",
+        "time": 1790744424971,
+        "updated": 1790788945040,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tyhk",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tyhk&format=geojson",
+        "felt": 11,
+        "cdi": 4.1,
+        "mmi": 3.747,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 487,
+        "net": "us",
+        "code": "6000tyhk",
+        "ids": ",us6000tyhk,usauto6000tyhk,",
+        "sources": ",us,usauto,",
+        "types": ",dyfi,internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 94,
+        "dmin": 0.667,
+        "rms": 1.07,
+        "gap": 46,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.6 - 74 km S of Yonakuni, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.9149,
+          23.8027,
+          10.792
+        ]
+      },
+      "id": "us6000tyhk"
+    },
     {
       "type": "Feature",
       "properties": {
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511614,
-        "updated": 1790687519640,
+        "updated": 1790773923449,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
