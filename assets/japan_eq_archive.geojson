@@ -1,27 +1,107 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1790822493000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-01&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1790909141000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-02&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5779
+    "count": 5780
   },
   "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.1,
+        "place": "108 km ENE of Miyako, Japan",
+        "time": 1790875040097,
+        "updated": 1790876954202,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tyw6",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tyw6&format=geojson",
+        "felt": 1,
+        "cdi": 2.2,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 400,
+        "net": "us",
+        "code": "6000tyw6",
+        "ids": ",us6000tyw6,",
+        "sources": ",us,",
+        "types": ",dyfi,origin,phase-data,",
+        "nst": 78,
+        "dmin": 1.851,
+        "rms": 0.9,
+        "gap": 123,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.1 - 108 km ENE of Miyako, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.1734,
+          39.8778,
+          35
+        ]
+      },
+      "id": "us6000tyw6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.3,
+        "place": "0 km NNE of Yōkaichiba, Japan",
+        "time": 1790857631864,
+        "updated": 1790902738566,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tytg",
+        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tytg&format=geojson",
+        "felt": 25,
+        "cdi": 3.7,
+        "mmi": null,
+        "alert": null,
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 441,
+        "net": "us",
+        "code": "6000tytg",
+        "ids": ",us6000tytg,",
+        "sources": ",us,",
+        "types": ",dyfi,origin,phase-data,",
+        "nst": 97,
+        "dmin": 2.072,
+        "rms": 0.76,
+        "gap": 119,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.3 - 0 km NNE of Yōkaichiba, Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.5507,
+          35.7025,
+          41.649
+        ]
+      },
+      "id": "us6000tytg"
+    },
     {
       "type": "Feature",
       "properties": {
         "mag": 5.6,
         "place": "74 km S of Yonakuni, Japan",
         "time": 1790744424971,
-        "updated": 1790788945040,
+        "updated": 1790831202559,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tyhk",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tyhk&format=geojson",
         "felt": 11,
         "cdi": 4.1,
-        "mmi": 3.747,
+        "mmi": 3.787,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
@@ -55,7 +135,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511614,
-        "updated": 1790773923449,
+        "updated": 1790860318355,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -172,50 +252,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5,
-        "place": "38 km E of Nobeoka, Japan",
-        "time": 1789997912404,
-        "updated": 1789998975040,
-        "tz": null,
-        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tixp",
-        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tixp&format=geojson",
-        "felt": null,
-        "cdi": null,
-        "mmi": null,
-        "alert": null,
-        "status": "reviewed",
-        "tsunami": 0,
-        "sig": 385,
-        "net": "us",
-        "code": "7000tixp",
-        "ids": ",us7000tixp,",
-        "sources": ",us,",
-        "types": ",origin,phase-data,",
-        "nst": 59,
-        "dmin": 1.757,
-        "rms": 0.75,
-        "gap": 108,
-        "magType": "mb",
-        "type": "earthquake",
-        "title": "M 5.0 - 38 km E of Nobeoka, Japan"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          132.0805,
-          32.5978,
-          42.736
-        ]
-      },
-      "id": "us7000tixp"
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "mag": 5.1,
-        "place": "14 km WNW of Naze, Japan",
-        "time": 1789889302965,
-        "updated": 1789890783980,
+        "place": "17 km WNW of Naze, Japan",
+        "time": 1789889302963,
+        "updated": 1790847404294,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tipl",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tipl&format=geojson",
@@ -231,20 +271,20 @@
         "ids": ",us7000tipl,",
         "sources": ",us,",
         "types": ",dyfi,moment-tensor,origin,phase-data,",
-        "nst": 88,
-        "dmin": 3.065,
-        "rms": 0.92,
-        "gap": 94,
+        "nst": 93,
+        "dmin": 3.113,
+        "rms": 0.89,
+        "gap": 97,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.1 - 14 km WNW of Naze, Japan"
+        "title": "M 5.1 - 17 km WNW of Naze, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.3406,
-          28.3947,
-          68.834
+          129.3273,
+          28.4442,
+          68.899
         ]
       },
       "id": "us7000tipl"
