@@ -1,21 +1,21 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1791167784000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-05&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1791257386000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-06&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
-    "count": 5781
+    "count": 5780
   },
   "features": [
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.5,
+        "mag": 5.1,
         "place": "Volcano Islands, Japan region",
-        "time": 1791112368270,
-        "updated": 1791119883279,
+        "time": 1791112368352,
+        "updated": 1791221615040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tzid",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tzid&format=geojson",
@@ -25,25 +25,25 @@
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 465,
+        "sig": 400,
         "net": "us",
         "code": "6000tzid",
         "ids": ",us6000tzid,",
         "sources": ",us,",
-        "types": ",losspager,origin,phase-data,shakemap,",
+        "types": ",losspager,moment-tensor,origin,phase-data,shakemap,",
         "nst": 101,
-        "dmin": 12.618,
-        "rms": 0.68,
+        "dmin": 12.601,
+        "rms": 0.69,
         "gap": 80,
-        "magType": "mb",
+        "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.5 - Volcano Islands, Japan region"
+        "title": "M 5.1 - Volcano Islands, Japan region"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          144.6734,
-          22.8286,
+          144.6508,
+          22.8191,
           10
         ]
       },
@@ -174,8 +174,8 @@
       "properties": {
         "mag": 5,
         "place": "Mariana Islands region",
-        "time": 1790168511614,
-        "updated": 1791119524223,
+        "time": 1790168511754,
+        "updated": 1791212129040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -191,9 +191,9 @@
         "ids": ",us6000tx38,",
         "sources": ",us,",
         "types": ",event-sequence,oaf,origin,phase-data,",
-        "nst": 140,
-        "dmin": 6.912,
-        "rms": 0.56,
+        "nst": 150,
+        "dmin": 5.469,
+        "rms": 0.58,
         "gap": 26,
         "magType": "mb",
         "type": "earthquake",
@@ -202,9 +202,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.0239,
-          21.6622,
-          306.016
+          143.0012,
+          21.6538,
+          306.98
         ]
       },
       "id": "us6000tx38"
@@ -968,46 +968,6 @@
         ]
       },
       "id": "us6000thdk"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "mag": 5,
-        "place": "3 km NW of Uto, Japan",
-        "time": 1785419259044,
-        "updated": 1788716757040,
-        "tz": null,
-        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgy8",
-        "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tgy8&format=geojson",
-        "felt": 2,
-        "cdi": 4.6,
-        "mmi": null,
-        "alert": null,
-        "status": "reviewed",
-        "tsunami": 0,
-        "sig": 386,
-        "net": "us",
-        "code": "6000tgy8",
-        "ids": ",us6000tgy8,",
-        "sources": ",us,",
-        "types": ",dyfi,moment-tensor,origin,phase-data,",
-        "nst": 59,
-        "dmin": 1.204,
-        "rms": 0.74,
-        "gap": 107,
-        "magType": "mb",
-        "type": "earthquake",
-        "title": "M 5.0 - 3 km NW of Uto, Japan"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          130.6356,
-          32.7068,
-          10
-        ]
-      },
-      "id": "us6000tgy8"
     },
     {
       "type": "Feature",
