@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1791341669000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-07&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1791429108000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-08&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -12,39 +12,39 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.9,
-        "place": "264 km SSW of Severo-Kuril’sk, Russia",
-        "time": 1791305301805,
-        "updated": 1791312832600,
+        "mag": 5.8,
+        "place": "262 km SSW of Severo-Kuril’sk, Russia",
+        "time": 1791305302347,
+        "updated": 1791392087721,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u0hy",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000u0hy&format=geojson",
         "felt": null,
         "cdi": null,
-        "mmi": 3.825,
+        "mmi": 3.696,
         "alert": "green",
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 536,
+        "sig": 518,
         "net": "us",
         "code": "6000u0hy",
         "ids": ",usauto6000u0hy,us6000u0hy,",
         "sources": ",usauto,us,",
         "types": ",internal-moment-tensor,losspager,moment-tensor,origin,phase-data,shakemap,",
-        "nst": 216,
-        "dmin": 5.006,
-        "rms": 0.67,
-        "gap": 47,
+        "nst": 310,
+        "dmin": 4.989,
+        "rms": 0.66,
+        "gap": 24,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.9 - 264 km SSW of Severo-Kuril’sk, Russia"
+        "title": "M 5.8 - 262 km SSW of Severo-Kuril’sk, Russia"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          154.8085,
-          48.4554,
-          26.047
+          154.9316,
+          48.4437,
+          29
         ]
       },
       "id": "us6000u0hy"
@@ -215,7 +215,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511754,
-        "updated": 1791292316201,
+        "updated": 1791378713472,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
