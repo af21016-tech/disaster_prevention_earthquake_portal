@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1791429108000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-08&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1791515874000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-09&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.7.0",
@@ -1175,7 +1175,7 @@
         "mag": 5.3,
         "place": "43 km E of Nishinoomote, Japan",
         "time": 1784238583265,
-        "updated": 1789692388040,
+        "updated": 1791473606040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t15t",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t15t&format=geojson",
@@ -1215,7 +1215,7 @@
         "mag": 5.3,
         "place": "Volcano Islands, Japan region",
         "time": 1784188150570,
-        "updated": 1786513461040,
+        "updated": 1791473595040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t0x0",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000t0x0&format=geojson",
