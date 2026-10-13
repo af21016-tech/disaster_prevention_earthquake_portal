@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1791773506000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-12&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1791864450000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-13&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.8.1",
@@ -93,9 +93,9 @@
       "type": "Feature",
       "properties": {
         "mag": 5.1,
-        "place": "108 km ENE of Miyako, Japan",
-        "time": 1790875040097,
-        "updated": 1790876954202,
+        "place": "103 km ENE of Miyako, Japan",
+        "time": 1790875037225,
+        "updated": 1791825057536,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tyw6",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tyw6&format=geojson",
@@ -110,21 +110,21 @@
         "code": "6000tyw6",
         "ids": ",us6000tyw6,",
         "sources": ",us,",
-        "types": ",dyfi,origin,phase-data,",
-        "nst": 78,
-        "dmin": 1.851,
-        "rms": 0.9,
-        "gap": 123,
+        "types": ",dyfi,moment-tensor,origin,phase-data,",
+        "nst": 97,
+        "dmin": 1.828,
+        "rms": 0.67,
+        "gap": 87,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.1 - 108 km ENE of Miyako, Japan"
+        "title": "M 5.1 - 103 km ENE of Miyako, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          143.1734,
-          39.8778,
-          35
+          143.1211,
+          39.8559,
+          14.481
         ]
       },
       "id": "us6000tyw6"
@@ -215,7 +215,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511754,
-        "updated": 1791551515341,
+        "updated": 1791810745271,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -292,10 +292,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5,
+        "mag": 5.1,
         "place": "Volcano Islands, Japan region",
-        "time": 1790054304687,
-        "updated": 1790055484040,
+        "time": 1790054304266,
+        "updated": 1791816636040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tj3k",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tj3k&format=geojson",
@@ -305,25 +305,25 @@
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 385,
+        "sig": 400,
         "net": "us",
         "code": "7000tj3k",
         "ids": ",us7000tj3k,",
         "sources": ",us,",
         "types": ",origin,phase-data,",
-        "nst": 108,
-        "dmin": 10.557,
-        "rms": 1.02,
-        "gap": 119,
-        "magType": "mb",
+        "nst": 118,
+        "dmin": 4.043,
+        "rms": 0.63,
+        "gap": 118,
+        "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.0 - Volcano Islands, Japan region"
+        "title": "M 5.1 - Volcano Islands, Japan region"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          142.4369,
-          23.1331,
+          142.4066,
+          23.0397,
           10
         ]
       },
