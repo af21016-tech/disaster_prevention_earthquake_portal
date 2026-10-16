@@ -1,8 +1,8 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "generated": 1792029739000,
-    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-15&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
+    "generated": 1792115525000,
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=1995-01-01&endtime=2026-10-16&minmagnitude=5&minlatitude=20&maxlatitude=50&minlongitude=120&maxlongitude=155",
     "title": "USGS Earthquakes",
     "status": 200,
     "api": "2.8.1",
@@ -215,7 +215,7 @@
         "mag": 5,
         "place": "Mariana Islands region",
         "time": 1790168511754,
-        "updated": 1791810745271,
+        "updated": 1792069949994,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tx38",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us6000tx38&format=geojson",
@@ -252,10 +252,10 @@
     {
       "type": "Feature",
       "properties": {
-        "mag": 5.1,
-        "place": "88 km NNW of Uken, Japan",
-        "time": 1790073982312,
-        "updated": 1790075179040,
+        "mag": 5,
+        "place": "82 km NNW of Uken, Japan",
+        "time": 1790073981394,
+        "updated": 1792055043040,
         "tz": null,
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tj4y",
         "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us7000tj4y&format=geojson",
@@ -265,25 +265,25 @@
         "alert": null,
         "status": "reviewed",
         "tsunami": 0,
-        "sig": 400,
+        "sig": 385,
         "net": "us",
         "code": "7000tj4y",
         "ids": ",us7000tj4y,",
         "sources": ",us,",
-        "types": ",origin,phase-data,",
-        "nst": 67,
-        "dmin": 2.809,
-        "rms": 0.86,
-        "gap": 99,
+        "types": ",moment-tensor,origin,phase-data,",
+        "nst": 143,
+        "dmin": 2.218,
+        "rms": 0.37,
+        "gap": 48,
         "magType": "mww",
         "type": "earthquake",
-        "title": "M 5.1 - 88 km NNW of Uken, Japan"
+        "title": "M 5.0 - 82 km NNW of Uken, Japan"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          128.8944,
-          29.0367,
+          128.9081,
+          28.9902,
           10
         ]
       },
